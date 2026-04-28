@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Business Final Exam Learning Lab</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">BUSN 101 Final Exam Prep</p>
+      <h1>Business Final Exam Learning Lab</h1>
+      <p class="subtitle">Practice key terms, spot common traps, and build confidence without seeing the actual test questions.</p>
+      <div class="hero-actions">
+        <button onclick="showScreen('dashboard')" class="primary">Start Learning</button>
+        <button onclick="showScreen('certificate')" class="secondary">Print Certificate</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="dashboard" class="screen active">
+      <div class="panel">
+        <h2>Choose a Practice Mode</h2>
+        <p class="muted">Use this tool more than once. Short, repeated practice beats one long cram session.</p>
+        <div class="stats-grid">
+          <div><strong id="masteryCount">0</strong><span>Terms Mastered</span></div>
+          <div><strong id="attemptCount">0</strong><span>Practice Attempts</span></div>
+          <div><strong id="bestScore">0%</strong><span>Best Challenge Score</span></div>
+        </div>
+      </div>
+
+      <div class="mode-grid">
+        <button class="mode-card" onclick="startFlashcards()">
+          <span>📇</span><h3>Flashcards</h3><p>Build recognition and recall by category.</p>
+        </button>
+        <button class="mode-card" onclick="startMatch()">
+          <span>🧩</span><h3>Matching</h3><p>Match terms to definitions under light pressure.</p>
+        </button>
+        <button class="mode-card" onclick="startTrueFalse()">
+          <span>✅</span><h3>True or False</h3><p>Catch common misconceptions before the exam catches you.</p>
+        </button>
+        <button class="mode-card" onclick="startScenario()">
+          <span>🧠</span><h3>Scenario Practice</h3><p>Apply concepts in realistic business situations.</p>
+        </button>
+        <button class="mode-card highlight" onclick="startChallenge()">
+          <span>🏁</span><h3>Final Readiness Challenge</h3><p>Mixed practice with a certificate when completed.</p>
+        </button>
+        <button class="mode-card" onclick="showScreen('study')">
+          <span>📚</span><h3>Study Bank</h3><p>Search and review all terms.</p>
+        </button>
+      </div>
+
+      <div class="panel tip">
+        <h2>How to Use This Efficiently</h2>
+        <p>Do one round of flashcards, one round of matching, then one final challenge. Repeat weak categories. The old-school method still works: retrieval, correction, repetition.</p>
+      </div>
+    </section>
+
+    <section id="activity" class="screen">
+      <div class="activity-top">
+        <button class="ghost" onclick="showScreen('dashboard')">← Dashboard</button>
+        <div class="progress-wrap"><div id="progressBar"></div></div>
+      </div>
+      <div id="activityContent" class="activity-card"></div>
+    </section>
+
+    <section id="study" class="screen">
+      <button class="ghost" onclick="showScreen('dashboard')">← Dashboard</button>
+      <div class="panel">
+        <h2>Study Bank</h2>
+        <input id="searchBox" placeholder="Search terms, definitions, examples, or categories..." oninput="renderStudyBank()"/>
+        <select id="categoryFilter" onchange="renderStudyBank()"></select>
+      </div>
+      <div id="studyList" class="study-list"></div>
+    </section>
+
+    <section id="certificate" class="screen">
+      <button class="ghost no-print" onclick="showScreen('dashboard')">← Dashboard</button>
+      <div class="certificate">
+        <p class="cert-small">Certificate of Completion</p>
+        <h2>Business Final Exam Learning Lab</h2>
+        <p>This certifies that</p>
+        <input id="studentName" class="name-input" placeholder="Student Name"/>
+        <p>completed practice using the Business Final Exam Learning Lab.</p>
+        <div class="cert-row">
+          <span>Date: <strong id="certDate"></strong></span>
+          <span>Best Score: <strong id="certScore">0%</strong></span>
+        </div>
+        <p class="cert-note">Participation certificate. Final exam success still depends on honest study, review of course materials, and careful reading.</p>
+        <button class="primary no-print" onclick="window.print()">Print Certificate</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Designed for repeated practice, retrieval, feedback, and confidence-building. No actual quiz questions are reproduced.</p>
+  </footer>
+
+  <script src="terms.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1836 @@
+const TERMS = [
+  {
+    "term": "Just-in-Time Inventory",
+    "category": "Operations & Production",
+    "definition": "An inventory system in which suppliers deliver parts and materials exactly when production needs them, reducing storage costs and waste.",
+    "trap": "It does not mean keeping large backup inventories.",
+    "example": "A motorcycle plant receives seats and handlebars the same day they are installed."
+  },
+  {
+    "term": "Lean Manufacturing",
+    "category": "Operations & Production",
+    "definition": "A production approach focused on eliminating waste, improving flow, and continuously improving processes.",
+    "trap": "Lean does not simply mean cutting jobs.",
+    "example": "A factory redesigns workstations to reduce wasted movement and defects."
+  },
+  {
+    "term": "Mass Production",
+    "category": "Operations & Production",
+    "definition": "Producing large quantities of standardized goods at low cost.",
+    "trap": "It is not focused on individual customization.",
+    "example": "A factory produces thousands of identical pens."
+  },
+  {
+    "term": "Mass Customization",
+    "category": "Operations & Production",
+    "definition": "Producing goods tailored to individual customers while maintaining many efficiencies of mass production.",
+    "trap": "It is not one-at-a-time handmade production.",
+    "example": "A shoe company lets customers choose colors while using automated production."
+  },
+  {
+    "term": "Form Utility",
+    "category": "Operations & Production",
+    "definition": "Value added by changing raw materials or components into finished goods.",
+    "trap": "Do not confuse it with place or possession utility.",
+    "example": "Turning wheat into bread creates form utility."
+  },
+  {
+    "term": "Fixed-Position Layout",
+    "category": "Operations & Production",
+    "definition": "A facility layout where the product stays in one place while workers, tools, and materials come to it.",
+    "trap": "This is not the same as an assembly line.",
+    "example": "Ships and airplanes are often built using a fixed-position layout."
+  },
+  {
+    "term": "Process Layout",
+    "category": "Operations & Production",
+    "definition": "A layout where similar activities or equipment are grouped together by function.",
+    "trap": "It is not arranged around a single product flow.",
+    "example": "A hospital groups radiology, surgery, and lab services by process."
+  },
+  {
+    "term": "Product Layout",
+    "category": "Operations & Production",
+    "definition": "A layout arranged around the sequence of steps needed to produce a specific product.",
+    "trap": "It is less flexible than a process layout.",
+    "example": "An automobile assembly line uses product layout."
+  },
+  {
+    "term": "Computer-Aided Design (CAD)",
+    "category": "Operations & Production",
+    "definition": "Using computer systems to create, modify, analyze, or optimize product designs.",
+    "trap": "CAD designs products. CAM helps manufacture them.",
+    "example": "An engineer uses software to design a machine part."
+  },
+  {
+    "term": "Computer-Aided Manufacturing (CAM)",
+    "category": "Operations & Production",
+    "definition": "Using computers directly in the production process.",
+    "trap": "CAM is production-focused, not design-focused.",
+    "example": "A computer-controlled machine cuts metal parts."
+  },
+  {
+    "term": "Computer-Integrated Manufacturing (CIM)",
+    "category": "Operations & Production",
+    "definition": "A production system where computers control and integrate the entire manufacturing process.",
+    "trap": "It is broader than CAD or CAM alone.",
+    "example": "A car plant uses software to coordinate ordering, machines, and assembly."
+  },
+  {
+    "term": "3D Printing",
+    "category": "Operations & Production",
+    "definition": "A manufacturing process that builds items layer by layer, often used for prototypes and molds.",
+    "trap": "It is not yet the main method for most mass-produced items.",
+    "example": "A company prints a prototype part before investing in tooling."
+  },
+  {
+    "term": "Capacity",
+    "category": "Operations & Production",
+    "definition": "The maximum amount a firm can produce under normal conditions.",
+    "trap": "When demand exceeds capacity, firms may use overtime, extra shifts, or subcontracting.",
+    "example": "A bakery can produce 2,000 loaves per day."
+  },
+  {
+    "term": "Subcontracting",
+    "category": "Operations & Production",
+    "definition": "Hiring another company to complete part of the work.",
+    "trap": "It is not the same as hiring full-time internal employees.",
+    "example": "A manufacturer hires another plant to make parts during peak demand."
+  },
+  {
+    "term": "Production",
+    "category": "Operations & Production",
+    "definition": "Creating goods and services using land, labor, capital, entrepreneurship, and knowledge.",
+    "trap": "Production includes services, not just physical goods.",
+    "example": "A restaurant produces meals and service experiences."
+  },
+  {
+    "term": "Robotics",
+    "category": "Operations & Production",
+    "definition": "Use of programmable machines to perform tasks in production or service operations.",
+    "trap": "Robots can raise productivity while reducing some labor needs.",
+    "example": "Robots weld car frames on an assembly line."
+  },
+  {
+    "term": "Importing",
+    "category": "Global Business",
+    "definition": "Buying products or materials from another country and bringing them into one\u2019s own country.",
+    "trap": "Imports come into the country.",
+    "example": "A U.S. retailer buys clothing made in Vietnam."
+  },
+  {
+    "term": "Exporting",
+    "category": "Global Business",
+    "definition": "Selling products made in one country to buyers in another country.",
+    "trap": "Exports leave the country.",
+    "example": "A St. Louis company sells products to Germany."
+  },
+  {
+    "term": "Balance of Trade",
+    "category": "Global Business",
+    "definition": "The total value of a nation\u2019s exports compared to its imports over a specific period.",
+    "trap": "Do not confuse it with balance of payments, which is broader.",
+    "example": "If exports are $1 trillion and imports are $1.2 trillion, the country has a trade deficit."
+  },
+  {
+    "term": "Trade Deficit",
+    "category": "Global Business",
+    "definition": "An unfavorable balance of trade in which imports exceed exports.",
+    "trap": "A deficit means buying more from abroad than selling abroad.",
+    "example": "The United States has often imported more goods than it exports."
+  },
+  {
+    "term": "Trade Surplus",
+    "category": "Global Business",
+    "definition": "A favorable balance of trade in which exports exceed imports.",
+    "trap": "A surplus does not automatically mean every worker benefits.",
+    "example": "A nation sells more goods abroad than it buys."
+  },
+  {
+    "term": "Comparative Advantage",
+    "category": "Global Business",
+    "definition": "The ability of a country to produce a good or service more efficiently relative to other goods it could produce.",
+    "trap": "Every country has some comparative advantage.",
+    "example": "A country focuses on products it makes most efficiently and trades for others."
+  },
+  {
+    "term": "Absolute Advantage",
+    "category": "Global Business",
+    "definition": "The ability to produce more of a good using the same or fewer resources than another producer.",
+    "trap": "Comparative advantage matters more for trade decisions.",
+    "example": "One country can produce more wheat per acre than another."
+  },
+  {
+    "term": "Offshore Outsourcing",
+    "category": "Global Business",
+    "definition": "Hiring workers in another country to perform work that could be done domestically.",
+    "trap": "Offshore outsourcing is not the same as importing a finished product from a supplier.",
+    "example": "A U.S. firm contracts customer service work to another country."
+  },
+  {
+    "term": "Insourcing",
+    "category": "Global Business",
+    "definition": "Foreign companies creating jobs domestically by locating operations in another country.",
+    "trap": "Insourcing can offset some jobs lost through outsourcing.",
+    "example": "A foreign automaker builds cars in Indiana or Ohio."
+  },
+  {
+    "term": "Import Quota",
+    "category": "Global Business",
+    "definition": "A government limit on the quantity of a product that may be imported.",
+    "trap": "A quota limits quantity, while a tariff adds tax.",
+    "example": "A country allows only 100 million tons of sugar imports."
+  },
+  {
+    "term": "Tariff",
+    "category": "Global Business",
+    "definition": "A tax placed on imported goods.",
+    "trap": "Tariffs usually raise prices for consumers.",
+    "example": "A tariff adds cost to imported steel."
+  },
+  {
+    "term": "Embargo",
+    "category": "Global Business",
+    "definition": "A complete ban on trade with a particular country or product.",
+    "trap": "An embargo is stronger than a quota or tariff.",
+    "example": "A country bans trade with a hostile nation."
+  },
+  {
+    "term": "Licensing",
+    "category": "Global Business",
+    "definition": "A contractual agreement allowing one firm to produce and market another firm\u2019s product or brand in exchange for a fee.",
+    "trap": "Licensing is often lower cost for the licensor, but control may be limited.",
+    "example": "A U.S. company permits a foreign firm to make its branded product."
+  },
+  {
+    "term": "Joint Venture",
+    "category": "Global Business",
+    "definition": "A partnership between companies, often from different countries, to share resources, risks, and expertise.",
+    "trap": "It is not guaranteed profit.",
+    "example": "Two firms share marketing and management expertise in a foreign market."
+  },
+  {
+    "term": "Multinational Corporation",
+    "category": "Global Business",
+    "definition": "A company with significant investments and physical operations in multiple countries.",
+    "trap": "Simply exporting does not make a company multinational.",
+    "example": "A company manufactures and markets products in several countries."
+  },
+  {
+    "term": "Sovereign Wealth Fund",
+    "category": "Global Business",
+    "definition": "A government-controlled investment fund that invests in foreign companies and assets.",
+    "trap": "It is not a private mutual fund.",
+    "example": "A nation invests oil revenue in global companies."
+  },
+  {
+    "term": "USMCA",
+    "category": "Global Business",
+    "definition": "A trade agreement among the United States, Mexico, and Canada that replaced NAFTA.",
+    "trap": "The member countries are not Panama or Nicaragua.",
+    "example": "Trade rules for North American goods are shaped by USMCA."
+  },
+  {
+    "term": "Free Trade",
+    "category": "Global Business",
+    "definition": "Trade among nations with reduced barriers such as tariffs and quotas.",
+    "trap": "Free trade can benefit consumers but may disrupt some workers and industries.",
+    "example": "Countries specialize and exchange goods more efficiently."
+  },
+  {
+    "term": "Economics",
+    "category": "Economics",
+    "definition": "The study of how society uses limited resources to produce and distribute goods and services.",
+    "trap": "Economics is about scarcity and choices.",
+    "example": "A country decides how to allocate labor, land, and capital."
+  },
+  {
+    "term": "Macroeconomics",
+    "category": "Economics",
+    "definition": "The study of an economy as a whole, including growth, inflation, unemployment, and GDP.",
+    "trap": "Macro is the big picture.",
+    "example": "Studying national economic growth is macroeconomics."
+  },
+  {
+    "term": "Microeconomics",
+    "category": "Economics",
+    "definition": "The study of individual markets, firms, consumers, and pricing decisions.",
+    "trap": "Micro focuses on smaller units of the economy.",
+    "example": "Studying how one company sets prices is microeconomics."
+  },
+  {
+    "term": "Gross Domestic Product (GDP)",
+    "category": "Economics",
+    "definition": "The total dollar value of all final goods and services produced within a country\u2019s borders during a specific period.",
+    "trap": "GDP measures production within borders, not just by citizens.",
+    "example": "Cars produced in Indiana count toward U.S. GDP."
+  },
+  {
+    "term": "Recession",
+    "category": "Economics",
+    "definition": "A period commonly described as two consecutive quarters of decline in real GDP.",
+    "trap": "Recession is not the same as depression.",
+    "example": "Six months of shrinking economic output may indicate recession."
+  },
+  {
+    "term": "Capitalism",
+    "category": "Economics",
+    "definition": "An economic system in which individuals own and operate most businesses.",
+    "trap": "Capitalism relies on private ownership, competition, and profit motive.",
+    "example": "Entrepreneurs start firms to meet customer needs and earn profit."
+  },
+  {
+    "term": "Invisible Hand",
+    "category": "Economics",
+    "definition": "Adam Smith\u2019s idea that people pursuing self-interest can unintentionally benefit society through jobs, goods, and wealth creation.",
+    "trap": "It does not mean greed is always good.",
+    "example": "A baker earns profit by selling bread customers want."
+  },
+  {
+    "term": "Factors of Production",
+    "category": "Economics",
+    "definition": "Resources used to create wealth: land, labor, capital, entrepreneurship, and knowledge.",
+    "trap": "Capital in this context means tools, machinery, buildings, and technology, not just money.",
+    "example": "A factory uses land, workers, equipment, ideas, and risk-taking."
+  },
+  {
+    "term": "Supply",
+    "category": "Economics",
+    "definition": "The quantity of a good or service producers are willing to sell at various prices.",
+    "trap": "Supply comes from producers.",
+    "example": "More sellers may supply coffee when prices rise."
+  },
+  {
+    "term": "Demand",
+    "category": "Economics",
+    "definition": "The quantity of a good or service consumers are willing and able to buy at various prices.",
+    "trap": "Wanting something is not demand unless buyers can pay.",
+    "example": "Students demand laptops when they need them and can afford them."
+  },
+  {
+    "term": "Market Price",
+    "category": "Economics",
+    "definition": "The price at which quantity demanded equals quantity supplied.",
+    "trap": "Also called equilibrium price.",
+    "example": "A product sells at the price where buyers and sellers agree."
+  },
+  {
+    "term": "Business Cycle",
+    "category": "Economics",
+    "definition": "Recurring periods of economic growth and contraction.",
+    "trap": "Economies rarely grow at a perfectly steady pace.",
+    "example": "Expansion, peak, contraction, trough, recovery."
+  },
+  {
+    "term": "Monopoly",
+    "category": "Economics",
+    "definition": "A market dominated by one seller.",
+    "trap": "A true monopoly has little or no direct competition.",
+    "example": "A local utility may operate as a regulated monopoly."
+  },
+  {
+    "term": "Oligopoly",
+    "category": "Economics",
+    "definition": "A market dominated by a few large sellers.",
+    "trap": "A few dominant firms does not equal one monopoly.",
+    "example": "Commercial aircraft manufacturing is close to an oligopoly."
+  },
+  {
+    "term": "Monopolistic Competition",
+    "category": "Economics",
+    "definition": "A market with many sellers offering similar but differentiated products.",
+    "trap": "Products are similar, not identical.",
+    "example": "A city with many bakeries selling different specialties."
+  },
+  {
+    "term": "Perfect Competition",
+    "category": "Economics",
+    "definition": "A market with many buyers and sellers offering nearly identical products.",
+    "trap": "Few real markets are perfectly competitive.",
+    "example": "Some agricultural commodity markets come close."
+  },
+  {
+    "term": "Profit",
+    "category": "Economics",
+    "definition": "Money left after a business subtracts expenses from revenue.",
+    "trap": "Revenue is not profit.",
+    "example": "A business earns $100,000 revenue and has $80,000 expenses, leaving $20,000 profit."
+  },
+  {
+    "term": "Loss",
+    "category": "Economics",
+    "definition": "When costs and expenses exceed revenues.",
+    "trap": "A loss means the business spent more than it earned.",
+    "example": "A startup spends $50,000 but earns $30,000."
+  },
+  {
+    "term": "Risk",
+    "category": "Economics",
+    "definition": "The chance of losing time, money, or resources invested in a business.",
+    "trap": "Entrepreneurs usually take calculated risks, not reckless risks.",
+    "example": "A new restaurant may fail if sales are too low."
+  },
+  {
+    "term": "Resource Development",
+    "category": "Economics",
+    "definition": "Efforts to increase available resources and improve how resources are used.",
+    "trap": "It is not just finding natural resources.",
+    "example": "Training workers improves human capital."
+  },
+  {
+    "term": "Entrepreneurship",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "Accepting the risk of starting and running a business.",
+    "trap": "Entrepreneurship is not just having an idea.",
+    "example": "A student launches a tutoring business and manages expenses, customers, and risk."
+  },
+  {
+    "term": "Entrepreneur",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A person who organizes, manages, and assumes the risk of a business.",
+    "trap": "Entrepreneurs are usually action-oriented and tolerate uncertainty.",
+    "example": "Someone opens a repair shop after identifying local demand."
+  },
+  {
+    "term": "Intrapreneur",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "An employee who uses company resources to develop new products, processes, or ventures.",
+    "trap": "Intrapreneurs innovate inside an existing organization.",
+    "example": "An employee develops a new service line for an employer."
+  },
+  {
+    "term": "Small Business",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "An independently owned and operated for-profit business that is not dominant in its field.",
+    "trap": "Small businesses can still have major local impact.",
+    "example": "A local HVAC company serving one region."
+  },
+  {
+    "term": "Sole Proprietorship",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A business owned and usually managed by one person.",
+    "trap": "It is simple but carries unlimited liability.",
+    "example": "A freelance landscaper operates as a sole proprietor."
+  },
+  {
+    "term": "Partnership",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A business owned by two or more people.",
+    "trap": "General partners may face unlimited liability.",
+    "example": "Two accountants start a firm together."
+  },
+  {
+    "term": "Limited Partnership",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A partnership with at least one general partner and one or more limited partners.",
+    "trap": "Limited partners usually do not manage the business.",
+    "example": "An investor contributes money but does not run daily operations."
+  },
+  {
+    "term": "Limited Partner",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A partner whose liability is limited to the amount invested and who does not manage the business.",
+    "trap": "Management activity can risk limited liability protection.",
+    "example": "A person invests $20,000 in a partnership and risks only that amount."
+  },
+  {
+    "term": "Limited Liability Partnership (LLP)",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A partnership form that limits each partner\u2019s personal liability for the acts of other partners.",
+    "trap": "Partners may still be liable for their own mistakes.",
+    "example": "Professional firms often use LLP structures."
+  },
+  {
+    "term": "Master Limited Partnership",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A business that acts like a corporation and is traded publicly but is taxed like a partnership.",
+    "trap": "It combines public trading with pass-through taxation.",
+    "example": "Some energy infrastructure companies use this form."
+  },
+  {
+    "term": "Corporation",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A legal entity separate from its owners that can own property, enter contracts, and raise capital through stock.",
+    "trap": "Corporations usually involve more regulation and recordkeeping.",
+    "example": "A company sells shares to raise money for expansion."
+  },
+  {
+    "term": "Closed Corporation",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A corporation whose stock is owned by a small group and not sold to the public.",
+    "trap": "Closed does not mean out of business.",
+    "example": "A family owns all shares of a corporation."
+  },
+  {
+    "term": "Domestic Corporation",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A corporation in the state where it is incorporated.",
+    "trap": "The same corporation is foreign in other states where it operates.",
+    "example": "An Indiana-incorporated firm is domestic in Indiana."
+  },
+  {
+    "term": "Foreign Corporation",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A corporation doing business in a state other than the one where it is incorporated.",
+    "trap": "Foreign can mean another state, not necessarily another country.",
+    "example": "A Delaware corporation operating in Indiana is foreign in Indiana."
+  },
+  {
+    "term": "Board of Directors",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "The top governing body of a corporation elected by shareholders.",
+    "trap": "The board oversees major decisions; officers manage daily operations.",
+    "example": "The board hires or evaluates the CEO."
+  },
+  {
+    "term": "Unlimited Liability",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "The owner is personally responsible for all business debts and damages.",
+    "trap": "Personal assets may be at risk.",
+    "example": "A sole proprietor may have to use personal savings to pay business debts."
+  },
+  {
+    "term": "Limited Liability",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "Owners\u2019 losses are generally limited to the amount they invested.",
+    "trap": "Fraud or poor separation of business and personal finances can threaten protection.",
+    "example": "A shareholder usually risks only the money invested in stock."
+  },
+  {
+    "term": "Franchise",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A business arrangement where one party buys the right to use another company\u2019s name, products, and business model.",
+    "trap": "Franchises reduce some risk but do not eliminate it.",
+    "example": "A local owner operates a fast-food restaurant under a national brand."
+  },
+  {
+    "term": "Franchisor",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "The company that grants the franchise rights.",
+    "trap": "The franchisor is the parent brand.",
+    "example": "The national pet store company grants rights to local owners."
+  },
+  {
+    "term": "Franchisee",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "The person or business that buys the right to operate under the franchisor\u2019s brand.",
+    "trap": "The franchisee follows brand rules and pays fees.",
+    "example": "A local owner operates a branded restaurant."
+  },
+  {
+    "term": "Franchise Advantage",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A benefit of franchising, such as brand recognition, training, and a proven business model.",
+    "trap": "Brand recognition is a franchisee advantage; faster expansion and cash flow are franchisor advantages.",
+    "example": "A new owner benefits from customers already knowing the brand."
+  },
+  {
+    "term": "Franchise Disadvantage",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A drawback of franchising, such as high cost, strict rules, or risk of brand damage from poor locations.",
+    "trap": "A bad franchise location can hurt the franchisor\u2019s reputation.",
+    "example": "Food safety problems at one location can damage the whole brand."
+  },
+  {
+    "term": "Management",
+    "category": "Management & Organization",
+    "definition": "The process of using organizational resources to accomplish goals.",
+    "trap": "Management is not just giving orders.",
+    "example": "A manager coordinates people, budgets, and schedules."
+  },
+  {
+    "term": "Planning",
+    "category": "Management & Organization",
+    "definition": "Setting organizational goals and deciding how to achieve them.",
+    "trap": "Planning happens before organizing, leading, and controlling.",
+    "example": "A company decides to enter a new market."
+  },
+  {
+    "term": "Organizing",
+    "category": "Management & Organization",
+    "definition": "Designing the structure of the organization and arranging resources to meet goals.",
+    "trap": "Modern organizing often designs around customer needs.",
+    "example": "A company creates teams to serve specific customer segments."
+  },
+  {
+    "term": "Leading",
+    "category": "Management & Organization",
+    "definition": "Guiding, training, coaching, and motivating employees.",
+    "trap": "Leading is people-focused.",
+    "example": "A supervisor coaches employees through a service problem."
+  },
+  {
+    "term": "Controlling",
+    "category": "Management & Organization",
+    "definition": "Measuring progress, comparing results to standards, rewarding performance, and correcting problems.",
+    "trap": "Control is not only punishment.",
+    "example": "A manager reviews weekly sales and adjusts staffing."
+  },
+  {
+    "term": "Strategic Plan",
+    "category": "Management & Organization",
+    "definition": "A long-term plan that sets broad organizational direction.",
+    "trap": "Strategic plans address major long-term commitments.",
+    "example": "A firm decides whether to expand into new markets."
+  },
+  {
+    "term": "Tactical Plan",
+    "category": "Management & Organization",
+    "definition": "A shorter-term plan developed by middle managers to implement strategic goals.",
+    "trap": "Tactical plans translate strategy into action.",
+    "example": "A department plans a campaign to support expansion."
+  },
+  {
+    "term": "Operational Plan",
+    "category": "Management & Organization",
+    "definition": "A detailed short-term plan for daily or weekly activities.",
+    "trap": "Operational plans are used closest to front-line work.",
+    "example": "A department manager creates weekly work assignments."
+  },
+  {
+    "term": "Contingency Planning",
+    "category": "Management & Organization",
+    "definition": "Preparing alternative plans in case conditions change.",
+    "trap": "It is the Plan B mindset.",
+    "example": "An ice cream business plans for bad weather during outdoor events."
+  },
+  {
+    "term": "Mission Statement",
+    "category": "Management & Organization",
+    "definition": "A statement explaining an organization\u2019s purpose, values, philosophy, and self-concept.",
+    "trap": "A mission statement is broader than a slogan.",
+    "example": "A college states its commitment to student success."
+  },
+  {
+    "term": "Brainstorming",
+    "category": "Management & Organization",
+    "definition": "A problem-solving method that encourages many ideas quickly without immediate criticism.",
+    "trap": "The first stage is idea generation, not judging.",
+    "example": "A team lists possible ways to improve customer service."
+  },
+  {
+    "term": "Top Management",
+    "category": "Management & Organization",
+    "definition": "Senior executives responsible for overall direction and strategic decisions.",
+    "trap": "Top managers focus on vision and strategy.",
+    "example": "CEO, president, and executive vice presidents."
+  },
+  {
+    "term": "Middle Management",
+    "category": "Management & Organization",
+    "definition": "Managers who develop tactical plans and coordinate departments.",
+    "trap": "Middle managers connect top strategy to front-line work.",
+    "example": "Plant managers, deans, and division managers."
+  },
+  {
+    "term": "Supervisory Management",
+    "category": "Management & Organization",
+    "definition": "First-line managers responsible for assigning specific jobs and evaluating daily worker performance.",
+    "trap": "Supervisors are closest to front-line employees.",
+    "example": "A shift supervisor assigns workstations."
+  },
+  {
+    "term": "Conceptual Skills",
+    "category": "Management & Organization",
+    "definition": "The ability to see the organization as a whole and understand how parts fit together.",
+    "trap": "Conceptual skills are especially important for top managers.",
+    "example": "A manager sees how marketing, operations, finance, and HR affect each other."
+  },
+  {
+    "term": "Technical Skills",
+    "category": "Management & Organization",
+    "definition": "The ability to perform specific tasks or use specialized knowledge.",
+    "trap": "Technical skill is not the same as people skill.",
+    "example": "A warehouse manager understands inventory software."
+  },
+  {
+    "term": "Interpersonal Skills",
+    "category": "Management & Organization",
+    "definition": "The ability to work well with people.",
+    "trap": "Managers need interpersonal skills at every level.",
+    "example": "A supervisor resolves team conflict respectfully."
+  },
+  {
+    "term": "Autocratic Leadership",
+    "category": "Management & Organization",
+    "definition": "A leadership style where the leader makes decisions and tells employees what to do.",
+    "trap": "Autocratic leadership can be fast but may limit employee input.",
+    "example": "A crisis response leader gives direct orders."
+  },
+  {
+    "term": "Democratic Leadership",
+    "category": "Management & Organization",
+    "definition": "A leadership style where leaders involve employees in decision-making.",
+    "trap": "It may take longer but can build commitment.",
+    "example": "A manager asks the team to help choose a process improvement."
+  },
+  {
+    "term": "Laissez-Faire Leadership",
+    "category": "Management & Organization",
+    "definition": "A leadership style giving employees significant freedom in how they work.",
+    "trap": "It works best with skilled and self-directed employees.",
+    "example": "An experienced design team manages its own process."
+  },
+  {
+    "term": "Empowerment",
+    "category": "Management & Organization",
+    "definition": "Giving employees authority and responsibility to respond quickly to customer needs.",
+    "trap": "Empowerment requires trust and training.",
+    "example": "A hotel employee can resolve a guest problem without manager approval."
+  },
+  {
+    "term": "Span of Control",
+    "category": "Management & Organization",
+    "definition": "The number of employees a manager supervises.",
+    "trap": "Wide spans are associated with flatter organizations.",
+    "example": "A supervisor with 15 direct reports has a wider span than one with 4."
+  },
+  {
+    "term": "Chain of Command",
+    "category": "Management & Organization",
+    "definition": "The line of authority moving from the top of the organization to the lowest level.",
+    "trap": "It clarifies who reports to whom.",
+    "example": "Employee to supervisor to manager to director."
+  },
+  {
+    "term": "Flat Organization",
+    "category": "Management & Organization",
+    "definition": "An organization with fewer layers of management and wider spans of control.",
+    "trap": "Flat structures can respond faster to customers.",
+    "example": "A startup with few management levels."
+  },
+  {
+    "term": "Tall Organization",
+    "category": "Management & Organization",
+    "definition": "An organization with many management layers and narrower spans of control.",
+    "trap": "Tall structures may slow decision-making.",
+    "example": "A large bureaucracy with many approval levels."
+  },
+  {
+    "term": "Departmentalization",
+    "category": "Management & Organization",
+    "definition": "Dividing an organization into specialized units such as marketing, HR, accounting, and production.",
+    "trap": "Functional departmentalization groups by business function.",
+    "example": "A furniture company has separate marketing and production departments."
+  },
+  {
+    "term": "Line Organization",
+    "category": "Management & Organization",
+    "definition": "The oldest and simplest structure, with authority moving directly from person to person.",
+    "trap": "Line structure is straightforward but can be rigid.",
+    "example": "Owner to manager to worker."
+  },
+  {
+    "term": "Bureaucratic Organization",
+    "category": "Management & Organization",
+    "definition": "An organization with many layers, clear rules, procedures, and formal authority.",
+    "trap": "Weber favored rules and qualifications, but bureaucracy can become slow.",
+    "example": "A government agency with formal procedures."
+  },
+  {
+    "term": "Marketing",
+    "category": "Marketing",
+    "definition": "Creating, communicating, delivering, and exchanging offerings that have value for customers, partners, and society.",
+    "trap": "Marketing is broader than advertising or selling.",
+    "example": "A company researches customers, designs a product, prices it, distributes it, and promotes it."
+  },
+  {
+    "term": "Marketing Concept",
+    "category": "Marketing",
+    "definition": "A philosophy based on customer orientation, service orientation, and profit orientation.",
+    "trap": "It focuses on learning about customers and exceeding expectations.",
+    "example": "A business adapts services based on customer needs."
+  },
+  {
+    "term": "Marketing Mix",
+    "category": "Marketing",
+    "definition": "The combination of product, price, place/distribution, and promotion.",
+    "trap": "The four Ps are not the whole marketing process, but they are the core tools.",
+    "example": "A company chooses product features, price, stores, and ads."
+  },
+  {
+    "term": "Product",
+    "category": "Marketing",
+    "definition": "A good, service, or idea offered to satisfy customer needs.",
+    "trap": "A product includes benefits, image, service, and experience.",
+    "example": "A smartphone includes hardware, software, brand, warranty, and support."
+  },
+  {
+    "term": "Price",
+    "category": "Marketing",
+    "definition": "The amount customers pay for a product.",
+    "trap": "Price affects customer perception and demand.",
+    "example": "A company chooses a premium or budget price."
+  },
+  {
+    "term": "Place",
+    "category": "Marketing",
+    "definition": "The distribution decisions that make products available to customers.",
+    "trap": "Place is not just physical location.",
+    "example": "A product sold online and in retail stores."
+  },
+  {
+    "term": "Promotion",
+    "category": "Marketing",
+    "definition": "Techniques sellers use to inform, remind, and persuade customers.",
+    "trap": "Promotion includes more than advertising.",
+    "example": "Salespeople, ads, social media, public relations, and coupons."
+  },
+  {
+    "term": "Target Market",
+    "category": "Marketing",
+    "definition": "A specific group of customers toward which a firm directs its marketing efforts.",
+    "trap": "A target market is not everyone.",
+    "example": "A tutoring service targets first-year college students."
+  },
+  {
+    "term": "Consumer Market",
+    "category": "Marketing",
+    "definition": "Individuals who want goods and services for personal use and have the resources to buy them.",
+    "trap": "Consumer markets are different from business-to-business markets.",
+    "example": "Households buying groceries."
+  },
+  {
+    "term": "Market Segmentation",
+    "category": "Marketing",
+    "definition": "Dividing the total market into groups with similar characteristics.",
+    "trap": "Segmentation helps firms target effectively.",
+    "example": "A fitness company targets beginners, athletes, and older adults differently."
+  },
+  {
+    "term": "Marketing Research",
+    "category": "Marketing",
+    "definition": "Gathering and analyzing information about customers, competitors, and markets to make marketing decisions.",
+    "trap": "Research should inform product, price, place, and promotion.",
+    "example": "A company surveys customers before launching a product."
+  },
+  {
+    "term": "Primary Data",
+    "category": "Marketing",
+    "definition": "Data gathered directly by the firm for a specific research purpose.",
+    "trap": "Surveys and interviews are primary data.",
+    "example": "A company interviews customers about product preferences."
+  },
+  {
+    "term": "Secondary Data",
+    "category": "Marketing",
+    "definition": "Existing data originally collected for another purpose.",
+    "trap": "Government reports and trade journals are secondary data.",
+    "example": "Using Census data to study demographics."
+  },
+  {
+    "term": "Focus Group",
+    "category": "Marketing",
+    "definition": "A small group discussion led by a moderator to gather opinions about products or issues.",
+    "trap": "Focus groups provide qualitative insight, not a large statistical sample.",
+    "example": "Ten customers discuss a new package design."
+  },
+  {
+    "term": "Test Marketing",
+    "category": "Marketing",
+    "definition": "Testing a product with potential users in a limited market before full launch.",
+    "trap": "It reduces risk but does not guarantee success.",
+    "example": "A restaurant tests a new menu item in one city."
+  },
+  {
+    "term": "Environmental Scanning",
+    "category": "Marketing",
+    "definition": "Identifying external factors that can affect marketing success.",
+    "trap": "It includes social, competitive, economic, technological, and legal trends.",
+    "example": "A marketer tracks aging population trends."
+  },
+  {
+    "term": "Brand Name",
+    "category": "Marketing",
+    "definition": "A word, letter, or group of words or letters that distinguishes one seller\u2019s goods or services.",
+    "trap": "The Nike swoosh is a trademark, not the brand name itself.",
+    "example": "Coca-Cola is a brand name."
+  },
+  {
+    "term": "Trademark",
+    "category": "Marketing",
+    "definition": "A legally protected brand symbol, design, or phrase.",
+    "trap": "A trademark protects identification in the marketplace.",
+    "example": "Nike\u2019s swoosh is a trademark."
+  },
+  {
+    "term": "Product Differentiation",
+    "category": "Marketing",
+    "definition": "Creating real or perceived differences between products.",
+    "trap": "Differentiation helps avoid competing only on price.",
+    "example": "A bakery claims unique recipes and local ingredients."
+  },
+  {
+    "term": "Product Mix",
+    "category": "Marketing",
+    "definition": "The total collection of products a company offers.",
+    "trap": "A product mix contains product lines.",
+    "example": "A company sells snacks, dairy, adhesives, and films."
+  },
+  {
+    "term": "Product Line",
+    "category": "Marketing",
+    "definition": "A group of related products within a company\u2019s product mix.",
+    "trap": "Do not confuse product line with product mix.",
+    "example": "A cereal company\u2019s breakfast cereals are one product line."
+  },
+  {
+    "term": "Product Life Cycle",
+    "category": "Marketing",
+    "definition": "The stages a product goes through: introduction, growth, maturity, and decline.",
+    "trap": "The correct order matters.",
+    "example": "A new gadget launches, grows, levels off, and eventually declines."
+  },
+  {
+    "term": "Convenience Product",
+    "category": "Marketing",
+    "definition": "A consumer product bought frequently with minimal effort.",
+    "trap": "Bread and gum are classic examples.",
+    "example": "Milk, snacks, and toothpaste."
+  },
+  {
+    "term": "Shopping Product",
+    "category": "Marketing",
+    "definition": "A product customers compare on price, quality, and features before buying.",
+    "trap": "It requires more effort than a convenience product.",
+    "example": "Furniture or electronics."
+  },
+  {
+    "term": "Specialty Product",
+    "category": "Marketing",
+    "definition": "A product customers strongly prefer and will make a special effort to buy.",
+    "trap": "Brand insistence can turn a product into a specialty good.",
+    "example": "A specific luxury watch brand."
+  },
+  {
+    "term": "Private Label Brand",
+    "category": "Marketing",
+    "definition": "A brand owned by a retailer or wholesaler.",
+    "trap": "Also called a store brand.",
+    "example": "A department store\u2019s own jeans brand."
+  },
+  {
+    "term": "Distribution Channel",
+    "category": "Marketing",
+    "definition": "A sequence of organizations that moves a product from producer to ultimate user.",
+    "trap": "Distribution channels may include wholesalers, retailers, and agents.",
+    "example": "Manufacturer to wholesaler to retailer to customer."
+  },
+  {
+    "term": "Marketing Intermediary",
+    "category": "Marketing",
+    "definition": "An organization that helps move goods from producers to consumers.",
+    "trap": "Intermediaries can provide utility and efficiency.",
+    "example": "Wholesalers, retailers, and agents."
+  },
+  {
+    "term": "Manufacturer\u2019s Agent",
+    "category": "Marketing",
+    "definition": "An agent who represents several producers in a territory, as long as they do not represent competing products.",
+    "trap": "Agents do not usually take title to goods.",
+    "example": "A sales agent represents several equipment manufacturers."
+  },
+  {
+    "term": "Full-Service Wholesaler",
+    "category": "Marketing",
+    "definition": "A wholesaler that performs all distribution functions.",
+    "trap": "They do more than store products.",
+    "example": "A wholesaler provides storage, delivery, credit, and sales support."
+  },
+  {
+    "term": "Retailer",
+    "category": "Marketing",
+    "definition": "A business that sells goods or services directly to final consumers.",
+    "trap": "Retailers are closest to the end consumer.",
+    "example": "A supermarket or discount store."
+  },
+  {
+    "term": "Supermarket",
+    "category": "Marketing",
+    "definition": "A large self-service retail store selling primarily food and household products.",
+    "trap": "A supermarket is not the same as a department store.",
+    "example": "Kroger or Meijer grocery sections."
+  },
+  {
+    "term": "Price Skimming",
+    "category": "Marketing",
+    "definition": "Charging a high initial price for a new product, then lowering it over time.",
+    "trap": "Skimming starts high.",
+    "example": "A new technology product launches at a premium price."
+  },
+  {
+    "term": "Penetration Pricing",
+    "category": "Marketing",
+    "definition": "Charging a low initial price to attract customers and gain market share.",
+    "trap": "Penetration starts low.",
+    "example": "A streaming service offers a low introductory price."
+  },
+  {
+    "term": "Breakeven Quantity",
+    "category": "Marketing",
+    "definition": "The number of units that must be sold for total revenue to equal total cost.",
+    "trap": "At breakeven, profit is zero.",
+    "example": "A business must sell 500 units before covering all costs."
+  },
+  {
+    "term": "Fixed Costs",
+    "category": "Marketing",
+    "definition": "Costs that do not change with the number of units produced in the short run.",
+    "trap": "Rent is usually fixed.",
+    "example": "Monthly lease payment."
+  },
+  {
+    "term": "Variable Costs",
+    "category": "Marketing",
+    "definition": "Costs that change based on the number of units produced.",
+    "trap": "Variable costs rise as production rises.",
+    "example": "Raw materials for each unit."
+  },
+  {
+    "term": "Place Utility",
+    "category": "Marketing",
+    "definition": "Value added by making products available where customers want them.",
+    "trap": "Shipping flowers from California to Indiana creates place utility.",
+    "example": "A store stocks snow shovels before winter."
+  },
+  {
+    "term": "Time Utility",
+    "category": "Marketing",
+    "definition": "Value added by making products available when customers want them.",
+    "trap": "Time is about timing, not location.",
+    "example": "A convenience store stays open late."
+  },
+  {
+    "term": "Possession Utility",
+    "category": "Marketing",
+    "definition": "Value added by making it easier for customers to own or use a product.",
+    "trap": "Credit, delivery, and guarantees can create possession utility.",
+    "example": "A store offers financing for appliances."
+  },
+  {
+    "term": "Information Utility",
+    "category": "Marketing",
+    "definition": "Value added by providing helpful information to customers.",
+    "trap": "Knowledgeable salespeople and ads can provide information utility.",
+    "example": "A salesperson explains warranty options."
+  },
+  {
+    "term": "Product Placement",
+    "category": "Marketing",
+    "definition": "Paying to have a product appear favorably in a television show, movie, or media content.",
+    "trap": "It is promotion disguised as part of entertainment.",
+    "example": "A character drinks a visibly branded soda."
+  },
+  {
+    "term": "Trade Advertising",
+    "category": "Marketing",
+    "definition": "Advertising aimed at wholesalers and retailers to encourage them to carry a manufacturer\u2019s products.",
+    "trap": "Trade advertising targets intermediaries, not final consumers.",
+    "example": "A manufacturer promotes products to grocery buyers."
+  },
+  {
+    "term": "Selling Process",
+    "category": "Marketing",
+    "definition": "The steps salespeople follow to build relationships and complete sales.",
+    "trap": "Follow-up is the final step, not closing.",
+    "example": "A salesperson checks in after delivery to ensure satisfaction."
+  },
+  {
+    "term": "Accounting",
+    "category": "Accounting, Finance & Money",
+    "definition": "Recording, classifying, summarizing, and interpreting financial information.",
+    "trap": "Accounting is more than bookkeeping.",
+    "example": "A business uses accounting to evaluate profitability."
+  },
+  {
+    "term": "Bookkeeping",
+    "category": "Accounting, Finance & Money",
+    "definition": "The recording of business transactions.",
+    "trap": "Bookkeepers record; accountants interpret and report.",
+    "example": "Recording daily sales in a journal."
+  },
+  {
+    "term": "Journal",
+    "category": "Accounting, Finance & Money",
+    "definition": "The accounting record where transactions are first entered.",
+    "trap": "The journal comes before posting to ledgers.",
+    "example": "Recording a cash sale in the journal."
+  },
+  {
+    "term": "Ledger",
+    "category": "Accounting, Finance & Money",
+    "definition": "A record that summarizes transactions by account.",
+    "trap": "The ledger organizes transactions after journal entries.",
+    "example": "All cash transactions are summarized in the cash ledger."
+  },
+  {
+    "term": "Trial Balance",
+    "category": "Accounting, Finance & Money",
+    "definition": "A summary used to verify that account ledgers are correct and balanced.",
+    "trap": "It is not one of the three major financial statements.",
+    "example": "Accountants prepare it before financial statements."
+  },
+  {
+    "term": "Balance Sheet",
+    "category": "Accounting, Finance & Money",
+    "definition": "A financial statement showing assets, liabilities, and owners\u2019 equity at a specific point in time.",
+    "trap": "It is a snapshot, not a period of activity.",
+    "example": "A balance sheet dated December 31."
+  },
+  {
+    "term": "Income Statement",
+    "category": "Accounting, Finance & Money",
+    "definition": "A financial statement showing revenue, expenses, and profit or loss over a period of time.",
+    "trap": "The income statement covers a period, unlike the balance sheet.",
+    "example": "A quarterly income statement shows profit for three months."
+  },
+  {
+    "term": "Statement of Cash Flows",
+    "category": "Accounting, Finance & Money",
+    "definition": "A financial statement showing cash inflows and outflows from operating, investing, and financing activities.",
+    "trap": "Profit and cash flow are not always the same.",
+    "example": "A profitable firm may still have cash flow problems."
+  },
+  {
+    "term": "Assets",
+    "category": "Accounting, Finance & Money",
+    "definition": "Resources owned by a business that have economic value.",
+    "trap": "Assets include cash, inventory, buildings, equipment, and patents.",
+    "example": "A delivery truck owned by the business."
+  },
+  {
+    "term": "Liabilities",
+    "category": "Accounting, Finance & Money",
+    "definition": "Debts or obligations owed by a business.",
+    "trap": "Liabilities reduce owners\u2019 equity.",
+    "example": "A bank loan or unpaid supplier bill."
+  },
+  {
+    "term": "Current Liabilities",
+    "category": "Accounting, Finance & Money",
+    "definition": "Debts due within one year.",
+    "trap": "Current means short-term in accounting.",
+    "example": "Accounts payable due in 30 days."
+  },
+  {
+    "term": "Owners\u2019 Equity",
+    "category": "Accounting, Finance & Money",
+    "definition": "The owners\u2019 claim on the business after liabilities are subtracted from assets.",
+    "trap": "Assets minus liabilities equals owners\u2019 equity.",
+    "example": "If assets are $124,000 and liabilities are $31,000, equity is $93,000."
+  },
+  {
+    "term": "Intangible Assets",
+    "category": "Accounting, Finance & Money",
+    "definition": "Nonphysical assets with value.",
+    "trap": "Patents and copyrights are intangible assets.",
+    "example": "A trademark or copyright."
+  },
+  {
+    "term": "Liquidity",
+    "category": "Accounting, Finance & Money",
+    "definition": "How quickly an asset can be converted into cash.",
+    "trap": "Cash is the most liquid asset.",
+    "example": "Inventory is less liquid than cash."
+  },
+  {
+    "term": "Current Ratio",
+    "category": "Accounting, Finance & Money",
+    "definition": "A ratio measuring a firm\u2019s ability to pay short-term debts.",
+    "trap": "It is a liquidity ratio.",
+    "example": "Current assets divided by current liabilities."
+  },
+  {
+    "term": "Finance",
+    "category": "Accounting, Finance & Money",
+    "definition": "The business function responsible for acquiring and managing funds.",
+    "trap": "Finance focuses on funding decisions, not just recording transactions.",
+    "example": "Choosing whether to issue bonds or stock."
+  },
+  {
+    "term": "Financial Planning",
+    "category": "Accounting, Finance & Money",
+    "definition": "Forecasting financial needs and planning how to obtain and use funds.",
+    "trap": "Planning looks forward.",
+    "example": "A business estimates cash needs for expansion."
+  },
+  {
+    "term": "Financial Control",
+    "category": "Accounting, Finance & Money",
+    "definition": "Comparing actual revenues and expenses to projected amounts to identify variances.",
+    "trap": "Control compares plan to actual results.",
+    "example": "A manager compares actual payroll costs to the budget."
+  },
+  {
+    "term": "Budget",
+    "category": "Accounting, Finance & Money",
+    "definition": "A financial plan used to allocate resources and control spending.",
+    "trap": "A budget is not mainly for taxes.",
+    "example": "A department receives a monthly operating budget."
+  },
+  {
+    "term": "Capital Expenditure",
+    "category": "Accounting, Finance & Money",
+    "definition": "A major investment in long-term assets such as buildings or equipment.",
+    "trap": "Capital expenditures often require large sums and long-term planning.",
+    "example": "Buying a building for office space."
+  },
+  {
+    "term": "Short-Term Financing",
+    "category": "Accounting, Finance & Money",
+    "definition": "Borrowed funds or credit expected to be repaid within one year.",
+    "trap": "Trade credit and commercial paper are short-term sources.",
+    "example": "A retailer receives 60 days to pay suppliers."
+  },
+  {
+    "term": "Long-Term Financing",
+    "category": "Accounting, Finance & Money",
+    "definition": "Borrowed funds or equity used for more than one year.",
+    "trap": "Corporate bonds are long-term debt financing.",
+    "example": "Issuing bonds to build a new facility."
+  },
+  {
+    "term": "Trade Credit",
+    "category": "Accounting, Finance & Money",
+    "definition": "A short-term financing arrangement where suppliers allow buyers to pay later.",
+    "trap": "It is common between manufacturers, wholesalers, and retailers.",
+    "example": "A retailer has 30 to 60 days to pay for merchandise."
+  },
+  {
+    "term": "Commercial Paper",
+    "category": "Accounting, Finance & Money",
+    "definition": "Short-term unsecured debt issued by financially strong corporations.",
+    "trap": "It is not long-term financing.",
+    "example": "A corporation borrows short-term funds for operating needs."
+  },
+  {
+    "term": "Factoring",
+    "category": "Accounting, Finance & Money",
+    "definition": "Selling accounts receivable to obtain cash quickly.",
+    "trap": "The firm gives up some value for faster cash.",
+    "example": "A business sells unpaid invoices to a finance company."
+  },
+  {
+    "term": "Secured Loan",
+    "category": "Accounting, Finance & Money",
+    "definition": "A loan backed by collateral.",
+    "trap": "Collateral lowers lender risk.",
+    "example": "A bank loan secured by equipment."
+  },
+  {
+    "term": "Bond",
+    "category": "Accounting, Finance & Money",
+    "definition": "A debt security issued by a corporation or government to borrow money.",
+    "trap": "Bondholders are lenders, not owners.",
+    "example": "A city issues bonds to fund infrastructure."
+  },
+  {
+    "term": "Corporate Bond",
+    "category": "Accounting, Finance & Money",
+    "definition": "A long-term debt instrument issued by a corporation.",
+    "trap": "Interest paid on bonds is generally tax-deductible for the corporation.",
+    "example": "A corporation sells bonds to finance expansion."
+  },
+  {
+    "term": "Sinking Fund",
+    "category": "Accounting, Finance & Money",
+    "definition": "A fund established to ensure money is available to repay bondholders at maturity.",
+    "trap": "It is a repayment reserve.",
+    "example": "A company sets aside money annually to repay bonds."
+  },
+  {
+    "term": "Equity Financing",
+    "category": "Accounting, Finance & Money",
+    "definition": "Raising funds by selling ownership in the company.",
+    "trap": "Common and preferred stock are forms of equity financing.",
+    "example": "A corporation sells shares to investors."
+  },
+  {
+    "term": "Common Stock",
+    "category": "Accounting, Finance & Money",
+    "definition": "The basic form of corporate ownership, usually including voting rights and possible dividends.",
+    "trap": "Dividends are not guaranteed.",
+    "example": "Shareholders vote for the board of directors."
+  },
+  {
+    "term": "Preferred Stock",
+    "category": "Accounting, Finance & Money",
+    "definition": "Stock that gives owners preference in dividend payments before common stockholders.",
+    "trap": "Preferred stock often has limited or no voting rights.",
+    "example": "Preferred shareholders receive dividends first."
+  },
+  {
+    "term": "Cumulative Preferred Stock",
+    "category": "Accounting, Finance & Money",
+    "definition": "Preferred stock where missed dividends must be paid before common stock dividends.",
+    "trap": "Cumulative means missed dividends accumulate.",
+    "example": "A company must pay skipped preferred dividends before common dividends."
+  },
+  {
+    "term": "Dividends",
+    "category": "Accounting, Finance & Money",
+    "definition": "After-tax profits distributed to stockholders.",
+    "trap": "Dividends are not expenses like bond interest.",
+    "example": "A corporation pays shareholders $1 per share."
+  },
+  {
+    "term": "Retained Earnings",
+    "category": "Accounting, Finance & Money",
+    "definition": "After-tax profits kept in the business instead of distributed as dividends.",
+    "trap": "Retained earnings are an internal source of financing.",
+    "example": "A company reinvests profits into new equipment."
+  },
+  {
+    "term": "Initial Public Offering (IPO)",
+    "category": "Accounting, Finance & Money",
+    "definition": "The first sale of a corporation\u2019s common stock to the general public.",
+    "trap": "An IPO makes shares publicly available for the first time.",
+    "example": "A private company becomes publicly traded."
+  },
+  {
+    "term": "Securities and Exchange Commission (SEC)",
+    "category": "Accounting, Finance & Money",
+    "definition": "The federal agency that regulates securities markets and protects investors.",
+    "trap": "The SEC was created by the Securities Exchange Act of 1934.",
+    "example": "The SEC enforces disclosure rules for public companies."
+  },
+  {
+    "term": "Money Supply M-1",
+    "category": "Accounting, Finance & Money",
+    "definition": "Money that is quickly and easily accessed, including currency and checking deposits.",
+    "trap": "M-1 is the narrowest common measure.",
+    "example": "Cash in your wallet and checking account funds."
+  },
+  {
+    "term": "Money Supply M-2",
+    "category": "Accounting, Finance & Money",
+    "definition": "M-1 plus additional near-money such as savings accounts, money market accounts, and some certificates of deposit.",
+    "trap": "M-2 includes everything in M-1 plus more.",
+    "example": "Savings account deposits are in M-2 but not M-1."
+  },
+  {
+    "term": "FDIC",
+    "category": "Accounting, Finance & Money",
+    "definition": "An independent U.S. government agency that insures bank deposits to help maintain confidence in banks.",
+    "trap": "It was created to restore confidence in banking institutions.",
+    "example": "Depositors are protected up to legal insurance limits."
+  },
+  {
+    "term": "Federal Reserve System",
+    "category": "Accounting, Finance & Money",
+    "definition": "The central banking system of the United States responsible for monetary policy.",
+    "trap": "The system includes 12 Federal Reserve Banks.",
+    "example": "The Fed influences the money supply and interest rates."
+  },
+  {
+    "term": "Monetary Policy",
+    "category": "Accounting, Finance & Money",
+    "definition": "Actions by the Federal Reserve to influence money supply and interest rates.",
+    "trap": "Fiscal policy is government taxing and spending.",
+    "example": "The Fed changes interest rate targets."
+  },
+  {
+    "term": "Savings and Loan Association",
+    "category": "Accounting, Finance & Money",
+    "definition": "A financial institution that accepts savings and checking deposits and provides home mortgage loans.",
+    "trap": "Historically focused on home mortgages.",
+    "example": "A local thrift provides mortgage loans."
+  },
+  {
+    "term": "Exchange Rate",
+    "category": "Accounting, Finance & Money",
+    "definition": "The value of one currency in terms of another.",
+    "trap": "When the dollar rises, foreign goods become cheaper for U.S. consumers.",
+    "example": "A stronger dollar lowers the dollar cost of imported goods."
+  },
+  {
+    "term": "Human Resource Management",
+    "category": "Human Resources & Careers",
+    "definition": "Activities involved in acquiring, developing, evaluating, compensating, and retaining employees.",
+    "trap": "HR is now important enough that many managers perform HR functions.",
+    "example": "A manager participates in interviewing, training, and evaluating employees."
+  },
+  {
+    "term": "Human Resource Planning",
+    "category": "Human Resources & Careers",
+    "definition": "Determining the organization\u2019s current and future staffing needs.",
+    "trap": "The first step is preparing a human resource inventory.",
+    "example": "A firm reviews current employee skills before forecasting hiring needs."
+  },
+  {
+    "term": "Human Resource Inventory",
+    "category": "Human Resources & Careers",
+    "definition": "A list of current employees\u2019 education, skills, training, experience, and career interests.",
+    "trap": "It helps identify internal talent.",
+    "example": "A company discovers which employees can move into supervisory roles."
+  },
+  {
+    "term": "Recruitment",
+    "category": "Human Resources & Careers",
+    "definition": "Activities used to attract the right number of qualified candidates.",
+    "trap": "Recruitment is about attracting candidates, selection is choosing among them.",
+    "example": "Posting jobs on Indeed or recruiting at colleges."
+  },
+  {
+    "term": "Internal Recruiting",
+    "category": "Human Resources & Careers",
+    "definition": "Filling jobs from within the organization.",
+    "trap": "It can reduce cost and improve morale.",
+    "example": "Promoting a current employee."
+  },
+  {
+    "term": "External Recruiting",
+    "category": "Human Resources & Careers",
+    "definition": "Seeking job candidates from outside the organization.",
+    "trap": "Current employees are not an external source.",
+    "example": "Using employment agencies, college placement offices, or job websites."
+  },
+  {
+    "term": "Job Description",
+    "category": "Human Resources & Careers",
+    "definition": "A written statement explaining job duties, responsibilities, and working conditions.",
+    "trap": "Duties belong in the job description.",
+    "example": "A receptionist gives an applicant a document explaining daily responsibilities."
+  },
+  {
+    "term": "Job Specification",
+    "category": "Human Resources & Careers",
+    "definition": "A written statement identifying minimum qualifications needed for a job.",
+    "trap": "Qualifications belong in the job specification.",
+    "example": "A job requires an associate degree and two years of experience."
+  },
+  {
+    "term": "Orientation",
+    "category": "Human Resources & Careers",
+    "definition": "A program introducing new employees to the organization, job expectations, and policies.",
+    "trap": "Orientation is not the same as ongoing training.",
+    "example": "A new hire learns company rules and benefits."
+  },
+  {
+    "term": "Training",
+    "category": "Human Resources & Careers",
+    "definition": "Teaching employees skills needed to perform their current jobs.",
+    "trap": "Training is usually current-job focused.",
+    "example": "A worker learns how to operate a scanner."
+  },
+  {
+    "term": "Development",
+    "category": "Human Resources & Careers",
+    "definition": "Preparing employees for future responsibilities.",
+    "trap": "Development looks forward.",
+    "example": "A supervisor attends leadership development training."
+  },
+  {
+    "term": "Performance Appraisal",
+    "category": "Human Resources & Careers",
+    "definition": "Evaluating employee performance against standards.",
+    "trap": "Good appraisals provide feedback and guide improvement.",
+    "example": "An annual review evaluates goals and behavior."
+  },
+  {
+    "term": "Compensation",
+    "category": "Human Resources & Careers",
+    "definition": "Pay and benefits provided to employees.",
+    "trap": "Compensation includes more than wages.",
+    "example": "Salary, health insurance, retirement contributions, and bonuses."
+  },
+  {
+    "term": "Salary",
+    "category": "Human Resources & Careers",
+    "definition": "A fixed amount of pay for a set period, often weekly, monthly, or annually.",
+    "trap": "Salary does not vary directly by hours worked in the same way hourly pay does.",
+    "example": "A supervisor earns $635 per week."
+  },
+  {
+    "term": "Flextime",
+    "category": "Human Resources & Careers",
+    "definition": "A work schedule allowing employees to choose work hours within set limits.",
+    "trap": "Flextime still requires completing required hours.",
+    "example": "Employees work any 40 hours between 7 a.m. and 10 p.m."
+  },
+  {
+    "term": "Job Sharing",
+    "category": "Human Resources & Careers",
+    "definition": "Two part-time employees share one full-time job.",
+    "trap": "Not the same as flextime.",
+    "example": "Two workers split one receptionist role."
+  },
+  {
+    "term": "Networking",
+    "category": "Human Resources & Careers",
+    "definition": "Building and maintaining professional relationships that can support career development.",
+    "trap": "Networking is not just asking for jobs.",
+    "example": "A student connects with employers after a job fair."
+  },
+  {
+    "term": "Career Development",
+    "category": "Human Resources & Careers",
+    "definition": "The process of growing skills, responsibilities, and opportunities over time.",
+    "trap": "Career growth usually requires effort, not automatic promotion.",
+    "example": "A sales associate takes on more responsibility over several years."
+  },
+  {
+    "term": "Professional Presentation Skills",
+    "category": "Human Resources & Careers",
+    "definition": "Skills used to communicate clearly and credibly to an audience.",
+    "trap": "Slides should not be overloaded with jargon.",
+    "example": "A presenter uses keywords, visuals, eye contact, and rehearsal."
+  },
+  {
+    "term": "Title VII",
+    "category": "Human Resources & Careers",
+    "definition": "Part of the Civil Rights Act of 1964 prohibiting employment discrimination based on race, color, religion, sex, or national origin.",
+    "trap": "It applies to hiring, firing, training, compensation, and other employment matters.",
+    "example": "An employer cannot refuse to hire based on religion."
+  },
+  {
+    "term": "EEOC",
+    "category": "Human Resources & Careers",
+    "definition": "The Equal Employment Opportunity Commission, which investigates employment discrimination complaints and can sue employers.",
+    "trap": "EEOC is the correct agency, not a fictional employment office.",
+    "example": "A worker files a discrimination complaint with the EEOC."
+  },
+  {
+    "term": "Cultural Diversity",
+    "category": "Human Resources & Careers",
+    "definition": "Differences among people in the workforce.",
+    "trap": "Diversity is a workforce reality, not a passing business fad.",
+    "example": "Employees differ by background, age, language, experience, and culture."
+  },
+  {
+    "term": "Intercultural Communication",
+    "category": "Human Resources & Careers",
+    "definition": "Communication across cultures that requires clarity, respect, and avoidance of ambiguous expressions.",
+    "trap": "Humor can create misunderstandings and should be used carefully.",
+    "example": "Using short sentences in a global email."
+  },
+  {
+    "term": "Ethics",
+    "category": "Ethics & Social Responsibility",
+    "definition": "Standards of right and wrong that guide behavior.",
+    "trap": "Legal behavior is not always ethical behavior.",
+    "example": "A decision may be legal but still unfair to customers."
+  },
+  {
+    "term": "Ethical Behavior",
+    "category": "Ethics & Social Responsibility",
+    "definition": "Behavior that considers the effect of decisions on others and follows moral principles.",
+    "trap": "Ethics includes consequences for stakeholders.",
+    "example": "A manager refuses to mislead customers."
+  },
+  {
+    "term": "Situational Ethics",
+    "category": "Ethics & Social Responsibility",
+    "definition": "The belief that ethical behavior depends on the situation and what seems best at the time.",
+    "trap": "It can weaken consistent standards.",
+    "example": "A person justifies dishonesty because it benefits them temporarily."
+  },
+  {
+    "term": "Code of Ethics",
+    "category": "Ethics & Social Responsibility",
+    "definition": "A formal guide to acceptable and ethical behavior in an organization.",
+    "trap": "A code only matters if leaders support it.",
+    "example": "A company policy prohibits bribery and conflicts of interest."
+  },
+  {
+    "term": "Compliance-Based Ethics Code",
+    "category": "Ethics & Social Responsibility",
+    "definition": "An ethics code focused on preventing unlawful behavior through controls and penalties.",
+    "trap": "Compliance is rule-focused.",
+    "example": "Employees are disciplined for violating legal procedures."
+  },
+  {
+    "term": "Integrity-Based Ethics Code",
+    "category": "Ethics & Social Responsibility",
+    "definition": "An ethics code focused on shared values, accountability, and ethical culture.",
+    "trap": "Integrity goes beyond minimum legal compliance.",
+    "example": "Leaders encourage employees to speak up about concerns."
+  },
+  {
+    "term": "Corporate Social Responsibility (CSR)",
+    "category": "Ethics & Social Responsibility",
+    "definition": "A business\u2019s concern for the welfare of society and the effects of its decisions.",
+    "trap": "CSR considers profit and social impact.",
+    "example": "A company reduces waste and treats workers fairly."
+  },
+  {
+    "term": "Consumerism",
+    "category": "Ethics & Social Responsibility",
+    "definition": "Activities undertaken to protect consumer rights.",
+    "trap": "Consumerism is not the same as buying more products.",
+    "example": "Consumer protection laws against deceptive advertising."
+  },
+  {
+    "term": "Corporate Philanthropy",
+    "category": "Ethics & Social Responsibility",
+    "definition": "Business donations to charitable causes.",
+    "trap": "Philanthropy is one part of social responsibility, not all of it.",
+    "example": "A company donates funds to a local food bank."
+  },
+  {
+    "term": "Corporate Social Initiative",
+    "category": "Ethics & Social Responsibility",
+    "definition": "A company commitment of resources and expertise to help address broad social or humanitarian issues.",
+    "trap": "It is more active than simply donating money.",
+    "example": "A logistics firm provides disaster relief support."
+  },
+  {
+    "term": "Sarbanes-Oxley Act",
+    "category": "Ethics & Social Responsibility",
+    "definition": "A federal law requiring corporate executives, especially CEOs and CFOs, to certify the accuracy of financial reports.",
+    "trap": "It was designed to restore trust after major accounting scandals.",
+    "example": "Executives sign off on financial statements."
+  },
+  {
+    "term": "Corporate Transparency",
+    "category": "Ethics & Social Responsibility",
+    "definition": "Clear and honest disclosure of business information, especially financial information.",
+    "trap": "Transparency helps restore trust but does not replace ethical leadership.",
+    "example": "Accurate accounting records are maintained and available for audit."
+  },
+  {
+    "term": "Data",
+    "category": "Information Systems",
+    "definition": "Raw facts that can be analyzed to support decisions.",
+    "trap": "Data becomes useful when organized and interpreted.",
+    "example": "Sales numbers from receipts."
+  },
+  {
+    "term": "Database",
+    "category": "Information Systems",
+    "definition": "An organized collection of data.",
+    "trap": "A database is not the same as data analytics.",
+    "example": "A customer database stores names, purchases, and contact information."
+  },
+  {
+    "term": "Data Analytics",
+    "category": "Information Systems",
+    "definition": "The process of collecting and analyzing data to make current and future decisions.",
+    "trap": "Analytics turns data into decision support.",
+    "example": "A retailer analyzes purchase history to forecast demand."
+  },
+  {
+    "term": "Data Mining",
+    "category": "Information Systems",
+    "definition": "Searching accumulated data for hidden patterns and relationships.",
+    "trap": "Data mining looks for patterns not immediately obvious.",
+    "example": "A grocery chain finds that certain items are often bought together."
+  },
+  {
+    "term": "Business Intelligence",
+    "category": "Information Systems",
+    "definition": "Software and processes that analyze raw organizational data to produce useful insights.",
+    "trap": "BI supports decisions, it does not replace judgment.",
+    "example": "A dashboard shows sales trends by region."
+  },
+  {
+    "term": "Customer Relationship Management (CRM)",
+    "category": "Information Systems",
+    "definition": "Learning about customers and building relationships to exceed expectations.",
+    "trap": "CRM is strategy plus technology, not just software.",
+    "example": "A company tracks customer preferences and service history."
+  },
+  {
+    "term": "Point-of-Sale Data",
+    "category": "Information Systems",
+    "definition": "Data collected when a customer completes a transaction.",
+    "trap": "A receipt survey also gathers customer data.",
+    "example": "A checkout system records items purchased."
+  },
+  {
+    "term": "Intranet",
+    "category": "Information Systems",
+    "definition": "A private network contained within an organization.",
+    "trap": "An intranet is closed to public access.",
+    "example": "Students access course information through a private learning platform."
+  },
+  {
+    "term": "Extranet",
+    "category": "Information Systems",
+    "definition": "A private network that allows selected outsiders access to part of an organization\u2019s information system.",
+    "trap": "Extranets extend intranets to customers, suppliers, or partners.",
+    "example": "A supplier logs into a company portal to view inventory needs."
+  },
+  {
+    "term": "Web 2.0",
+    "category": "Information Systems",
+    "definition": "Interactive web technologies such as blogs, wikis, and social networking sites.",
+    "trap": "Web 2.0 emphasizes user-generated content.",
+    "example": "A company uses social media for customer engagement."
+  },
+  {
+    "term": "Web 3.0",
+    "category": "Information Systems",
+    "definition": "An emerging view of the internet emphasizing decentralization, security, and smarter connections.",
+    "trap": "Definitions vary, but decentralization and security are common themes.",
+    "example": "Blockchain-based platforms are often associated with Web 3.0."
+  },
+  {
+    "term": "Internet2",
+    "category": "Information Systems",
+    "definition": "A high-speed network supporting advanced research and heavy-duty applications.",
+    "trap": "It is not ordinary consumer broadband.",
+    "example": "Scientists use it for collaborative research."
+  },
+  {
+    "term": "Information Overload",
+    "category": "Information Systems",
+    "definition": "A condition where too much information makes it harder to focus and decide.",
+    "trap": "The first step is identifying key goals and filtering irrelevant information.",
+    "example": "A manager receives too many reports and focuses on five key metrics."
+  },
+  {
+    "term": "Virtual Organization",
+    "category": "Information Systems",
+    "definition": "An organization using information technology to operate independent of location.",
+    "trap": "Technology can reduce the importance of physical location.",
+    "example": "NASDAQ demonstrates market activity without a traditional trading floor."
+  },
+  {
+    "term": "Maslow\u2019s Hierarchy of Needs",
+    "category": "Motivation & Behavior",
+    "definition": "A theory that people are motivated by levels of needs: physiological, safety, social, esteem, and self-actualization.",
+    "trap": "Basic needs usually come before higher-level needs.",
+    "example": "Workers need safe conditions before focusing on recognition."
+  },
+  {
+    "term": "Physiological Needs",
+    "category": "Motivation & Behavior",
+    "definition": "Basic survival needs such as food, water, and shelter.",
+    "trap": "These are the foundation of Maslow\u2019s hierarchy.",
+    "example": "A paycheck helps workers buy food and housing."
+  },
+  {
+    "term": "Safety Needs",
+    "category": "Motivation & Behavior",
+    "definition": "Needs for security and protection at work and home.",
+    "trap": "Safety includes job security and physical safety.",
+    "example": "Safe working conditions and stable employment."
+  },
+  {
+    "term": "Esteem Needs",
+    "category": "Motivation & Behavior",
+    "definition": "Needs for recognition, respect, and a sense of accomplishment.",
+    "trap": "Esteem is higher than social needs.",
+    "example": "An employee receives recognition for excellent work."
+  },
+  {
+    "term": "Self-Actualization",
+    "category": "Motivation & Behavior",
+    "definition": "The need to reach one\u2019s full potential.",
+    "trap": "It is the highest level in Maslow\u2019s hierarchy.",
+    "example": "An employee takes on meaningful creative work."
+  },
+  {
+    "term": "Herzberg\u2019s Motivation-Hygiene Theory",
+    "category": "Motivation & Behavior",
+    "definition": "A theory stating that job satisfaction and dissatisfaction come from different factors.",
+    "trap": "Salary is usually a hygiene factor, not a true motivator.",
+    "example": "Achievement motivates, while poor company policy creates dissatisfaction."
+  },
+  {
+    "term": "Hygiene Factors",
+    "category": "Motivation & Behavior",
+    "definition": "Job factors that can cause dissatisfaction if missing but do not strongly create satisfaction by themselves.",
+    "trap": "Pay and working conditions are hygiene factors.",
+    "example": "Fair pay prevents dissatisfaction but may not inspire excellence."
+  },
+  {
+    "term": "Motivators",
+    "category": "Motivation & Behavior",
+    "definition": "Job factors that increase satisfaction, such as achievement, recognition, responsibility, and growth.",
+    "trap": "Motivators are connected to the work itself.",
+    "example": "Giving employees meaningful responsibility."
+  },
+  {
+    "term": "Theory X",
+    "category": "Motivation & Behavior",
+    "definition": "McGregor\u2019s view that employees dislike work and need close control.",
+    "trap": "Theory X leads to tighter supervision.",
+    "example": "A manager assumes workers must be watched constantly."
+  },
+  {
+    "term": "Theory Y",
+    "category": "Motivation & Behavior",
+    "definition": "McGregor\u2019s view that employees can be self-directed and seek responsibility.",
+    "trap": "Theory Y managers are more likely to let employees help set goals.",
+    "example": "A manager trusts employees to manage projects."
+  },
+  {
+    "term": "Scientific Management",
+    "category": "Motivation & Behavior",
+    "definition": "Frederick Taylor\u2019s approach of finding the best way to do each job and training workers to use it.",
+    "trap": "It viewed workers too much like machines.",
+    "example": "Timing tasks to identify the most efficient method."
+  },
+  {
+    "term": "Motion Economy",
+    "category": "Motivation & Behavior",
+    "definition": "Frank and Lillian Gilbreth\u2019s study of work motions to reduce wasted movement.",
+    "trap": "A therblig is a basic motion unit.",
+    "example": "Rearranging tools to reduce reaching and bending."
+  },
+  {
+    "term": "Hawthorne Effect",
+    "category": "Motivation & Behavior",
+    "definition": "The tendency for people to change performance when they feel observed or valued.",
+    "trap": "The major insight was the importance of human and social factors.",
+    "example": "Employees work harder because they feel part of a special study."
+  },
+  {
+    "term": "Elton Mayo",
+    "category": "Motivation & Behavior",
+    "definition": "Researcher associated with the Hawthorne studies and the human relations movement.",
+    "trap": "The Hawthorne studies shifted attention away from pure scientific management.",
+    "example": "Mayo\u2019s work highlighted social needs at work."
+  },
+  {
+    "term": "Intrinsic Reward",
+    "category": "Motivation & Behavior",
+    "definition": "Satisfaction that comes from the work itself or a job well done.",
+    "trap": "Intrinsic rewards are internal.",
+    "example": "Feeling proud after solving a difficult problem."
+  },
+  {
+    "term": "Extrinsic Reward",
+    "category": "Motivation & Behavior",
+    "definition": "A reward given by someone else, such as pay, bonus, praise, or promotion.",
+    "trap": "Extrinsic rewards are external.",
+    "example": "Receiving a bonus for meeting sales goals."
+  },
+  {
+    "term": "APA Style",
+    "category": "Academic Skills",
+    "definition": "A set of standards from the American Psychological Association for clear, precise, inclusive scholarly writing and citation.",
+    "trap": "APA is not a social media writing style.",
+    "example": "A business student cites sources in APA format."
+  },
+  {
+    "term": "APA Title Page",
+    "category": "Academic Skills",
+    "definition": "The first page of an APA student paper containing paper title, author, institution, course, instructor, due date, and page number.",
+    "trap": "Student title page elements are centered and double spaced.",
+    "example": "A paper begins with the title and student information."
+  },
+  {
+    "term": "APA Margins",
+    "category": "Academic Skills",
+    "definition": "APA papers generally use one-inch margins on all sides.",
+    "trap": "Do not use half-inch or two-inch margins.",
+    "example": "A Word document is set to 1 inch top, bottom, left, and right."
+  },
+  {
+    "term": "APA Double Spacing",
+    "category": "Academic Skills",
+    "definition": "APA papers are generally double spaced throughout, including references.",
+    "trap": "Do not add extra blank lines before or after headings unless instructed.",
+    "example": "The entire student paper uses double spacing."
+  },
+  {
+    "term": "Academic Integrity",
+    "category": "Academic Skills",
+    "definition": "Honest use of sources and original work, including proper citation to avoid plagiarism.",
+    "trap": "Citation is not optional when using outside information.",
+    "example": "A student cites a business article used in a paper."
+  }
+];
