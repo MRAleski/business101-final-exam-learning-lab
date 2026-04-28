@@ -8,11 +8,28 @@ const state = {
   mastered: JSON.parse(localStorage.getItem('masteredTerms') || '[]'),
   best: Number(localStorage.getItem('bestScore') || 0),
   currentAnswer: null,
-  matchPairs: []
+  matchPairs: [],
+  categoryStats: {}
 };
 
 function shuffle(arr){ return [...arr].sort(() => Math.random() - 0.5); }
 function sample(arr,n){ return shuffle(arr).slice(0,n); }
+
+function saveNameAndStart(){
+  const name = (document.getElementById('studentNameInput').value || '').trim();
+  if(name){ localStorage.setItem('studentName', name); }
+  showScreen('dashboard');
+}
+
+function skipName(){
+  if(!localStorage.getItem('studentName')){ localStorage.setItem('studentName', 'Student'); }
+  showScreen('dashboard');
+}
+
+function saveCertificateName(){
+  const name = (document.getElementById('studentName').value || '').trim();
+  if(name){ localStorage.setItem('studentName', name); }
+}
 
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -27,6 +44,13 @@ function updateDashboard(){
   document.getElementById('masteryCount').textContent = state.mastered.length;
   document.getElementById('attemptCount').textContent = state.attempts;
   document.getElementById('bestScore').textContent = state.best + '%';
+  const msg = document.getElementById('progressMessage');
+  if(msg){
+    if(state.best >= 85){ msg.textContent = 'Strong position. Keep reviewing traps and examples before the final.'; }
+    else if(state.best >= 70){ msg.textContent = 'You are close. Focus on weak areas, then retry the Final Readiness Challenge.'; }
+    else if(state.attempts > 0){ msg.textContent = 'Progress started. Use flashcards and matching before retaking the challenge.'; }
+    else { msg.textContent = 'Start with flashcards, then try matching, then take the Final Readiness Challenge.'; }
+  }
 }
 
 function saveStats(){
@@ -73,6 +97,7 @@ function begin(mode, count=12){
   state.pool = sample(TERMS, Math.min(count, TERMS.length));
   state.index = 0;
   state.score = 0;
+  state.categoryStats = {};
   state.attempts += 1;
   saveStats();
   showScreen('activity');
@@ -178,8 +203,11 @@ function renderMultipleChoice(){
   const t = state.pool[state.index];
   const answers = makeQuestion(t);
   state.currentAnswer = t.definition;
+  const goal = Math.ceil(0.80 * state.pool.length);
+  const remainingToGoal = Math.max(0, goal - state.score);
   document.getElementById('activityContent').innerHTML = `
     <span class="term-badge">${t.category}</span>
+    <div class="goal-box"><strong>Readiness Goal:</strong> ${state.score}/${state.pool.length} correct so far. You are ${remainingToGoal} correct answer${remainingToGoal===1 ? '' : 's'} away from 80% readiness.</div>
     <h2 class="big-term">${t.term}</h2>
     <p>Choose the best definition.</p>
     <div class="answer-grid">${answers.map(a=>`<button class="answer-btn" onclick="checkChoice(this,'${escapeQuote(a)}')">${a}</button>`).join('')}</div>
@@ -187,9 +215,17 @@ function renderMultipleChoice(){
   `;
 }
 
+function recordCategory(t, ok){
+  const cat = t.category;
+  if(!state.categoryStats[cat]){ state.categoryStats[cat] = {correct:0, total:0}; }
+  state.categoryStats[cat].total++;
+  if(ok){ state.categoryStats[cat].correct++; }
+}
+
 function checkChoice(btn, choice){
   const t = state.pool[state.index];
   const ok = choice === state.currentAnswer;
+  if(state.mode === 'challenge' || state.mode === 'scenario'){ recordCategory(t, ok); }
   [...document.querySelectorAll('.answer-btn')].forEach(b=>b.disabled=true);
   btn.classList.add(ok ? 'correct' : 'wrong');
   if(ok) state.score++;
@@ -260,6 +296,16 @@ function finishActivity(title){
   saveStats();
 }
 
+function buildCategoryResults(){
+  const entries = Object.entries(state.categoryStats);
+  if(!entries.length){ return ''; }
+  return `<h3>Category Performance</h3><div class="category-results">${entries.map(([cat,data])=>{
+    const pct = Math.round((data.correct / data.total) * 100);
+    const label = pct >= 85 ? 'Strong' : pct >= 70 ? 'Developing' : 'Needs review';
+    return `<div class="category-result"><strong>${cat}:</strong> ${pct}% (${label})<div class="meter"><span style="width:${pct}%"></span></div></div>`;
+  }).join('')}</div>`;
+}
+
 function finishChallenge(){
   document.getElementById('progressBar').style.width = '100%';
   const pct = Math.round((state.score/state.pool.length)*100);
@@ -270,6 +316,7 @@ function finishChallenge(){
     <h2>Final Readiness Challenge Complete</h2>
     <p class="big-term">${pct}%</p>
     <p>${msg}</p>
+    ${buildCategoryResults()}
     <div class="card-actions">
       <button class="primary" onclick="showScreen('certificate')">Print Certificate</button>
       <button class="secondary" onclick="startChallenge()">Retake Challenge</button>
@@ -279,8 +326,11 @@ function finishChallenge(){
 }
 
 function renderCertificate(){
+  const savedName = localStorage.getItem('studentName') || '';
+  document.getElementById('studentName').value = savedName === 'Student' ? '' : savedName;
   document.getElementById('certDate').textContent = new Date().toLocaleDateString();
   document.getElementById('certScore').textContent = (localStorage.getItem('bestScore') || 0) + '%';
+  document.getElementById('certAttempts').textContent = localStorage.getItem('attemptCount') || 0;
 }
 
 setupCategoryFilter();

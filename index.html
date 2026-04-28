@@ -20,10 +20,23 @@
   </header>
 
   <main>
-    <section id="dashboard" class="screen active">
+    <section id="start" class="screen active">
+      <div class="panel start-panel">
+        <h2>Welcome to the Learning Lab</h2>
+        <p class="muted">Enter your name before starting so your certificate is ready when you finish. You may also skip this step and enter your name later.</p>
+        <input id="studentNameInput" placeholder="Enter your name"/>
+        <div class="card-actions">
+          <button class="primary" onclick="saveNameAndStart()">Start Learning</button>
+          <button class="ghost" onclick="skipName()">Skip for Now</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="dashboard" class="screen">
       <div class="panel">
         <h2>Choose a Practice Mode</h2>
         <p class="muted">Use this tool more than once. Short, repeated practice beats one long cram session.</p>
+        <p id="progressMessage" class="progress-message"></p>
         <div class="stats-grid">
           <div><strong id="masteryCount">0</strong><span>Terms Mastered</span></div>
           <div><strong id="attemptCount">0</strong><span>Practice Attempts</span></div>
@@ -32,24 +45,12 @@
       </div>
 
       <div class="mode-grid">
-        <button class="mode-card" onclick="startFlashcards()">
-          <span>📇</span><h3>Flashcards</h3><p>Build recognition and recall by category.</p>
-        </button>
-        <button class="mode-card" onclick="startMatch()">
-          <span>🧩</span><h3>Matching</h3><p>Match terms to definitions under light pressure.</p>
-        </button>
-        <button class="mode-card" onclick="startTrueFalse()">
-          <span>✅</span><h3>True or False</h3><p>Catch common misconceptions before the exam catches you.</p>
-        </button>
-        <button class="mode-card" onclick="startScenario()">
-          <span>🧠</span><h3>Scenario Practice</h3><p>Apply concepts in realistic business situations.</p>
-        </button>
-        <button class="mode-card highlight" onclick="startChallenge()">
-          <span>🏁</span><h3>Final Readiness Challenge</h3><p>Mixed practice with a certificate when completed.</p>
-        </button>
-        <button class="mode-card" onclick="showScreen('study')">
-          <span>📚</span><h3>Study Bank</h3><p>Search and review all terms.</p>
-        </button>
+        <button class="mode-card" onclick="startFlashcards()"><span>📇</span><h3>Flashcards</h3><p>Build recognition and recall by category.</p></button>
+        <button class="mode-card" onclick="startMatch()"><span>🧩</span><h3>Matching</h3><p>Match terms to definitions under light pressure.</p></button>
+        <button class="mode-card" onclick="startTrueFalse()"><span>✅</span><h3>True or False</h3><p>Catch common misconceptions before the exam catches you.</p></button>
+        <button class="mode-card" onclick="startScenario()"><span>🧠</span><h3>Scenario Practice</h3><p>Apply concepts in realistic business situations.</p></button>
+        <button class="mode-card highlight" onclick="startChallenge()"><span>🏁</span><h3>Final Readiness Challenge</h3><p>Mixed practice with progress toward an 80% readiness goal.</p></button>
+        <button class="mode-card" onclick="showScreen('study')"><span>📚</span><h3>Study Bank</h3><p>Search and review all terms.</p></button>
       </div>
 
       <div class="panel tip">
@@ -87,17 +88,15 @@
         <div class="cert-row">
           <span>Date: <strong id="certDate"></strong></span>
           <span>Best Score: <strong id="certScore">0%</strong></span>
+          <span>Attempts: <strong id="certAttempts">0</strong></span>
         </div>
         <p class="cert-note">Participation certificate. Final exam success still depends on honest study, review of course materials, and careful reading.</p>
-        <button class="primary no-print" onclick="window.print()">Print Certificate</button>
+        <button class="primary no-print" onclick="saveCertificateName(); window.print()">Print Certificate</button>
       </div>
     </section>
   </main>
 
-  <footer>
-    <p>Designed for repeated practice, retrieval, feedback, and confidence-building. No actual quiz questions are reproduced.</p>
-  </footer>
-
+  <footer><p>Designed for repeated practice, retrieval, feedback, and confidence-building. No actual quiz questions are reproduced.</p></footer>
   <script src="terms.js"></script>
   <script src="script.js"></script>
 </body>

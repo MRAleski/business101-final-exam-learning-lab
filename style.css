@@ -172,3 +172,11 @@ footer{text-align:center;color:var(--muted);padding:22px}
   .certificate{box-shadow:none;border:8px solid #111;margin:0}
   .name-input{border-bottom:2px solid #111}
 }
+
+.start-panel{max-width:720px;margin:24px auto}
+.progress-message{background:#fff7df;border-left:6px solid var(--gold);padding:14px;border-radius:16px;font-weight:700;color:#3b2b00}
+.goal-box{background:#eef7ff;border:1px solid #c7ddf2;border-radius:18px;padding:14px;margin:12px 0}
+.category-results{display:grid;gap:10px;margin-top:16px}
+.category-result{background:#f4f7fb;border-radius:14px;padding:12px}
+.meter{height:10px;background:#dbe6ee;border-radius:999px;overflow:hidden;margin-top:8px}
+.meter span{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--gold))}
