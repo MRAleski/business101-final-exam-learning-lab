@@ -1,28 +1,41 @@
-# Business Final Exam Learning Lab
+# Business Law Final Exam Prep Lab - Full Upgrade
 
-A mobile-friendly, GitHub Pages-ready learning tool for BUSN 101 review.
+## Included
+- 8-module refined term bank
+- Module filter
+- Multi-round matching
+- Weak-area matching
+- Flashcards with example and common mistake
+- Misconception checks
+- Scenario practice
+- Blueprint-balanced readiness challenge
+- Dashboard with attempts, best score, mastered terms, category performance
+- Printable certificate
 
-## Files
-- `index.html`
-- `style.css`
-- `script.js`
-- `terms.js`
-- `terms.json`
-
-## How to Use on GitHub Pages
-1. Create a new GitHub repository.
-2. Upload all files in this folder to the repository root.
+## Deploy to GitHub Pages
+1. Create a public GitHub repository named `business-law-final-prep`.
+2. Upload these files to the root of the repository:
+   - index.html
+   - style.css
+   - script.js
+   - terms.js
+   - README.md
 3. Go to Settings > Pages.
-4. Under Build and deployment, choose Deploy from branch.
-5. Select `main` branch and `/root`.
-6. Save.
-7. Share the GitHub Pages URL in Canvas.
+4. Source: Deploy from a branch.
+5. Branch: main.
+6. Folder: /root.
+7. Save.
+
+## Canvas
+Use as an External URL or embed:
+
+```html
+<iframe src="YOUR_GITHUB_PAGES_LINK"
+        width="100%"
+        height="850"
+        style="border:1px solid #d9e2ec;border-radius:12px;"
+        loading="lazy"></iframe>
+```
 
 ## Instructor Note
-This tool does not reproduce quiz questions. It supports retrieval practice, immediate feedback, matching, true/false misconception checks, scenario practice, and a printable participation certificate.
-
-## Extra Credit Suggestion
-Award up to 25 points for completion evidence:
-- 10 points: completed practice and submitted certificate
-- 10 points: short reflection identifying 3 weak areas and 3 improved areas
-- 5 points: exam prep plan for final review
+The tool uses browser local storage. Scores are saved on the same device and browser only.

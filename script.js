@@ -1,338 +1,37 @@
-
-const state = {
-  mode: null,
-  pool: [],
-  index: 0,
-  score: 0,
-  attempts: Number(localStorage.getItem('attemptCount') || 0),
-  mastered: JSON.parse(localStorage.getItem('masteredTerms') || '[]'),
-  best: Number(localStorage.getItem('bestScore') || 0),
-  currentAnswer: null,
-  matchPairs: [],
-  categoryStats: {}
-};
-
-function shuffle(arr){ return [...arr].sort(() => Math.random() - 0.5); }
-function sample(arr,n){ return shuffle(arr).slice(0,n); }
-
-function saveNameAndStart(){
-  const name = (document.getElementById('studentNameInput').value || '').trim();
-  if(name){ localStorage.setItem('studentName', name); }
-  showScreen('dashboard');
-}
-
-function skipName(){
-  if(!localStorage.getItem('studentName')){ localStorage.setItem('studentName', 'Student'); }
-  showScreen('dashboard');
-}
-
-function saveCertificateName(){
-  const name = (document.getElementById('studentName').value || '').trim();
-  if(name){ localStorage.setItem('studentName', name); }
-}
-
-function showScreen(id){
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  if(id==='dashboard') updateDashboard();
-  if(id==='study') renderStudyBank();
-  if(id==='certificate') renderCertificate();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function updateDashboard(){
-  document.getElementById('masteryCount').textContent = state.mastered.length;
-  document.getElementById('attemptCount').textContent = state.attempts;
-  document.getElementById('bestScore').textContent = state.best + '%';
-  const msg = document.getElementById('progressMessage');
-  if(msg){
-    if(state.best >= 85){ msg.textContent = 'Strong position. Keep reviewing traps and examples before the final.'; }
-    else if(state.best >= 70){ msg.textContent = 'You are close. Focus on weak areas, then retry the Final Readiness Challenge.'; }
-    else if(state.attempts > 0){ msg.textContent = 'Progress started. Use flashcards and matching before retaking the challenge.'; }
-    else { msg.textContent = 'Start with flashcards, then try matching, then take the Final Readiness Challenge.'; }
-  }
-}
-
-function saveStats(){
-  localStorage.setItem('attemptCount', state.attempts);
-  localStorage.setItem('masteredTerms', JSON.stringify(state.mastered));
-  localStorage.setItem('bestScore', state.best);
-}
-
-function updateProgress(){
-  const pct = state.pool.length ? Math.round((state.index / state.pool.length) * 100) : 0;
-  document.getElementById('progressBar').style.width = pct + '%';
-}
-
-function categories(){
-  return ['All Categories', ...Array.from(new Set(TERMS.map(t=>t.category))).sort()];
-}
-
-function setupCategoryFilter(){
-  const select = document.getElementById('categoryFilter');
-  select.innerHTML = categories().map(c => `<option>${c}</option>`).join('');
-}
-
-function renderStudyBank(){
-  setupCategoryFilter();
-  const q = (document.getElementById('searchBox').value || '').toLowerCase();
-  const cat = document.getElementById('categoryFilter').value || 'All Categories';
-  const list = TERMS.filter(t => {
-    const text = `${t.term} ${t.definition} ${t.category} ${t.trap} ${t.example}`.toLowerCase();
-    return (cat === 'All Categories' || t.category === cat) && text.includes(q);
-  });
-  document.getElementById('studyList').innerHTML = list.map(t => `
-    <div class="study-item">
-      <small>${t.category}</small>
-      <h3>${t.term}</h3>
-      <p>${t.definition}</p>
-      <p><strong>Common trap:</strong> ${t.trap}</p>
-      <p><strong>Example:</strong> ${t.example}</p>
-    </div>
-  `).join('');
-}
-
-function begin(mode, count=12){
-  state.mode = mode;
-  state.pool = sample(TERMS, Math.min(count, TERMS.length));
-  state.index = 0;
-  state.score = 0;
-  state.categoryStats = {};
-  state.attempts += 1;
-  saveStats();
-  showScreen('activity');
-  updateProgress();
-}
-
-function startFlashcards(){
-  begin('flashcards', 18);
-  renderFlashcard(false);
-}
-
-function renderFlashcard(show=false){
-  updateProgress();
-  if(state.index >= state.pool.length){ return finishActivity('Flashcard Round Complete'); }
-  const t = state.pool[state.index];
-  document.getElementById('activityContent').innerHTML = `
-    <span class="term-badge">${t.category}</span>
-    <h2 class="big-term">${t.term}</h2>
-    ${show ? `<div class="feedback"><p><strong>Definition:</strong> ${t.definition}</p><p><strong>Common trap:</strong> ${t.trap}</p><p><strong>Example:</strong> ${t.example}</p></div>` : `<p class="muted">Try to explain this term out loud before you reveal the answer.</p>`}
-    <div class="card-actions">
-      <button class="secondary" onclick="renderFlashcard(true)">Reveal</button>
-      <button class="primary" onclick="markKnown()">I Know This</button>
-      <button onclick="nextCard()" class="ghost">Keep Practicing</button>
-    </div>
-  `;
-}
-
-function markKnown(){
-  const term = state.pool[state.index].term;
-  if(!state.mastered.includes(term)) state.mastered.push(term);
-  saveStats();
-  nextCard();
-}
-function nextCard(){ state.index++; renderFlashcard(false); }
-
-function makeQuestion(t){
-  const wrong = sample(TERMS.filter(x=>x.term!==t.term),3).map(x=>x.definition);
-  return shuffle([t.definition, ...wrong]);
-}
-
-function startTrueFalse(){
-  begin('truefalse', 12);
-  renderTrueFalse();
-}
-
-function renderTrueFalse(){
-  updateProgress();
-  if(state.index >= state.pool.length){ return finishActivity('True or False Complete'); }
-  const t = state.pool[state.index];
-  const useCorrect = Math.random() > .45;
-  const shown = useCorrect ? t.definition : sample(TERMS.filter(x=>x.term!==t.term),1)[0].definition;
-  state.currentAnswer = useCorrect;
-  document.getElementById('activityContent').innerHTML = `
-    <span class="term-badge">${t.category}</span>
-    <h2>${t.term}</h2>
-    <p class="big-statement">${shown}</p>
-    <div class="answer-grid">
-      <button class="answer-btn" onclick="checkTF(true)">True</button>
-      <button class="answer-btn" onclick="checkTF(false)">False</button>
-    </div>
-    <div id="feedback"></div>
-  `;
-}
-
-function checkTF(ans){
-  const t = state.pool[state.index];
-  const ok = ans === state.currentAnswer;
-  if(ok) state.score++;
-  document.getElementById('feedback').innerHTML = `<div class="feedback"><strong>${ok ? 'Correct.' : 'Not quite.'}</strong><p>${t.definition}</p><p><strong>Watch for:</strong> ${t.trap}</p><button class="primary" onclick="state.index++; renderTrueFalse()">Next</button></div>`;
-}
-
-function startScenario(){
-  begin('scenario', 12);
-  renderScenario();
-}
-
-function renderScenario(){
-  updateProgress();
-  if(state.index >= state.pool.length){ return finishActivity('Scenario Practice Complete'); }
-  const t = state.pool[state.index];
-  const options = shuffle([t.term, ...sample(TERMS.filter(x=>x.term!==t.term && x.category===t.category),3).map(x=>x.term)]);
-  while(options.length < 4) options.push(sample(TERMS.filter(x=>!options.includes(x.term)),1)[0].term);
-  state.currentAnswer = t.term;
-  document.getElementById('activityContent').innerHTML = `
-    <span class="term-badge">${t.category}</span>
-    <h2>Which concept fits this situation?</h2>
-    <p class="scenario">${t.example}</p>
-    <div class="answer-grid">${shuffle(options).map(o=>`<button class="answer-btn" onclick="checkChoice(this,'${escapeQuote(o)}')">${o}</button>`).join('')}</div>
-    <div id="feedback"></div>
-  `;
-}
-
-function escapeQuote(s){ return s.replace(/'/g,"\\'"); }
-
-function startChallenge(){
-  begin('challenge', 20);
-  renderMultipleChoice();
-}
-
-function renderMultipleChoice(){
-  updateProgress();
-  if(state.index >= state.pool.length){ return finishChallenge(); }
-  const t = state.pool[state.index];
-  const answers = makeQuestion(t);
-  state.currentAnswer = t.definition;
-  const goal = Math.ceil(0.80 * state.pool.length);
-  const remainingToGoal = Math.max(0, goal - state.score);
-  document.getElementById('activityContent').innerHTML = `
-    <span class="term-badge">${t.category}</span>
-    <div class="goal-box"><strong>Readiness Goal:</strong> ${state.score}/${state.pool.length} correct so far. You are ${remainingToGoal} correct answer${remainingToGoal===1 ? '' : 's'} away from 80% readiness.</div>
-    <h2 class="big-term">${t.term}</h2>
-    <p>Choose the best definition.</p>
-    <div class="answer-grid">${answers.map(a=>`<button class="answer-btn" onclick="checkChoice(this,'${escapeQuote(a)}')">${a}</button>`).join('')}</div>
-    <div id="feedback"></div>
-  `;
-}
-
-function recordCategory(t, ok){
-  const cat = t.category;
-  if(!state.categoryStats[cat]){ state.categoryStats[cat] = {correct:0, total:0}; }
-  state.categoryStats[cat].total++;
-  if(ok){ state.categoryStats[cat].correct++; }
-}
-
-function checkChoice(btn, choice){
-  const t = state.pool[state.index];
-  const ok = choice === state.currentAnswer;
-  if(state.mode === 'challenge' || state.mode === 'scenario'){ recordCategory(t, ok); }
-  [...document.querySelectorAll('.answer-btn')].forEach(b=>b.disabled=true);
-  btn.classList.add(ok ? 'correct' : 'wrong');
-  if(ok) state.score++;
-  const nextFn = state.mode === 'scenario' ? 'renderScenario()' : 'renderMultipleChoice()';
-  document.getElementById('feedback').innerHTML = `<div class="feedback">
-    <strong>${ok ? 'Correct.' : 'Not quite.'}</strong>
-    <p><strong>${t.term}:</strong> ${t.definition}</p>
-    <p><strong>Common trap:</strong> ${t.trap}</p>
-    <button class="primary" onclick="state.index++; ${nextFn}">Next</button>
-  </div>`;
-}
-
-function startMatch(){
-  begin('match', 8);
-  state.matchPairs = state.pool;
-  renderMatch();
-}
-
-function renderMatch(){
-  updateProgress();
-  const terms = shuffle(state.matchPairs);
-  const defs = shuffle(state.matchPairs);
-  document.getElementById('activityContent').innerHTML = `
-    <h2>Matching Round</h2>
-    <p>Tap a term, then tap the matching definition. On a computer, you can also use this as drag-and-drop practice by reading across both columns.</p>
-    <div class="match-wrap">
-      <div>${terms.map(t=>`<div class="match-item" data-term="${t.term}" onclick="selectMatchTerm(this)"><strong>${t.term}</strong><br><small>${t.category}</small></div>`).join('')}</div>
-      <div>${defs.map(t=>`<div class="drop-zone" data-answer="${t.term}" onclick="selectMatchDef(this)">${t.definition}</div>`).join('')}</div>
-    </div>
-    <div id="feedback"></div>
-  `;
-}
-let selectedMatch = null;
-function selectMatchTerm(el){
-  document.querySelectorAll('.match-item').forEach(x=>x.style.outline='none');
-  selectedMatch = el.dataset.term;
-  el.style.outline='3px solid var(--gold)';
-}
-function selectMatchDef(el){
-  if(!selectedMatch) return;
-  if(el.dataset.answer === selectedMatch){
-    el.classList.add('filled');
-    el.innerHTML = `✅ ${el.innerHTML}<br><strong>${selectedMatch}</strong>`;
-    document.querySelector(`[data-term="${CSS.escape(selectedMatch)}"]`).style.visibility='hidden';
-    state.score++;
-  } else {
-    el.style.borderColor = 'var(--danger)';
-    setTimeout(()=> el.style.borderColor = '#cbd5e1', 500);
-  }
-  selectedMatch = null;
-  const remaining = [...document.querySelectorAll('.match-item')].filter(x=>x.style.visibility!=='hidden').length;
-  if(remaining===0){
-    document.getElementById('feedback').innerHTML = `<div class="feedback"><strong>Matching complete.</strong><p>You matched ${state.score} items. Revisit any terms that felt slow or uncertain.</p><button class="primary" onclick="finishActivity('Matching Round Complete')">Finish</button></div>`;
-  }
-}
-
-function finishActivity(title){
-  updateProgress();
-  document.getElementById('progressBar').style.width = '100%';
-  document.getElementById('activityContent').innerHTML = `
-    <h2>${title}</h2>
-    <p>You completed this practice round. Repetition is where the learning sticks.</p>
-    <div class="card-actions">
-      <button class="primary" onclick="showScreen('dashboard')">Return to Dashboard</button>
-      <button class="secondary" onclick="startChallenge()">Try Final Readiness Challenge</button>
-    </div>
-  `;
-  saveStats();
-}
-
-function buildCategoryResults(){
-  const entries = Object.entries(state.categoryStats);
-  if(!entries.length){ return ''; }
-  return `<h3>Category Performance</h3><div class="category-results">${entries.map(([cat,data])=>{
-    const pct = Math.round((data.correct / data.total) * 100);
-    const label = pct >= 85 ? 'Strong' : pct >= 70 ? 'Developing' : 'Needs review';
-    return `<div class="category-result"><strong>${cat}:</strong> ${pct}% (${label})<div class="meter"><span style="width:${pct}%"></span></div></div>`;
-  }).join('')}</div>`;
-}
-
-function finishChallenge(){
-  document.getElementById('progressBar').style.width = '100%';
-  const pct = Math.round((state.score/state.pool.length)*100);
-  if(pct > state.best) state.best = pct;
-  saveStats();
-  let msg = pct >= 85 ? 'Strong readiness. Keep reviewing traps and examples.' : pct >= 70 ? 'Solid progress. Repeat weak categories before the final.' : 'Keep practicing. Use flashcards first, then retry the challenge.';
-  document.getElementById('activityContent').innerHTML = `
-    <h2>Final Readiness Challenge Complete</h2>
-    <p class="big-term">${pct}%</p>
-    <p>${msg}</p>
-    ${buildCategoryResults()}
-    <div class="card-actions">
-      <button class="primary" onclick="showScreen('certificate')">Print Certificate</button>
-      <button class="secondary" onclick="startChallenge()">Retake Challenge</button>
-      <button class="ghost" onclick="showScreen('dashboard')">Dashboard</button>
-    </div>
-  `;
-}
-
-function renderCertificate(){
-  const savedName = localStorage.getItem('studentName') || '';
-  document.getElementById('studentName').value = savedName === 'Student' ? '' : savedName;
-  document.getElementById('certDate').textContent = new Date().toLocaleDateString();
-  document.getElementById('certScore').textContent = (localStorage.getItem('bestScore') || 0) + '%';
-  document.getElementById('certAttempts').textContent = localStorage.getItem('attemptCount') || 0;
-}
-
-setupCategoryFilter();
-updateDashboard();
-renderStudyBank();
+const state={studentName:"",attempts:+localStorage.getItem("blAttemptsV2")||0,bestScore:+localStorage.getItem("blBestScoreV2")||0,mastered:JSON.parse(localStorage.getItem("blMasteredV2")||"[]"),categoryStats:JSON.parse(localStorage.getItem("blCategoryStatsV2")||"{}"),sessionProgress:0,currentItems:[],currentIndex:0,currentScore:0,finalResults:{},matchingRound:1,moduleFilter:"All Modules"};
+const $=id=>document.getElementById(id);
+const modules=["All Modules",...new Set(TERMS.map(t=>t.module))];
+const blueprint={"Legal Foundations":10,"Contracts and Torts":10,"Business Organizations":13,"Agency and Employment":12,"Commercial Paper and Banking":10,"Secured Transactions and Bankruptcy":10,"Consumer Protection":12,"Securities and Antitrust":13,"Property and Environment":7,"International and Regulatory":3};
+function save(){localStorage.setItem("blAttemptsV2",state.attempts);localStorage.setItem("blBestScoreV2",state.bestScore);localStorage.setItem("blMasteredV2",JSON.stringify(state.mastered));localStorage.setItem("blCategoryStatsV2",JSON.stringify(state.categoryStats))}
+function shuffle(a){return[...a].sort(()=>Math.random()-.5)}
+function activeTerms(){return state.moduleFilter==="All Modules"?TERMS:TERMS.filter(t=>t.module===state.moduleFilter)}
+function activeScenarios(){return state.moduleFilter==="All Modules"?SCENARIOS:SCENARIOS.filter(s=>s.module===state.moduleFilter)}
+function showOnly(id){["startScreen","dashboard","activityScreen","resultsScreen","certificate"].forEach(s=>$(s).classList.toggle("hidden",s!==id));$("homeBtn").classList.toggle("hidden",id==="startScreen"||id==="dashboard");$("progressPanel").classList.toggle("hidden",id==="startScreen")}
+function updateProgress(v){state.sessionProgress=Math.max(0,Math.min(100,v));$("progressFill").style.width=state.sessionProgress+"%";$("progressLabel").textContent=Math.round(state.sessionProgress)+"% complete";let d=Math.max(0,80-state.bestScore);$("readinessLabel").textContent=d===0?"Readiness goal met: 80% or higher":"Distance to readiness: "+d+" points";$("nearComplete").classList.toggle("hidden",state.sessionProgress<85)}
+function catPct(stats){return(!stats||!stats.total)?0:Math.round(stats.correct/stats.total*100)}
+function addCat(cat,correct){if(!state.categoryStats[cat])state.categoryStats[cat]={correct:0,total:0};state.categoryStats[cat].total++;if(correct)state.categoryStats[cat].correct++;save()}
+function renderCats(target,stats){let cats=[...new Set(TERMS.map(t=>t.category))];$(target).innerHTML=cats.map(c=>{let p=catPct(stats[c]);let lab=p>=80?"Strong":p>=50?"Developing":"Needs practice";return `<div class="category-card"><strong>${c}</strong><span>${lab} · ${p}%</span><div class="meter"><span style="width:${p}%"></span></div></div>`}).join("")}
+function renderBlueprint(){let total=Object.values(blueprint).reduce((a,b)=>a+b,0);$("blueprintBreakdown").innerHTML=Object.entries(blueprint).map(([c,w])=>`<div class="category-card"><strong>${c}</strong><span>${w}% of practice emphasis</span><div class="meter"><span style="width:${w/Math.max(...Object.values(blueprint))*100}%"></span></div></div>`).join("")}
+function updateDashboard(){state.moduleFilter=$("moduleFilter")?.value||state.moduleFilter;$("attemptsStat").textContent=state.attempts;$("bestScoreStat").textContent=state.bestScore+"%";$("masteredStat").textContent=state.mastered.length;$("readinessStat").textContent=state.bestScore>=80?"Ready":"Not Ready Yet";$("readinessStat").style.color=state.bestScore>=80?"#2e7d32":"#b7791f";renderCats("categoryBreakdown",state.categoryStats);renderBlueprint();updateProgress(state.sessionProgress)}
+function initModules(){let sel=$("moduleFilter");sel.innerHTML=modules.map(m=>`<option>${m}</option>`).join("");sel.onchange=()=>{state.moduleFilter=sel.value;updateDashboard()}}
+function startApp(){state.studentName=$("studentName").value.trim()||"Student";showOnly("dashboard");updateDashboard()}
+function dash(){showOnly("dashboard");updateDashboard()}
+function setAct(t,k,c=""){$("activityTitle").textContent=t;$("activityKicker").textContent=k;$("activityCounter").textContent=c;$("activityContent").innerHTML="";showOnly("activityScreen")}
+function startFlashcards(){state.currentItems=shuffle(activeTerms()).slice(0,16);state.currentIndex=0;renderFlash(false)}
+function renderFlash(back){let item=state.currentItems[state.currentIndex];setAct("Flashcards","Explain first, then reveal",`${state.currentIndex+1} of ${state.currentItems.length}`);updateProgress(Math.round(state.currentIndex/state.currentItems.length*100));$("activityContent").innerHTML=`<div class="flash"><p class="muted">${item.module} · ${item.category}</p><h3>${item.term}</h3>${back?`<div class="stack"><div class="callout"><strong>Definition:</strong> ${item.definition}</div><div class="callout"><strong>Example:</strong> ${item.example}</div><div class="callout"><strong>Common mistake:</strong> ${item.mistake}</div></div><div class="actions"><button id="know" class="primary">I knew this</button><button id="review" class="ghost">Review again</button></div>`:`<p>Say the definition and an example before revealing.</p><button id="reveal" class="primary">Reveal</button>`}</div>`; if(!back)$("reveal").onclick=()=>renderFlash(true);else{$("know").onclick=()=>flashMark(item,true);$("review").onclick=()=>flashMark(item,false)}}
+function flashMark(item,ok){if(ok&&!state.mastered.includes(item.term))state.mastered.push(item.term);addCat(item.category,ok);save();state.currentIndex++;if(state.currentIndex>=state.currentItems.length){updateProgress(100);dash()}else renderFlash(false)}
+function weakestTerms(){let cats=[...new Set(TERMS.map(t=>t.category))].sort((a,b)=>catPct(state.categoryStats[a])-catPct(state.categoryStats[b]));let weak=cats.slice(0,3);return activeTerms().filter(t=>weak.includes(t.category))}
+function startMatching(weak=false){state.matchingRound=1;state.currentScore=0;state.currentItems=weak?shuffle(weakestTerms()).slice(0,30):shuffle(activeTerms()).slice(0,30);renderMatchRound()}
+function renderMatchRound(){let size=state.matchingRound===1?6:state.matchingRound===2?8:10;let start=(state.matchingRound-1)*10;let items=state.currentItems.slice(start,start+size);if(items.length<4)items=shuffle(activeTerms()).slice(0,size);let selectedTerm=null,selectedDef=null,matched=new Set();setAct("Multi-Round Matching",`Round ${state.matchingRound} of 3`,`${matched.size} of ${items.length}`);updateProgress(Math.round((state.matchingRound-1)/3*100));function render(){let defs=shuffle(items);$("activityContent").innerHTML=`<div class="match-layout"><div><h3>Terms</h3><div class="match-list">${items.map((it,i)=>`<button class="match-btn ${matched.has(it.term)?"matched":""}" data-kind="term" data-i="${i}" ${matched.has(it.term)?"disabled":""}>${it.term}</button>`).join("")}</div></div><div><h3>Definitions</h3><div class="match-list">${defs.map(it=>`<button class="match-btn ${matched.has(it.term)?"matched":""}" data-kind="def" data-term="${it.term}" ${matched.has(it.term)?"disabled":""}>${it.definition}</button>`).join("")}</div></div></div><div id="matchFeedback" class="feedback hidden"></div>`;document.querySelectorAll(".match-btn").forEach(b=>b.onclick=()=>{if(b.dataset.kind==="term")selectedTerm=items[+b.dataset.i];if(b.dataset.kind==="def")selectedDef=b.dataset.term;document.querySelectorAll(".match-btn").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");if(selectedTerm&&selectedDef)check()})}
+function check(){let ok=selectedTerm.term===selectedDef;addCat(selectedTerm.category,ok);let fb=$("matchFeedback");fb.className="feedback "+(ok?"correct":"incorrect");fb.classList.remove("hidden");fb.innerHTML=ok?`<strong>Correct.</strong> ${selectedTerm.term}: ${selectedTerm.definition}`:`<strong>Not yet.</strong> ${selectedTerm.mistake}`;if(ok){matched.add(selectedTerm.term);state.currentScore++}selectedTerm=null;selectedDef=null;$("activityCounter").textContent=`${matched.size} of ${items.length}`;updateProgress(Math.round(((state.matchingRound-1)+matched.size/items.length)/3*100));if(matched.size===items.length){setTimeout(()=>{state.matchingRound++; if(state.matchingRound>3){updateProgress(100);dash()}else renderMatchRound()},900)}else setTimeout(render,650)}
+render()}
+function startTF(){state.currentItems=shuffle(activeTerms()).slice(0,12).map(t=>({prompt:t.misconception,answer:"False",feedback:`${t.term}: ${t.definition} Common mistake: ${t.mistake}`,category:t.category}));state.currentIndex=0;state.currentScore=0;renderQ("Misconception Check","Correct the trap")}
+function startScenario(){state.currentItems=shuffle(activeScenarios()).slice(0,10);state.currentIndex=0;state.currentScore=0;renderQ("Scenario Practice","Apply the rule")}
+function weightedFinalItems(){let pool=[];Object.entries(blueprint).forEach(([cat,w])=>{let catTerms=TERMS.filter(t=>t.category===cat);let n=Math.max(1,Math.round(w/5));for(let i=0;i<n;i++){let t=shuffle(catTerms)[0];if(t)pool.push({prompt:t.misconception,answer:"False",choices:["True","False"],feedback:`${t.term}: ${t.definition}`,category:t.category})}});pool.push(...SCENARIOS);return shuffle(pool).slice(0,24)}
+function startFinal(){state.attempts++;state.currentItems=weightedFinalItems();state.currentIndex=0;state.currentScore=0;state.finalResults={};save();renderQ("Readiness Challenge","Blueprint-balanced score")}
+function renderQ(title,kicker){let item=state.currentItems[state.currentIndex];let choices=item.choices||["True","False"];setAct(title,kicker,`${state.currentIndex+1} of ${state.currentItems.length}`);updateProgress(Math.round(state.currentIndex/state.currentItems.length*100));$("activityContent").innerHTML=`<h3>${item.prompt}</h3><div class="choice-grid">${shuffle(choices).map(c=>`<button class="choice" data-choice="${c}">${c}</button>`).join("")}</div><div id="fb" class="feedback hidden"></div>`;document.querySelectorAll(".choice").forEach(b=>b.onclick=()=>answerQ(b.dataset.choice,item,title))}
+function answerQ(choice,item,title){let ok=choice===item.answer;if(ok)state.currentScore++;addCat(item.category,ok);if(title==="Readiness Challenge"){if(!state.finalResults[item.category])state.finalResults[item.category]={correct:0,total:0};state.finalResults[item.category].total++;if(ok)state.finalResults[item.category].correct++}document.querySelectorAll(".choice").forEach(b=>{b.disabled=true;if(b.dataset.choice===item.answer)b.classList.add("correct-choice");if(b.dataset.choice===choice&&!ok)b.classList.add("wrong-choice")});let fb=$("fb");fb.className="feedback "+(ok?"correct":"incorrect");fb.classList.remove("hidden");fb.innerHTML=(ok?"<strong>Correct.</strong> ":"<strong>Correction:</strong> The better answer is <strong>"+item.answer+"</strong>. ")+item.feedback+`<div class="actions"><button id="nextQ" class="primary">${state.currentIndex+1>=state.currentItems.length?"Finish":"Next"}</button></div>`;$("nextQ").onclick=()=>{state.currentIndex++;if(state.currentIndex>=state.currentItems.length)finish(title);else renderQ(title,$("activityKicker").textContent)}}
+function finish(title){updateProgress(100);if(title==="Readiness Challenge"){let score=Math.round(state.currentScore/state.currentItems.length*100);if(score>state.bestScore)state.bestScore=score;save();showOnly("resultsScreen");$("resultSummary").innerHTML=score>=80?`<strong>${score}%.</strong> You met the 80% readiness target.`:`<strong>${score}%.</strong> Keep practicing the weaker categories below.`;renderCats("resultBreakdown",state.finalResults);$("certName").textContent=state.studentName||"Student";$("certScore").textContent=state.bestScore+"%";$("certAttempts").textContent=state.attempts;$("certDate").textContent=new Date().toLocaleDateString()}else dash()}
+function printCert(){$("certificate").classList.remove("hidden");window.print()}
+function bind(){initModules();$("startBtn").onclick=startApp;$("homeBtn").onclick=dash;$("returnBtn").onclick=dash;$("printCertBtn").onclick=printCert;document.querySelectorAll(".mode").forEach(b=>b.onclick=()=>{let m=b.dataset.mode;if(m==="flashcards")startFlashcards();if(m==="matching")startMatching(false);if(m==="weakmatch")startMatching(true);if(m==="tf")startTF();if(m==="scenario")startScenario();if(m==="final")startFinal()})}
+bind();updateDashboard();
