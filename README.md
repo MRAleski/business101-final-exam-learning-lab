@@ -39,3 +39,14 @@ Use as an External URL or embed:
 
 ## Instructor Note
 The tool uses browser local storage. Scores are saved on the same device and browser only.
+
+
+## Adaptive Weak-Area Logic
+This version remembers category performance in the student's browser and uses it to:
+- identify the lowest categories
+- recommend the next best practice activity
+- weight flashcards toward weak categories
+- weight scenario practice toward weak categories
+- add weak-area items into the readiness challenge while still preserving blueprint balance
+
+Important: this memory is stored locally on the student's device and browser. It is not connected to Canvas login or GitHub login.
