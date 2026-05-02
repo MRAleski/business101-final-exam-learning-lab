@@ -1,841 +1,5244 @@
 const TERMS = [
   {
-    "module": "Module 1",
-    "category": "Legal Foundations",
-    "term": "Primary Sources of Law",
-    "definition": "The main sources courts use to decide legal issues: constitutions, statutes, administrative regulations, and case law.",
-    "example": "A business dispute may involve a state statute and prior court decisions interpreting it.",
-    "mistake": "Thinking only statutes count as law.",
-    "misconception": "Primary Sources of Law: Thinking only statutes count as law.",
-    "tfAnswer": false
+    "term": "Just-in-Time Inventory",
+    "category": "Operations & Production",
+    "definition": "An inventory system in which suppliers deliver parts and materials exactly when production needs them, reducing storage costs and waste.",
+    "trap": "It does not mean keeping large backup inventories.",
+    "example": "A motorcycle plant receives seats and handlebars the same day they are installed.",
+    "id": "t001",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Just-in-Time Inventory means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
   },
   {
-    "module": "Module 1",
-    "category": "Legal Foundations",
-    "term": "Precedent",
-    "definition": "A prior court decision that guides later courts when similar facts and legal issues appear.",
-    "example": "A court follows an earlier decision from a higher court in the same jurisdiction.",
-    "mistake": "Thinking every old case automatically controls every new case.",
-    "misconception": "Precedent: Thinking every old case automatically controls every new case.",
-    "tfAnswer": false
+    "term": "Lean Manufacturing",
+    "category": "Operations & Production",
+    "definition": "A production approach focused on eliminating waste, improving flow, and continuously improving processes.",
+    "trap": "Lean does not simply mean cutting jobs.",
+    "example": "A factory redesigns workstations to reduce wasted movement and defects.",
+    "id": "t002",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Lean Manufacturing means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
   },
   {
-    "module": "Module 1",
-    "category": "Legal Foundations",
-    "term": "Civil Law",
-    "definition": "Law dealing with private rights and remedies, usually involving damages or court orders.",
-    "example": "A customer sues a business for breach of contract.",
-    "mistake": "Confusing civil liability with criminal punishment.",
-    "misconception": "Civil Law: Confusing civil liability with criminal punishment.",
-    "tfAnswer": false
+    "term": "Mass Production",
+    "category": "Operations & Production",
+    "definition": "Producing large quantities of standardized goods at low cost.",
+    "trap": "It is not focused on individual customization.",
+    "example": "A factory produces thousands of identical pens.",
+    "id": "t003",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Mass Production means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
   },
   {
-    "module": "Module 1",
-    "category": "Legal Foundations",
-    "term": "Criminal Law",
-    "definition": "Law dealing with offenses against society, prosecuted by government.",
-    "example": "The state prosecutes a person for fraud.",
-    "mistake": "Thinking the victim personally prosecutes the criminal case.",
-    "misconception": "Criminal Law: Thinking the victim personally prosecutes the criminal case.",
-    "tfAnswer": false
+    "term": "Mass Customization",
+    "category": "Operations & Production",
+    "definition": "Producing goods tailored to individual customers while maintaining many efficiencies of mass production.",
+    "trap": "It is not one-at-a-time handmade production.",
+    "example": "A shoe company lets customers choose colors while using automated production.",
+    "id": "t004",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Mass Customization means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
   },
   {
-    "module": "Module 1",
-    "category": "Legal Foundations",
-    "term": "Judicial Review",
-    "definition": "The power of courts to determine whether laws or government actions violate the Constitution.",
-    "example": "A court strikes down a statute that conflicts with constitutional rights.",
-    "mistake": "Thinking courts only apply laws and never evaluate them.",
-    "misconception": "Judicial Review: Thinking courts only apply laws and never evaluate them.",
-    "tfAnswer": false
+    "term": "Form Utility",
+    "category": "Operations & Production",
+    "definition": "Value added by changing raw materials or components into finished goods.",
+    "trap": "Do not confuse it with place or possession utility.",
+    "example": "Turning wheat into bread creates form utility.",
+    "id": "t005",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Form Utility means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
   },
   {
-    "module": "Module 1",
-    "category": "Legal Foundations",
-    "term": "Alternative Dispute Resolution",
-    "definition": "Methods for resolving disputes outside ordinary litigation, including negotiation, mediation, and arbitration.",
-    "example": "Two businesses use mediation before filing a lawsuit.",
-    "mistake": "Assuming every legal dispute must go to trial.",
-    "misconception": "Alternative Dispute Resolution: Assuming every legal dispute must go to trial.",
-    "tfAnswer": false
+    "term": "Fixed-Position Layout",
+    "category": "Operations & Production",
+    "definition": "A facility layout where the product stays in one place while workers, tools, and materials come to it.",
+    "trap": "This is not the same as an assembly line.",
+    "example": "Ships and airplanes are often built using a fixed-position layout.",
+    "id": "t006",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Fixed-Position Layout means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
   },
   {
-    "module": "Module 1",
-    "category": "Legal Foundations",
-    "term": "Jurisdiction",
-    "definition": "A court's authority to hear and decide a case.",
-    "example": "A state court must have authority over the parties or subject matter.",
-    "mistake": "Thinking any court can hear any dispute.",
-    "misconception": "Jurisdiction: Thinking any court can hear any dispute.",
-    "tfAnswer": false
+    "term": "Process Layout",
+    "category": "Operations & Production",
+    "definition": "A layout where similar activities or equipment are grouped together by function.",
+    "trap": "It is not arranged around a single product flow.",
+    "example": "A hospital groups radiology, surgery, and lab services by process.",
+    "id": "t007",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Process Layout means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
   },
   {
-    "module": "Module 1",
-    "category": "Legal Foundations",
-    "term": "Liability",
-    "definition": "Legal responsibility for an act, omission, debt, or injury.",
-    "example": "A company may be liable if its employee negligently harms a customer while working.",
-    "mistake": "Thinking liability always means someone committed a crime.",
-    "misconception": "Liability: Thinking liability always means someone committed a crime.",
-    "tfAnswer": false
+    "term": "Product Layout",
+    "category": "Operations & Production",
+    "definition": "A layout arranged around the sequence of steps needed to produce a specific product.",
+    "trap": "It is less flexible than a process layout.",
+    "example": "An automobile assembly line uses product layout.",
+    "id": "t008",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Product Layout means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
   },
   {
-    "module": "Module 2",
-    "category": "Contracts and Torts",
-    "term": "Contract",
-    "definition": "A legally enforceable agreement between parties.",
-    "example": "A supplier agrees to deliver inventory for a set price.",
-    "mistake": "Thinking every promise is automatically enforceable.",
-    "misconception": "Contract: Thinking every promise is automatically enforceable.",
-    "tfAnswer": false
+    "term": "Computer-Aided Design (CAD)",
+    "category": "Operations & Production",
+    "definition": "Using computer systems to create, modify, analyze, or optimize product designs.",
+    "trap": "CAD designs products. CAM helps manufacture them.",
+    "example": "An engineer uses software to design a machine part.",
+    "id": "t009",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Computer-Aided Design (CAD) means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
   },
   {
-    "module": "Module 2",
-    "category": "Contracts and Torts",
-    "term": "Offer",
-    "definition": "A clear proposal showing willingness to enter a contract on specific terms.",
-    "example": "A seller offers to sell equipment for $4,000 with delivery next week.",
-    "mistake": "Confusing preliminary negotiations with an offer.",
-    "misconception": "Offer: Confusing preliminary negotiations with an offer.",
-    "tfAnswer": false
+    "term": "Computer-Aided Manufacturing (CAM)",
+    "category": "Operations & Production",
+    "definition": "Using computers directly in the production process.",
+    "trap": "CAM is production-focused, not design-focused.",
+    "example": "A computer-controlled machine cuts metal parts.",
+    "id": "t010",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Computer-Aided Manufacturing (CAM) means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
   },
   {
-    "module": "Module 2",
-    "category": "Contracts and Torts",
-    "term": "Acceptance",
-    "definition": "Agreement to the terms of an offer in the required manner.",
-    "example": "A buyer signs the purchase agreement before the offer expires.",
-    "mistake": "Thinking a changed response is acceptance instead of a counteroffer.",
-    "misconception": "Acceptance: Thinking a changed response is acceptance instead of a counteroffer.",
-    "tfAnswer": false
+    "term": "Computer-Integrated Manufacturing (CIM)",
+    "category": "Operations & Production",
+    "definition": "A production system where computers control and integrate the entire manufacturing process.",
+    "trap": "It is broader than CAD or CAM alone.",
+    "example": "A car plant uses software to coordinate ordering, machines, and assembly.",
+    "id": "t011",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Computer-Integrated Manufacturing (CIM) means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
   },
   {
-    "module": "Module 2",
-    "category": "Contracts and Torts",
-    "term": "Consideration",
-    "definition": "Something of legal value exchanged between contracting parties.",
-    "example": "One party pays money and the other delivers services.",
-    "mistake": "Thinking consideration must be equal in dollar value.",
-    "misconception": "Consideration: Thinking consideration must be equal in dollar value.",
-    "tfAnswer": false
+    "term": "3D Printing",
+    "category": "Operations & Production",
+    "definition": "A manufacturing process that builds items layer by layer, often used for prototypes and molds.",
+    "trap": "It is not yet the main method for most mass-produced items.",
+    "example": "A company prints a prototype part before investing in tooling.",
+    "id": "t012",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "3D Printing means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
   },
   {
-    "module": "Module 2",
-    "category": "Contracts and Torts",
-    "term": "Tort",
-    "definition": "A civil wrong that causes injury or harm and can create liability.",
-    "example": "A store fails to clean a spill and a customer is injured.",
-    "mistake": "Thinking torts always require a written agreement.",
-    "misconception": "Tort: Thinking torts always require a written agreement.",
-    "tfAnswer": false
+    "term": "Capacity",
+    "category": "Operations & Production",
+    "definition": "The maximum amount a firm can produce under normal conditions.",
+    "trap": "When demand exceeds capacity, firms may use overtime, extra shifts, or subcontracting.",
+    "example": "A bakery can produce 2,000 loaves per day.",
+    "id": "t013",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Capacity means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
   },
   {
-    "module": "Module 2",
-    "category": "Contracts and Torts",
-    "term": "Negligence",
-    "definition": "Failure to use reasonable care, causing harm to another person.",
-    "example": "A delivery driver runs a red light and causes a crash.",
-    "mistake": "Thinking negligence requires intent to harm.",
-    "misconception": "Negligence: Thinking negligence requires intent to harm.",
-    "tfAnswer": false
+    "term": "Subcontracting",
+    "category": "Operations & Production",
+    "definition": "Hiring another company to complete part of the work.",
+    "trap": "It is not the same as hiring full-time internal employees.",
+    "example": "A manufacturer hires another plant to make parts during peak demand.",
+    "id": "t014",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Subcontracting means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
   },
   {
-    "module": "Module 2",
-    "category": "Contracts and Torts",
-    "term": "Comparative Negligence",
-    "definition": "A defense that reduces damages based on the injured party's share of fault.",
-    "example": "A plaintiff who is 30% at fault may recover reduced damages.",
-    "mistake": "Thinking any plaintiff fault eliminates recovery automatically.",
-    "misconception": "Comparative Negligence: Thinking any plaintiff fault eliminates recovery automatically.",
-    "tfAnswer": false
+    "term": "Production",
+    "category": "Operations & Production",
+    "definition": "Creating goods and services using land, labor, capital, entrepreneurship, and knowledge.",
+    "trap": "Production includes services, not just physical goods.",
+    "example": "A restaurant produces meals and service experiences.",
+    "id": "t015",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Production means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
   },
   {
-    "module": "Module 2",
-    "category": "Contracts and Torts",
-    "term": "General Damages",
-    "definition": "Damages for non-economic harm such as pain and suffering.",
-    "example": "A tort plaintiff seeks damages for emotional distress after an injury.",
-    "mistake": "Confusing general damages with medical bills or lost wages.",
-    "misconception": "General Damages: Confusing general damages with medical bills or lost wages.",
-    "tfAnswer": false
+    "term": "Robotics",
+    "category": "Operations & Production",
+    "definition": "Use of programmable machines to perform tasks in production or service operations.",
+    "trap": "Robots can raise productivity while reducing some labor needs.",
+    "example": "Robots weld car frames on an assembly line.",
+    "id": "t016",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Robotics means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
   },
   {
-    "module": "Module 3",
-    "category": "Business Organizations",
+    "term": "Importing",
+    "category": "Global Business",
+    "definition": "Buying products or materials from another country and bringing them into one\u2019s own country.",
+    "trap": "Imports come into the country.",
+    "example": "A U.S. retailer buys clothing made in Vietnam.",
+    "id": "t017",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Importing means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Exporting",
+    "category": "Global Business",
+    "definition": "Selling products made in one country to buyers in another country.",
+    "trap": "Exports leave the country.",
+    "example": "A St. Louis company sells products to Germany.",
+    "id": "t018",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Exporting means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Balance of Trade",
+    "category": "Global Business",
+    "definition": "The total value of a nation\u2019s exports compared to its imports over a specific period.",
+    "trap": "Do not confuse it with balance of payments, which is broader.",
+    "example": "If exports are $1 trillion and imports are $1.2 trillion, the country has a trade deficit.",
+    "id": "t019",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Balance of Trade means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Trade Deficit",
+    "category": "Global Business",
+    "definition": "An unfavorable balance of trade in which imports exceed exports.",
+    "trap": "A deficit means buying more from abroad than selling abroad.",
+    "example": "The United States has often imported more goods than it exports.",
+    "id": "t020",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Trade Deficit means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Trade Surplus",
+    "category": "Global Business",
+    "definition": "A favorable balance of trade in which exports exceed imports.",
+    "trap": "A surplus does not automatically mean every worker benefits.",
+    "example": "A nation sells more goods abroad than it buys.",
+    "id": "t021",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Trade Surplus means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Comparative Advantage",
+    "category": "Global Business",
+    "definition": "The ability of a country to produce a good or service more efficiently relative to other goods it could produce.",
+    "trap": "Every country has some comparative advantage.",
+    "example": "A country focuses on products it makes most efficiently and trades for others.",
+    "id": "t022",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Comparative Advantage means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Absolute Advantage",
+    "category": "Global Business",
+    "definition": "The ability to produce more of a good using the same or fewer resources than another producer.",
+    "trap": "Comparative advantage matters more for trade decisions.",
+    "example": "One country can produce more wheat per acre than another.",
+    "id": "t023",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Absolute Advantage means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Offshore Outsourcing",
+    "category": "Global Business",
+    "definition": "Hiring workers in another country to perform work that could be done domestically.",
+    "trap": "Offshore outsourcing is not the same as importing a finished product from a supplier.",
+    "example": "A U.S. firm contracts customer service work to another country.",
+    "id": "t024",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Offshore Outsourcing means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Insourcing",
+    "category": "Global Business",
+    "definition": "Foreign companies creating jobs domestically by locating operations in another country.",
+    "trap": "Insourcing can offset some jobs lost through outsourcing.",
+    "example": "A foreign automaker builds cars in Indiana or Ohio.",
+    "id": "t025",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Insourcing means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Import Quota",
+    "category": "Global Business",
+    "definition": "A government limit on the quantity of a product that may be imported.",
+    "trap": "A quota limits quantity, while a tariff adds tax.",
+    "example": "A country allows only 100 million tons of sugar imports.",
+    "id": "t026",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Import Quota means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Tariff",
+    "category": "Global Business",
+    "definition": "A tax placed on imported goods.",
+    "trap": "Tariffs usually raise prices for consumers.",
+    "example": "A tariff adds cost to imported steel.",
+    "id": "t027",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Tariff means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Embargo",
+    "category": "Global Business",
+    "definition": "A complete ban on trade with a particular country or product.",
+    "trap": "An embargo is stronger than a quota or tariff.",
+    "example": "A country bans trade with a hostile nation.",
+    "id": "t028",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Embargo means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Licensing",
+    "category": "Global Business",
+    "definition": "A contractual agreement allowing one firm to produce and market another firm\u2019s product or brand in exchange for a fee.",
+    "trap": "Licensing is often lower cost for the licensor, but control may be limited.",
+    "example": "A U.S. company permits a foreign firm to make its branded product.",
+    "id": "t029",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Licensing means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Joint Venture",
+    "category": "Global Business",
+    "definition": "A partnership between companies, often from different countries, to share resources, risks, and expertise.",
+    "trap": "It is not guaranteed profit.",
+    "example": "Two firms share marketing and management expertise in a foreign market.",
+    "id": "t030",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Joint Venture means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Multinational Corporation",
+    "category": "Global Business",
+    "definition": "A company with significant investments and physical operations in multiple countries.",
+    "trap": "Simply exporting does not make a company multinational.",
+    "example": "A company manufactures and markets products in several countries.",
+    "id": "t031",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Multinational Corporation means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Sovereign Wealth Fund",
+    "category": "Global Business",
+    "definition": "A government-controlled investment fund that invests in foreign companies and assets.",
+    "trap": "It is not a private mutual fund.",
+    "example": "A nation invests oil revenue in global companies.",
+    "id": "t032",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Sovereign Wealth Fund means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "USMCA",
+    "category": "Global Business",
+    "definition": "A trade agreement among the United States, Mexico, and Canada that replaced NAFTA.",
+    "trap": "The member countries are not Panama or Nicaragua.",
+    "example": "Trade rules for North American goods are shaped by USMCA.",
+    "id": "t033",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "USMCA means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Free Trade",
+    "category": "Global Business",
+    "definition": "Trade among nations with reduced barriers such as tariffs and quotas.",
+    "trap": "Free trade can benefit consumers but may disrupt some workers and industries.",
+    "example": "Countries specialize and exchange goods more efficiently.",
+    "id": "t034",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Free Trade means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Economics",
+    "category": "Economics",
+    "definition": "The study of how society uses limited resources to produce and distribute goods and services.",
+    "trap": "Economics is about scarcity and choices.",
+    "example": "A country decides how to allocate labor, land, and capital.",
+    "id": "t035",
+    "module": "M01: Business Foundations & Economics",
+    "misconception": "Economics means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Macroeconomics",
+    "category": "Economics",
+    "definition": "The study of an economy as a whole, including growth, inflation, unemployment, and GDP.",
+    "trap": "Macro is the big picture.",
+    "example": "Studying national economic growth is macroeconomics.",
+    "id": "t036",
+    "module": "M01: Business Foundations & Economics",
+    "misconception": "Macroeconomics means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Microeconomics",
+    "category": "Economics",
+    "definition": "The study of individual markets, firms, consumers, and pricing decisions.",
+    "trap": "Micro focuses on smaller units of the economy.",
+    "example": "Studying how one company sets prices is microeconomics.",
+    "id": "t037",
+    "module": "M01: Business Foundations & Economics",
+    "misconception": "Microeconomics means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Gross Domestic Product (GDP)",
+    "category": "Economics",
+    "definition": "The total dollar value of all final goods and services produced within a country\u2019s borders during a specific period.",
+    "trap": "GDP measures production within borders, not just by citizens.",
+    "example": "Cars produced in Indiana count toward U.S. GDP.",
+    "id": "t038",
+    "module": "M01: Business Foundations & Economics",
+    "misconception": "Gross Domestic Product (GDP) means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Recession",
+    "category": "Economics",
+    "definition": "A period commonly described as two consecutive quarters of decline in real GDP.",
+    "trap": "Recession is not the same as depression.",
+    "example": "Six months of shrinking economic output may indicate recession.",
+    "id": "t039",
+    "module": "M01: Business Foundations & Economics",
+    "misconception": "Recession means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Capitalism",
+    "category": "Economics",
+    "definition": "An economic system in which individuals own and operate most businesses.",
+    "trap": "Capitalism relies on private ownership, competition, and profit motive.",
+    "example": "Entrepreneurs start firms to meet customer needs and earn profit.",
+    "id": "t040",
+    "module": "M01: Business Foundations & Economics",
+    "misconception": "Capitalism means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Invisible Hand",
+    "category": "Economics",
+    "definition": "Adam Smith\u2019s idea that people pursuing self-interest can unintentionally benefit society through jobs, goods, and wealth creation.",
+    "trap": "It does not mean greed is always good.",
+    "example": "A baker earns profit by selling bread customers want.",
+    "id": "t041",
+    "module": "M01: Business Foundations & Economics",
+    "misconception": "Invisible Hand means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Factors of Production",
+    "category": "Economics",
+    "definition": "Resources used to create wealth: land, labor, capital, entrepreneurship, and knowledge.",
+    "trap": "Capital in this context means tools, machinery, buildings, and technology, not just money.",
+    "example": "A factory uses land, workers, equipment, ideas, and risk-taking.",
+    "id": "t042",
+    "module": "M01: Business Foundations & Economics",
+    "misconception": "Factors of Production means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Supply",
+    "category": "Economics",
+    "definition": "The quantity of a good or service producers are willing to sell at various prices.",
+    "trap": "Supply comes from producers.",
+    "example": "More sellers may supply coffee when prices rise.",
+    "id": "t043",
+    "module": "M01: Business Foundations & Economics",
+    "misconception": "Supply means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Demand",
+    "category": "Economics",
+    "definition": "The quantity of a good or service consumers are willing and able to buy at various prices.",
+    "trap": "Wanting something is not demand unless buyers can pay.",
+    "example": "Students demand laptops when they need them and can afford them.",
+    "id": "t044",
+    "module": "M01: Business Foundations & Economics",
+    "misconception": "Demand means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Market Price",
+    "category": "Economics",
+    "definition": "The price at which quantity demanded equals quantity supplied.",
+    "trap": "Also called equilibrium price.",
+    "example": "A product sells at the price where buyers and sellers agree.",
+    "id": "t045",
+    "module": "M01: Business Foundations & Economics",
+    "misconception": "Market Price means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Business Cycle",
+    "category": "Economics",
+    "definition": "Recurring periods of economic growth and contraction.",
+    "trap": "Economies rarely grow at a perfectly steady pace.",
+    "example": "Expansion, peak, contraction, trough, recovery.",
+    "id": "t046",
+    "module": "M01: Business Foundations & Economics",
+    "misconception": "Business Cycle means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Monopoly",
+    "category": "Economics",
+    "definition": "A market dominated by one seller.",
+    "trap": "A true monopoly has little or no direct competition.",
+    "example": "A local utility may operate as a regulated monopoly.",
+    "id": "t047",
+    "module": "M01: Business Foundations & Economics",
+    "misconception": "Monopoly means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Oligopoly",
+    "category": "Economics",
+    "definition": "A market dominated by a few large sellers.",
+    "trap": "A few dominant firms does not equal one monopoly.",
+    "example": "Commercial aircraft manufacturing is close to an oligopoly.",
+    "id": "t048",
+    "module": "M01: Business Foundations & Economics",
+    "misconception": "Oligopoly means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Monopolistic Competition",
+    "category": "Economics",
+    "definition": "A market with many sellers offering similar but differentiated products.",
+    "trap": "Products are similar, not identical.",
+    "example": "A city with many bakeries selling different specialties.",
+    "id": "t049",
+    "module": "M01: Business Foundations & Economics",
+    "misconception": "Monopolistic Competition means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Perfect Competition",
+    "category": "Economics",
+    "definition": "A market with many buyers and sellers offering nearly identical products.",
+    "trap": "Few real markets are perfectly competitive.",
+    "example": "Some agricultural commodity markets come close.",
+    "id": "t050",
+    "module": "M01: Business Foundations & Economics",
+    "misconception": "Perfect Competition means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Profit",
+    "category": "Economics",
+    "definition": "Money left after a business subtracts expenses from revenue.",
+    "trap": "Revenue is not profit.",
+    "example": "A business earns $100,000 revenue and has $80,000 expenses, leaving $20,000 profit.",
+    "id": "t051",
+    "module": "M01: Business Foundations & Economics",
+    "misconception": "Profit means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Loss",
+    "category": "Economics",
+    "definition": "When costs and expenses exceed revenues.",
+    "trap": "A loss means the business spent more than it earned.",
+    "example": "A startup spends $50,000 but earns $30,000.",
+    "id": "t052",
+    "module": "M01: Business Foundations & Economics",
+    "misconception": "Loss means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Risk",
+    "category": "Economics",
+    "definition": "The chance of losing time, money, or resources invested in a business.",
+    "trap": "Entrepreneurs usually take calculated risks, not reckless risks.",
+    "example": "A new restaurant may fail if sales are too low.",
+    "id": "t053",
+    "module": "M01: Business Foundations & Economics",
+    "misconception": "Risk means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Resource Development",
+    "category": "Economics",
+    "definition": "Efforts to increase available resources and improve how resources are used.",
+    "trap": "It is not just finding natural resources.",
+    "example": "Training workers improves human capital.",
+    "id": "t054",
+    "module": "M01: Business Foundations & Economics",
+    "misconception": "Resource Development means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Entrepreneurship",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "Accepting the risk of starting and running a business.",
+    "trap": "Entrepreneurship is not just having an idea.",
+    "example": "A student launches a tutoring business and manages expenses, customers, and risk.",
+    "id": "t055",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Entrepreneurship means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Entrepreneur",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A person who organizes, manages, and assumes the risk of a business.",
+    "trap": "Entrepreneurs are usually action-oriented and tolerate uncertainty.",
+    "example": "Someone opens a repair shop after identifying local demand.",
+    "id": "t056",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Entrepreneur means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Intrapreneur",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "An employee who uses company resources to develop new products, processes, or ventures.",
+    "trap": "Intrapreneurs innovate inside an existing organization.",
+    "example": "An employee develops a new service line for an employer.",
+    "id": "t057",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Intrapreneur means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Small Business",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "An independently owned and operated for-profit business that is not dominant in its field.",
+    "trap": "Small businesses can still have major local impact.",
+    "example": "A local HVAC company serving one region.",
+    "id": "t058",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Small Business means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
     "term": "Sole Proprietorship",
-    "definition": "A business owned by one person with no legal separation between owner and business.",
-    "example": "A freelance designer operates under her own name.",
-    "mistake": "Thinking it gives limited liability.",
-    "misconception": "Sole Proprietorship: Thinking it gives limited liability.",
-    "tfAnswer": false
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A business owned and usually managed by one person.",
+    "trap": "It is simple but carries unlimited liability.",
+    "example": "A freelance landscaper operates as a sole proprietor.",
+    "id": "t059",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Sole Proprietorship means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
   },
   {
-    "module": "Module 3",
-    "category": "Business Organizations",
     "term": "Partnership",
-    "definition": "A business owned by two or more persons who share profits and management unless agreed otherwise.",
-    "example": "Two people open a repair shop together and split profits.",
-    "mistake": "Ignoring personal liability risk.",
-    "misconception": "Partnership: Ignoring personal liability risk.",
-    "tfAnswer": false
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A business owned by two or more people.",
+    "trap": "General partners may face unlimited liability.",
+    "example": "Two accountants start a firm together.",
+    "id": "t060",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Partnership means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
   },
   {
-    "module": "Module 3",
-    "category": "Business Organizations",
-    "term": "Limited Liability Company",
-    "definition": "A flexible business entity that can provide limited liability and pass-through taxation.",
-    "example": "A small logistics consulting firm forms an LLC.",
-    "mistake": "Thinking an LLC removes all personal responsibility for wrongful acts.",
-    "misconception": "Limited Liability Company: Thinking an LLC removes all personal responsibility for wrongful acts.",
-    "tfAnswer": false
+    "term": "Limited Partnership",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A partnership with at least one general partner and one or more limited partners.",
+    "trap": "Limited partners usually do not manage the business.",
+    "example": "An investor contributes money but does not run daily operations.",
+    "id": "t061",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Limited Partnership means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
   },
   {
-    "module": "Module 3",
-    "category": "Business Organizations",
+    "term": "Limited Partner",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A partner whose liability is limited to the amount invested and who does not manage the business.",
+    "trap": "Management activity can risk limited liability protection.",
+    "example": "A person invests $20,000 in a partnership and risks only that amount.",
+    "id": "t062",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Limited Partner means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Limited Liability Partnership (LLP)",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A partnership form that limits each partner\u2019s personal liability for the acts of other partners.",
+    "trap": "Partners may still be liable for their own mistakes.",
+    "example": "Professional firms often use LLP structures.",
+    "id": "t063",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Limited Liability Partnership (LLP) means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Master Limited Partnership",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A business that acts like a corporation and is traded publicly but is taxed like a partnership.",
+    "trap": "It combines public trading with pass-through taxation.",
+    "example": "Some energy infrastructure companies use this form.",
+    "id": "t064",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Master Limited Partnership means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
     "term": "Corporation",
-    "definition": "A legal entity separate from its owners.",
-    "example": "A corporation owns property, signs contracts, and issues stock.",
-    "mistake": "Thinking shareholders are always personally liable for corporate debts.",
-    "misconception": "Corporation: Thinking shareholders are always personally liable for corporate debts.",
-    "tfAnswer": false
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A legal entity separate from its owners that can own property, enter contracts, and raise capital through stock.",
+    "trap": "Corporations usually involve more regulation and recordkeeping.",
+    "example": "A company sells shares to raise money for expansion.",
+    "id": "t065",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Corporation means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
   },
   {
-    "module": "Module 3",
-    "category": "Business Organizations",
-    "term": "Limited Liability",
-    "definition": "A rule limiting an owner's financial risk to the investment in the business.",
-    "example": "A shareholder generally risks the amount invested in stock.",
-    "mistake": "Treating limited liability as a shield for fraud or personal misconduct.",
-    "misconception": "Limited Liability: Treating limited liability as a shield for fraud or personal misconduct.",
-    "tfAnswer": false
+    "term": "Closed Corporation",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A corporation whose stock is owned by a small group and not sold to the public.",
+    "trap": "Closed does not mean out of business.",
+    "example": "A family owns all shares of a corporation.",
+    "id": "t066",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Closed Corporation means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
   },
   {
-    "module": "Module 3",
-    "category": "Business Organizations",
-    "term": "Piercing the Corporate Veil",
-    "definition": "Holding owners personally liable when they misuse the business entity.",
-    "example": "An owner commingles personal and company funds so badly the firm has no separate identity.",
-    "mistake": "Thinking filing articles of incorporation is an unbreakable shield.",
-    "misconception": "Piercing the Corporate Veil: Thinking filing articles of incorporation is an unbreakable shield.",
-    "tfAnswer": false
+    "term": "Domestic Corporation",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A corporation in the state where it is incorporated.",
+    "trap": "The same corporation is foreign in other states where it operates.",
+    "example": "An Indiana-incorporated firm is domestic in Indiana.",
+    "id": "t067",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Domestic Corporation means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
   },
   {
-    "module": "Module 3",
-    "category": "Business Organizations",
-    "term": "Franchise",
-    "definition": "A business arrangement allowing one party to use another's brand and operating system.",
-    "example": "A local owner operates under a national restaurant brand.",
-    "mistake": "Thinking franchisees can ignore brand standards.",
-    "misconception": "Franchise: Thinking franchisees can ignore brand standards.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 3",
-    "category": "Business Organizations",
-    "term": "Shareholder Derivative Suit",
-    "definition": "A lawsuit brought by a shareholder on behalf of the corporation when directors fail to act.",
-    "example": "A shareholder sues to recover damages for harm done to the corporation.",
-    "mistake": "Thinking recovered damages go directly to the suing shareholder.",
-    "misconception": "Shareholder Derivative Suit: Thinking recovered damages go directly to the suing shareholder.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 4",
-    "category": "Agency and Employment",
-    "term": "Agency Relationship",
-    "definition": "A relationship where an agent acts for a principal and can affect the principal's legal position.",
-    "example": "A purchasing agent negotiates contracts for a company.",
-    "mistake": "Thinking agency requires a formal written contract every time.",
-    "misconception": "Agency Relationship: Thinking agency requires a formal written contract every time.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 4",
-    "category": "Agency and Employment",
-    "term": "Principal",
-    "definition": "The person or organization for whom an agent acts.",
-    "example": "A company hires a sales representative to make deals on its behalf.",
-    "mistake": "Confusing the principal with the customer.",
-    "misconception": "Principal: Confusing the principal with the customer.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 4",
-    "category": "Agency and Employment",
-    "term": "Agent",
-    "definition": "A person authorized to act on behalf of a principal.",
-    "example": "A real estate agent lists and negotiates a sale for a property owner.",
-    "mistake": "Thinking an agent owes no duties unless paid.",
-    "misconception": "Agent: Thinking an agent owes no duties unless paid.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 4",
-    "category": "Agency and Employment",
-    "term": "Duty of Loyalty",
-    "definition": "An agent's duty to act in the principal's interest and avoid secret profits or conflicts.",
-    "example": "An agent cannot secretly buy land and resell it to the principal at a markup.",
-    "mistake": "Thinking good results excuse self-dealing.",
-    "misconception": "Duty of Loyalty: Thinking good results excuse self-dealing.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 4",
-    "category": "Agency and Employment",
-    "term": "Independent Contractor",
-    "definition": "A worker who controls how work is performed and is not treated as an employee for many legal purposes.",
-    "example": "A contractor completes a project using their own tools and schedule.",
-    "mistake": "Looking only at the job title rather than control.",
-    "misconception": "Independent Contractor: Looking only at the job title rather than control.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 4",
-    "category": "Agency and Employment",
-    "term": "Employment-at-Will",
-    "definition": "The default rule that employment can usually be ended by either party, subject to exceptions.",
-    "example": "A handbook promising discharge only for good cause may limit at-will termination.",
-    "mistake": "Thinking at-will means employers may fire for illegal reasons.",
-    "misconception": "Employment-at-Will: Thinking at-will means employers may fire for illegal reasons.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 4",
-    "category": "Agency and Employment",
-    "term": "Respondeat Superior",
-    "definition": "A rule making an employer liable for certain employee torts committed within the scope of employment.",
-    "example": "A delivery company may be liable for an employee's negligent driving during deliveries.",
-    "mistake": "Assuming employers are liable for every act an employee commits.",
-    "misconception": "Respondeat Superior: Assuming employers are liable for every act an employee commits.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 4",
-    "category": "Agency and Employment",
-    "term": "Workers' Compensation",
-    "definition": "A state system for compensating employees for work-related injuries.",
-    "example": "A warehouse worker injured while lifting freight files a claim.",
-    "mistake": "Thinking the worker must prove intentional wrongdoing by the employer.",
-    "misconception": "Workers' Compensation: Thinking the worker must prove intentional wrongdoing by the employer.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 5",
-    "category": "Commercial Paper and Banking",
-    "term": "Negotiable Instrument",
-    "definition": "A written promise or order to pay money that meets legal requirements.",
-    "example": "A properly written check may qualify as a negotiable instrument.",
-    "mistake": "Thinking any informal IOU qualifies.",
-    "misconception": "Negotiable Instrument: Thinking any informal IOU qualifies.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 5",
-    "category": "Commercial Paper and Banking",
-    "term": "Check",
-    "definition": "A draft ordering a bank to pay money from the drawer's account.",
-    "example": "A customer writes a check to pay a vendor.",
-    "mistake": "Forgetting checks may involve both UCC Article 3 and Article 4.",
-    "misconception": "Check: Forgetting checks may involve both UCC Article 3 and Article 4.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 5",
-    "category": "Commercial Paper and Banking",
-    "term": "Certified Check",
-    "definition": "A check accepted by the bank in advance, confirming funds for payment.",
-    "example": "A buyer obtains a certified check for a vehicle purchase.",
-    "mistake": "Confusing it with an ordinary personal check.",
-    "misconception": "Certified Check: Confusing it with an ordinary personal check.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 5",
-    "category": "Commercial Paper and Banking",
-    "term": "Forged Drawer Signature",
-    "definition": "An unauthorized signature on a check drawn on another person's account.",
-    "example": "Someone signs another person's name to a check without permission.",
-    "mistake": "Assuming the customer always bears the loss.",
-    "misconception": "Forged Drawer Signature: Assuming the customer always bears the loss.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 5",
-    "category": "Commercial Paper and Banking",
-    "term": "Electronic Fund Transfer",
-    "definition": "A funds transfer made through electronic systems rather than paper checks.",
-    "example": "ATM withdrawals, direct deposits, and debit card point-of-sale transactions.",
-    "mistake": "Thinking every electronic payment follows the same rules as checks.",
-    "misconception": "Electronic Fund Transfer: Thinking every electronic payment follows the same rules as checks.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 5",
-    "category": "Secured Transactions and Bankruptcy",
-    "term": "Security Interest",
-    "definition": "A creditor's legal right in collateral securing payment or performance.",
-    "example": "A lender has a security interest in a financed vehicle.",
-    "mistake": "Thinking collateral belongs to the creditor immediately.",
-    "misconception": "Security Interest: Thinking collateral belongs to the creditor immediately.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 5",
-    "category": "Secured Transactions and Bankruptcy",
-    "term": "Perfection",
-    "definition": "The step that protects a secured creditor's interest against certain third parties.",
-    "example": "A lender files a financing statement for equipment collateral.",
-    "mistake": "Thinking the last creditor to perfect wins priority.",
-    "misconception": "Perfection: Thinking the last creditor to perfect wins priority.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 5",
-    "category": "Secured Transactions and Bankruptcy",
-    "term": "Chapter 7 Bankruptcy",
-    "definition": "Liquidation bankruptcy where nonexempt assets may be sold to pay creditors.",
-    "example": "An individual debtor seeks relief when debts cannot be paid.",
-    "mistake": "Thinking Chapter 7 erases every debt.",
-    "misconception": "Chapter 7 Bankruptcy: Thinking Chapter 7 erases every debt.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 5",
-    "category": "Secured Transactions and Bankruptcy",
-    "term": "Chapter 11 Bankruptcy",
-    "definition": "Reorganization bankruptcy often used by businesses to continue operating while restructuring debts.",
-    "example": "A company operates as debtor in possession while proposing a plan.",
-    "mistake": "Thinking Chapter 11 always means immediate closure.",
-    "misconception": "Chapter 11 Bankruptcy: Thinking Chapter 11 always means immediate closure.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 6",
-    "category": "Consumer Protection",
-    "term": "Deceptive Advertising",
-    "definition": "Advertising that misleads consumers or makes false factual claims.",
-    "example": "A company falsely claims a competitor's product is unsafe.",
-    "mistake": "Confusing factual deception with ordinary sales puffery.",
-    "misconception": "Deceptive Advertising: Confusing factual deception with ordinary sales puffery.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 6",
-    "category": "Consumer Protection",
-    "term": "State Consumer Fraud Statute",
-    "definition": "A state law prohibiting unfair or deceptive acts in consumer transactions.",
-    "example": "A business misrepresents a product's capabilities to consumers.",
-    "mistake": "Thinking every bad purchase proves consumer fraud.",
-    "misconception": "State Consumer Fraud Statute: Thinking every bad purchase proves consumer fraud.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 6",
-    "category": "Consumer Protection",
-    "term": "Truth in Lending Act",
-    "definition": "A law requiring clear disclosure of consumer credit terms.",
-    "example": "A store financing agreement discloses APR and finance charges.",
-    "mistake": "Thinking the law sets all interest rates.",
-    "misconception": "Truth in Lending Act: Thinking the law sets all interest rates.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 6",
-    "category": "Consumer Protection",
-    "term": "Fair Credit Reporting Act",
-    "definition": "A law giving consumers rights to dispute and correct inaccurate credit report information.",
-    "example": "A consumer disputes unverifiable false information in a credit file.",
-    "mistake": "Thinking credit bureaus can keep false information indefinitely.",
-    "misconception": "Fair Credit Reporting Act: Thinking credit bureaus can keep false information indefinitely.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 6",
-    "category": "Consumer Protection",
-    "term": "Fair Debt Collection Practices Act",
-    "definition": "A law restricting abusive or unfair debt collection practices.",
-    "example": "A collector keeps calling a consumer at work after learning the employer objects.",
-    "mistake": "Thinking collectors may use any pressure tactic if the debt is real.",
-    "misconception": "Fair Debt Collection Practices Act: Thinking collectors may use any pressure tactic if the debt is real.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 6",
-    "category": "Consumer Protection",
-    "term": "Product Labeling",
-    "definition": "Required information placed on products to inform consumers or comply with law.",
-    "example": "A vehicle includes an EPA fuel economy label.",
-    "mistake": "Thinking labels are optional marketing choices only.",
-    "misconception": "Product Labeling: Thinking labels are optional marketing choices only.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 6",
-    "category": "Consumer Protection",
-    "term": "Product Safety Regulation",
-    "definition": "Rules designed to reduce hazards from products sold to consumers.",
-    "example": "A manufacturer reports a product that has proved hazardous.",
-    "mistake": "Thinking safety duties end once the product is sold.",
-    "misconception": "Product Safety Regulation: Thinking safety duties end once the product is sold.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 6",
-    "category": "Consumer Protection",
-    "term": "Price Discrimination",
-    "definition": "Charging different buyers different prices for similar goods under conditions that may harm competition.",
-    "example": "A seller gives one reseller better pricing than another for the same product class.",
-    "mistake": "Thinking every coupon or student discount is illegal.",
-    "misconception": "Price Discrimination: Thinking every coupon or student discount is illegal.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 7",
-    "category": "Securities and Antitrust",
-    "term": "Security",
-    "definition": "An investment interest such as stock, bond, or other instrument regulated by securities law.",
-    "example": "Corporate stock represents ownership in a company.",
-    "mistake": "Thinking stock represents corporate debt.",
-    "misconception": "Security: Thinking stock represents corporate debt.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 7",
-    "category": "Securities and Antitrust",
-    "term": "Stock",
-    "definition": "An ownership interest in a corporation.",
-    "example": "A shareholder owns shares of common stock.",
-    "mistake": "Confusing stock with bonds or corporate debt.",
-    "misconception": "Stock: Confusing stock with bonds or corporate debt.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 7",
-    "category": "Securities and Antitrust",
-    "term": "Bond",
-    "definition": "A debt instrument showing that the issuer owes money to the bondholder.",
-    "example": "A corporation issues bonds to borrow capital.",
-    "mistake": "Thinking bonds are ownership shares.",
-    "misconception": "Bond: Thinking bonds are ownership shares.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 7",
-    "category": "Securities and Antitrust",
-    "term": "Securities Act of 1933",
-    "definition": "A federal law focused on truthful disclosure when securities are first offered to investors.",
-    "example": "A company issuing stock must avoid material misstatements in offering documents.",
-    "mistake": "Thinking the law guarantees investments will be profitable.",
-    "misconception": "Securities Act of 1933: Thinking the law guarantees investments will be profitable.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 7",
-    "category": "Securities and Antitrust",
-    "term": "Securities Exchange Act of 1934",
-    "definition": "A federal law regulating securities trading markets and ongoing public company reporting.",
-    "example": "Public companies file periodic reports and insiders face trading restrictions.",
-    "mistake": "Thinking it applies only to original stock offerings.",
-    "misconception": "Securities Exchange Act of 1934: Thinking it applies only to original stock offerings.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 7",
-    "category": "Securities and Antitrust",
-    "term": "Insider Trading",
-    "definition": "Trading securities using material nonpublic information in violation of a duty.",
-    "example": "An executive buys stock before secret merger news becomes public.",
-    "mistake": "Thinking all employee stock trading is illegal.",
-    "misconception": "Insider Trading: Thinking all employee stock trading is illegal.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 7",
-    "category": "Securities and Antitrust",
-    "term": "Antitrust Law",
-    "definition": "Laws designed to protect competition and prevent unfair restraints of trade.",
-    "example": "Competitors may not agree to fix prices.",
-    "mistake": "Thinking all large companies violate antitrust law.",
-    "misconception": "Antitrust Law: Thinking all large companies violate antitrust law.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 7",
-    "category": "Securities and Antitrust",
-    "term": "Monopolization",
-    "definition": "Improper acquisition or maintenance of monopoly power in a relevant market.",
-    "example": "A firm uses exclusionary conduct to keep rivals out.",
-    "mistake": "Thinking market success alone is illegal.",
-    "misconception": "Monopolization: Thinking market success alone is illegal.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 7",
-    "category": "Securities and Antitrust",
-    "term": "Predatory Pricing",
-    "definition": "Selling below cost to eliminate competitors and later raise prices.",
-    "example": "A dominant firm sells below cost long enough to force rivals out.",
-    "mistake": "Calling every low price predatory pricing.",
-    "misconception": "Predatory Pricing: Calling every low price predatory pricing.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 8",
-    "category": "Property and Environment",
-    "term": "Real Property",
-    "definition": "Land and things attached to land, plus certain rights connected to land.",
-    "example": "A warehouse and the land underneath it are real property.",
-    "mistake": "Thinking real property means only soil.",
-    "misconception": "Real Property: Thinking real property means only soil.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 8",
-    "category": "Property and Environment",
-    "term": "Personal Property",
-    "definition": "Movable property and ownership interests other than real property.",
-    "example": "Inventory, vehicles, tools, and certain intangible rights.",
-    "mistake": "Thinking the concept cannot evolve with new forms of ownership.",
-    "misconception": "Personal Property: Thinking the concept cannot evolve with new forms of ownership.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 8",
-    "category": "Property and Environment",
-    "term": "Tenancy in Common",
-    "definition": "Co-ownership where each owner's share can pass to heirs.",
-    "example": "Two people own a cottage, and one owner's share passes to heirs at death.",
-    "mistake": "Confusing it with joint tenancy.",
-    "misconception": "Tenancy in Common: Confusing it with joint tenancy.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 8",
-    "category": "Property and Environment",
-    "term": "Mechanic's Lien",
-    "definition": "A lien on real property for labor or materials used to improve it.",
-    "example": "A contractor files a lien after not being paid for building improvements.",
-    "mistake": "Confusing it with an artisan's lien.",
-    "misconception": "Mechanic's Lien: Confusing it with an artisan's lien.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 8",
-    "category": "Property and Environment",
-    "term": "Artisan's Lien",
-    "definition": "A possessory lien for labor or services performed on personal property.",
-    "example": "A repair shop keeps a repaired machine until the bill is paid.",
-    "mistake": "Thinking it applies to real estate improvements.",
-    "misconception": "Artisan's Lien: Thinking it applies to real estate improvements.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 8",
-    "category": "Property and Environment",
-    "term": "Environmental Impact Statement",
-    "definition": "A formal analysis for major federal actions significantly affecting the environment.",
-    "example": "A federal-land project may require environmental review before approval.",
-    "mistake": "Thinking every private business decision requires one.",
-    "misconception": "Environmental Impact Statement: Thinking every private business decision requires one.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 8",
-    "category": "Property and Environment",
-    "term": "Safe Drinking Water Act",
-    "definition": "A federal law setting standards for public drinking water systems.",
-    "example": "A municipal water system must meet EPA contaminant limits.",
-    "mistake": "Thinking local water systems can ignore federal standards.",
-    "misconception": "Safe Drinking Water Act: Thinking local water systems can ignore federal standards.",
-    "tfAnswer": false
-  },
-  {
-    "module": "Module 8",
-    "category": "International and Regulatory",
     "term": "Foreign Corporation",
-    "definition": "A corporation doing business in a state other than the one where it was incorporated.",
-    "example": "A Delaware corporation operating in Indiana is foreign to Indiana.",
-    "mistake": "Thinking foreign always means outside the United States.",
-    "misconception": "Foreign Corporation: Thinking foreign always means outside the United States.",
-    "tfAnswer": false
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A corporation doing business in a state other than the one where it is incorporated.",
+    "trap": "Foreign can mean another state, not necessarily another country.",
+    "example": "A Delaware corporation operating in Indiana is foreign in Indiana.",
+    "id": "t068",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Foreign Corporation means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
   },
   {
-    "module": "Module 8",
-    "category": "International and Regulatory",
-    "term": "Normal Trade Relations",
-    "definition": "A trade status providing another country with favorable trade treatment under trade rules.",
-    "example": "A WTO member receives most-favored treatment regarding imports and exports.",
-    "mistake": "Thinking it means a special advantage over every country.",
-    "misconception": "Normal Trade Relations: Thinking it means a special advantage over every country.",
-    "tfAnswer": false
+    "term": "Board of Directors",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "The top governing body of a corporation elected by shareholders.",
+    "trap": "The board oversees major decisions; officers manage daily operations.",
+    "example": "The board hires or evaluates the CEO.",
+    "id": "t069",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Board of Directors means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
   },
   {
-    "module": "Module 8",
-    "category": "International and Regulatory",
-    "term": "Whistleblower",
-    "definition": "An employee who reports illegal, unsafe, or unethical activity.",
-    "example": "An employee reports securities fraud or serious safety violations.",
-    "mistake": "Confusing whistleblowing with ordinary workplace complaints.",
-    "misconception": "Whistleblower: Confusing whistleblowing with ordinary workplace complaints.",
-    "tfAnswer": false
+    "term": "Unlimited Liability",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "The owner is personally responsible for all business debts and damages.",
+    "trap": "Personal assets may be at risk.",
+    "example": "A sole proprietor may have to use personal savings to pay business debts.",
+    "id": "t070",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Unlimited Liability means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Limited Liability",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "Owners\u2019 losses are generally limited to the amount they invested.",
+    "trap": "Fraud or poor separation of business and personal finances can threaten protection.",
+    "example": "A shareholder usually risks only the money invested in stock.",
+    "id": "t071",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Limited Liability means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Franchise",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A business arrangement where one party buys the right to use another company\u2019s name, products, and business model.",
+    "trap": "Franchises reduce some risk but do not eliminate it.",
+    "example": "A local owner operates a fast-food restaurant under a national brand.",
+    "id": "t072",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Franchise means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Franchisor",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "The company that grants the franchise rights.",
+    "trap": "The franchisor is the parent brand.",
+    "example": "The national pet store company grants rights to local owners.",
+    "id": "t073",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Franchisor means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Franchisee",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "The person or business that buys the right to operate under the franchisor\u2019s brand.",
+    "trap": "The franchisee follows brand rules and pays fees.",
+    "example": "A local owner operates a branded restaurant.",
+    "id": "t074",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Franchisee means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Franchise Advantage",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A benefit of franchising, such as brand recognition, training, and a proven business model.",
+    "trap": "Brand recognition is a franchisee advantage; faster expansion and cash flow are franchisor advantages.",
+    "example": "A new owner benefits from customers already knowing the brand.",
+    "id": "t075",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Franchise Advantage means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Franchise Disadvantage",
+    "category": "Business Ownership & Entrepreneurship",
+    "definition": "A drawback of franchising, such as high cost, strict rules, or risk of brand damage from poor locations.",
+    "trap": "A bad franchise location can hurt the franchisor\u2019s reputation.",
+    "example": "Food safety problems at one location can damage the whole brand.",
+    "id": "t076",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "misconception": "Franchise Disadvantage means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Management",
+    "category": "Management & Organization",
+    "definition": "The process of using organizational resources to accomplish goals.",
+    "trap": "Management is not just giving orders.",
+    "example": "A manager coordinates people, budgets, and schedules.",
+    "id": "t077",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Management means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Planning",
+    "category": "Management & Organization",
+    "definition": "Setting organizational goals and deciding how to achieve them.",
+    "trap": "Planning happens before organizing, leading, and controlling.",
+    "example": "A company decides to enter a new market.",
+    "id": "t078",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Planning means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Organizing",
+    "category": "Management & Organization",
+    "definition": "Designing the structure of the organization and arranging resources to meet goals.",
+    "trap": "Modern organizing often designs around customer needs.",
+    "example": "A company creates teams to serve specific customer segments.",
+    "id": "t079",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Organizing means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Leading",
+    "category": "Management & Organization",
+    "definition": "Guiding, training, coaching, and motivating employees.",
+    "trap": "Leading is people-focused.",
+    "example": "A supervisor coaches employees through a service problem.",
+    "id": "t080",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Leading means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Controlling",
+    "category": "Management & Organization",
+    "definition": "Measuring progress, comparing results to standards, rewarding performance, and correcting problems.",
+    "trap": "Control is not only punishment.",
+    "example": "A manager reviews weekly sales and adjusts staffing.",
+    "id": "t081",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Controlling means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Strategic Plan",
+    "category": "Management & Organization",
+    "definition": "A long-term plan that sets broad organizational direction.",
+    "trap": "Strategic plans address major long-term commitments.",
+    "example": "A firm decides whether to expand into new markets.",
+    "id": "t082",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Strategic Plan means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Tactical Plan",
+    "category": "Management & Organization",
+    "definition": "A shorter-term plan developed by middle managers to implement strategic goals.",
+    "trap": "Tactical plans translate strategy into action.",
+    "example": "A department plans a campaign to support expansion.",
+    "id": "t083",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Tactical Plan means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Operational Plan",
+    "category": "Management & Organization",
+    "definition": "A detailed short-term plan for daily or weekly activities.",
+    "trap": "Operational plans are used closest to front-line work.",
+    "example": "A department manager creates weekly work assignments.",
+    "id": "t084",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Operational Plan means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Contingency Planning",
+    "category": "Management & Organization",
+    "definition": "Preparing alternative plans in case conditions change.",
+    "trap": "It is the Plan B mindset.",
+    "example": "An ice cream business plans for bad weather during outdoor events.",
+    "id": "t085",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Contingency Planning means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Mission Statement",
+    "category": "Management & Organization",
+    "definition": "A statement explaining an organization\u2019s purpose, values, philosophy, and self-concept.",
+    "trap": "A mission statement is broader than a slogan.",
+    "example": "A college states its commitment to student success.",
+    "id": "t086",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Mission Statement means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Brainstorming",
+    "category": "Management & Organization",
+    "definition": "A problem-solving method that encourages many ideas quickly without immediate criticism.",
+    "trap": "The first stage is idea generation, not judging.",
+    "example": "A team lists possible ways to improve customer service.",
+    "id": "t087",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Brainstorming means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Top Management",
+    "category": "Management & Organization",
+    "definition": "Senior executives responsible for overall direction and strategic decisions.",
+    "trap": "Top managers focus on vision and strategy.",
+    "example": "CEO, president, and executive vice presidents.",
+    "id": "t088",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Top Management means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Middle Management",
+    "category": "Management & Organization",
+    "definition": "Managers who develop tactical plans and coordinate departments.",
+    "trap": "Middle managers connect top strategy to front-line work.",
+    "example": "Plant managers, deans, and division managers.",
+    "id": "t089",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Middle Management means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Supervisory Management",
+    "category": "Management & Organization",
+    "definition": "First-line managers responsible for assigning specific jobs and evaluating daily worker performance.",
+    "trap": "Supervisors are closest to front-line employees.",
+    "example": "A shift supervisor assigns workstations.",
+    "id": "t090",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Supervisory Management means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Conceptual Skills",
+    "category": "Management & Organization",
+    "definition": "The ability to see the organization as a whole and understand how parts fit together.",
+    "trap": "Conceptual skills are especially important for top managers.",
+    "example": "A manager sees how marketing, operations, finance, and HR affect each other.",
+    "id": "t091",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Conceptual Skills means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Technical Skills",
+    "category": "Management & Organization",
+    "definition": "The ability to perform specific tasks or use specialized knowledge.",
+    "trap": "Technical skill is not the same as people skill.",
+    "example": "A warehouse manager understands inventory software.",
+    "id": "t092",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Technical Skills means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Interpersonal Skills",
+    "category": "Management & Organization",
+    "definition": "The ability to work well with people.",
+    "trap": "Managers need interpersonal skills at every level.",
+    "example": "A supervisor resolves team conflict respectfully.",
+    "id": "t093",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Interpersonal Skills means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Autocratic Leadership",
+    "category": "Management & Organization",
+    "definition": "A leadership style where the leader makes decisions and tells employees what to do.",
+    "trap": "Autocratic leadership can be fast but may limit employee input.",
+    "example": "A crisis response leader gives direct orders.",
+    "id": "t094",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Autocratic Leadership means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Democratic Leadership",
+    "category": "Management & Organization",
+    "definition": "A leadership style where leaders involve employees in decision-making.",
+    "trap": "It may take longer but can build commitment.",
+    "example": "A manager asks the team to help choose a process improvement.",
+    "id": "t095",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Democratic Leadership means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Laissez-Faire Leadership",
+    "category": "Management & Organization",
+    "definition": "A leadership style giving employees significant freedom in how they work.",
+    "trap": "It works best with skilled and self-directed employees.",
+    "example": "An experienced design team manages its own process.",
+    "id": "t096",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Laissez-Faire Leadership means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Empowerment",
+    "category": "Management & Organization",
+    "definition": "Giving employees authority and responsibility to respond quickly to customer needs.",
+    "trap": "Empowerment requires trust and training.",
+    "example": "A hotel employee can resolve a guest problem without manager approval.",
+    "id": "t097",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Empowerment means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Span of Control",
+    "category": "Management & Organization",
+    "definition": "The number of employees a manager supervises.",
+    "trap": "Wide spans are associated with flatter organizations.",
+    "example": "A supervisor with 15 direct reports has a wider span than one with 4.",
+    "id": "t098",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Span of Control means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Chain of Command",
+    "category": "Management & Organization",
+    "definition": "The line of authority moving from the top of the organization to the lowest level.",
+    "trap": "It clarifies who reports to whom.",
+    "example": "Employee to supervisor to manager to director.",
+    "id": "t099",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Chain of Command means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Flat Organization",
+    "category": "Management & Organization",
+    "definition": "An organization with fewer layers of management and wider spans of control.",
+    "trap": "Flat structures can respond faster to customers.",
+    "example": "A startup with few management levels.",
+    "id": "t100",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Flat Organization means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Tall Organization",
+    "category": "Management & Organization",
+    "definition": "An organization with many management layers and narrower spans of control.",
+    "trap": "Tall structures may slow decision-making.",
+    "example": "A large bureaucracy with many approval levels.",
+    "id": "t101",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Tall Organization means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Departmentalization",
+    "category": "Management & Organization",
+    "definition": "Dividing an organization into specialized units such as marketing, HR, accounting, and production.",
+    "trap": "Functional departmentalization groups by business function.",
+    "example": "A furniture company has separate marketing and production departments.",
+    "id": "t102",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Departmentalization means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Line Organization",
+    "category": "Management & Organization",
+    "definition": "The oldest and simplest structure, with authority moving directly from person to person.",
+    "trap": "Line structure is straightforward but can be rigid.",
+    "example": "Owner to manager to worker.",
+    "id": "t103",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Line Organization means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Bureaucratic Organization",
+    "category": "Management & Organization",
+    "definition": "An organization with many layers, clear rules, procedures, and formal authority.",
+    "trap": "Weber favored rules and qualifications, but bureaucracy can become slow.",
+    "example": "A government agency with formal procedures.",
+    "id": "t104",
+    "module": "M04: Management, Organizations & Operations",
+    "misconception": "Bureaucratic Organization means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Marketing",
+    "category": "Marketing",
+    "definition": "Creating, communicating, delivering, and exchanging offerings that have value for customers, partners, and society.",
+    "trap": "Marketing is broader than advertising or selling.",
+    "example": "A company researches customers, designs a product, prices it, distributes it, and promotes it.",
+    "id": "t105",
+    "module": "M06: Marketing",
+    "misconception": "Marketing means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Marketing Concept",
+    "category": "Marketing",
+    "definition": "A philosophy based on customer orientation, service orientation, and profit orientation.",
+    "trap": "It focuses on learning about customers and exceeding expectations.",
+    "example": "A business adapts services based on customer needs.",
+    "id": "t106",
+    "module": "M06: Marketing",
+    "misconception": "Marketing Concept means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Marketing Mix",
+    "category": "Marketing",
+    "definition": "The combination of product, price, place/distribution, and promotion.",
+    "trap": "The four Ps are not the whole marketing process, but they are the core tools.",
+    "example": "A company chooses product features, price, stores, and ads.",
+    "id": "t107",
+    "module": "M06: Marketing",
+    "misconception": "Marketing Mix means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Product",
+    "category": "Marketing",
+    "definition": "A good, service, or idea offered to satisfy customer needs.",
+    "trap": "A product includes benefits, image, service, and experience.",
+    "example": "A smartphone includes hardware, software, brand, warranty, and support.",
+    "id": "t108",
+    "module": "M06: Marketing",
+    "misconception": "Product means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Price",
+    "category": "Marketing",
+    "definition": "The amount customers pay for a product.",
+    "trap": "Price affects customer perception and demand.",
+    "example": "A company chooses a premium or budget price.",
+    "id": "t109",
+    "module": "M06: Marketing",
+    "misconception": "Price means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Place",
+    "category": "Marketing",
+    "definition": "The distribution decisions that make products available to customers.",
+    "trap": "Place is not just physical location.",
+    "example": "A product sold online and in retail stores.",
+    "id": "t110",
+    "module": "M06: Marketing",
+    "misconception": "Place means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Promotion",
+    "category": "Marketing",
+    "definition": "Techniques sellers use to inform, remind, and persuade customers.",
+    "trap": "Promotion includes more than advertising.",
+    "example": "Salespeople, ads, social media, public relations, and coupons.",
+    "id": "t111",
+    "module": "M06: Marketing",
+    "misconception": "Promotion means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Target Market",
+    "category": "Marketing",
+    "definition": "A specific group of customers toward which a firm directs its marketing efforts.",
+    "trap": "A target market is not everyone.",
+    "example": "A tutoring service targets first-year college students.",
+    "id": "t112",
+    "module": "M06: Marketing",
+    "misconception": "Target Market means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Consumer Market",
+    "category": "Marketing",
+    "definition": "Individuals who want goods and services for personal use and have the resources to buy them.",
+    "trap": "Consumer markets are different from business-to-business markets.",
+    "example": "Households buying groceries.",
+    "id": "t113",
+    "module": "M06: Marketing",
+    "misconception": "Consumer Market means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Market Segmentation",
+    "category": "Marketing",
+    "definition": "Dividing the total market into groups with similar characteristics.",
+    "trap": "Segmentation helps firms target effectively.",
+    "example": "A fitness company targets beginners, athletes, and older adults differently.",
+    "id": "t114",
+    "module": "M06: Marketing",
+    "misconception": "Market Segmentation means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Marketing Research",
+    "category": "Marketing",
+    "definition": "Gathering and analyzing information about customers, competitors, and markets to make marketing decisions.",
+    "trap": "Research should inform product, price, place, and promotion.",
+    "example": "A company surveys customers before launching a product.",
+    "id": "t115",
+    "module": "M06: Marketing",
+    "misconception": "Marketing Research means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Primary Data",
+    "category": "Marketing",
+    "definition": "Data gathered directly by the firm for a specific research purpose.",
+    "trap": "Surveys and interviews are primary data.",
+    "example": "A company interviews customers about product preferences.",
+    "id": "t116",
+    "module": "M06: Marketing",
+    "misconception": "Primary Data means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Secondary Data",
+    "category": "Marketing",
+    "definition": "Existing data originally collected for another purpose.",
+    "trap": "Government reports and trade journals are secondary data.",
+    "example": "Using Census data to study demographics.",
+    "id": "t117",
+    "module": "M06: Marketing",
+    "misconception": "Secondary Data means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Focus Group",
+    "category": "Marketing",
+    "definition": "A small group discussion led by a moderator to gather opinions about products or issues.",
+    "trap": "Focus groups provide qualitative insight, not a large statistical sample.",
+    "example": "Ten customers discuss a new package design.",
+    "id": "t118",
+    "module": "M06: Marketing",
+    "misconception": "Focus Group means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Test Marketing",
+    "category": "Marketing",
+    "definition": "Testing a product with potential users in a limited market before full launch.",
+    "trap": "It reduces risk but does not guarantee success.",
+    "example": "A restaurant tests a new menu item in one city.",
+    "id": "t119",
+    "module": "M06: Marketing",
+    "misconception": "Test Marketing means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Environmental Scanning",
+    "category": "Marketing",
+    "definition": "Identifying external factors that can affect marketing success.",
+    "trap": "It includes social, competitive, economic, technological, and legal trends.",
+    "example": "A marketer tracks aging population trends.",
+    "id": "t120",
+    "module": "M06: Marketing",
+    "misconception": "Environmental Scanning means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Brand Name",
+    "category": "Marketing",
+    "definition": "A word, letter, or group of words or letters that distinguishes one seller\u2019s goods or services.",
+    "trap": "The Nike swoosh is a trademark, not the brand name itself.",
+    "example": "Coca-Cola is a brand name.",
+    "id": "t121",
+    "module": "M06: Marketing",
+    "misconception": "Brand Name means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Trademark",
+    "category": "Marketing",
+    "definition": "A legally protected brand symbol, design, or phrase.",
+    "trap": "A trademark protects identification in the marketplace.",
+    "example": "Nike\u2019s swoosh is a trademark.",
+    "id": "t122",
+    "module": "M06: Marketing",
+    "misconception": "Trademark means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Product Differentiation",
+    "category": "Marketing",
+    "definition": "Creating real or perceived differences between products.",
+    "trap": "Differentiation helps avoid competing only on price.",
+    "example": "A bakery claims unique recipes and local ingredients.",
+    "id": "t123",
+    "module": "M06: Marketing",
+    "misconception": "Product Differentiation means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Product Mix",
+    "category": "Marketing",
+    "definition": "The total collection of products a company offers.",
+    "trap": "A product mix contains product lines.",
+    "example": "A company sells snacks, dairy, adhesives, and films.",
+    "id": "t124",
+    "module": "M06: Marketing",
+    "misconception": "Product Mix means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Product Line",
+    "category": "Marketing",
+    "definition": "A group of related products within a company\u2019s product mix.",
+    "trap": "Do not confuse product line with product mix.",
+    "example": "A cereal company\u2019s breakfast cereals are one product line.",
+    "id": "t125",
+    "module": "M06: Marketing",
+    "misconception": "Product Line means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Product Life Cycle",
+    "category": "Marketing",
+    "definition": "The stages a product goes through: introduction, growth, maturity, and decline.",
+    "trap": "The correct order matters.",
+    "example": "A new gadget launches, grows, levels off, and eventually declines.",
+    "id": "t126",
+    "module": "M06: Marketing",
+    "misconception": "Product Life Cycle means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Convenience Product",
+    "category": "Marketing",
+    "definition": "A consumer product bought frequently with minimal effort.",
+    "trap": "Bread and gum are classic examples.",
+    "example": "Milk, snacks, and toothpaste.",
+    "id": "t127",
+    "module": "M06: Marketing",
+    "misconception": "Convenience Product means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Shopping Product",
+    "category": "Marketing",
+    "definition": "A product customers compare on price, quality, and features before buying.",
+    "trap": "It requires more effort than a convenience product.",
+    "example": "Furniture or electronics.",
+    "id": "t128",
+    "module": "M06: Marketing",
+    "misconception": "Shopping Product means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Specialty Product",
+    "category": "Marketing",
+    "definition": "A product customers strongly prefer and will make a special effort to buy.",
+    "trap": "Brand insistence can turn a product into a specialty good.",
+    "example": "A specific luxury watch brand.",
+    "id": "t129",
+    "module": "M06: Marketing",
+    "misconception": "Specialty Product means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Private Label Brand",
+    "category": "Marketing",
+    "definition": "A brand owned by a retailer or wholesaler.",
+    "trap": "Also called a store brand.",
+    "example": "A department store\u2019s own jeans brand.",
+    "id": "t130",
+    "module": "M06: Marketing",
+    "misconception": "Private Label Brand means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Distribution Channel",
+    "category": "Marketing",
+    "definition": "A sequence of organizations that moves a product from producer to ultimate user.",
+    "trap": "Distribution channels may include wholesalers, retailers, and agents.",
+    "example": "Manufacturer to wholesaler to retailer to customer.",
+    "id": "t131",
+    "module": "M06: Marketing",
+    "misconception": "Distribution Channel means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Marketing Intermediary",
+    "category": "Marketing",
+    "definition": "An organization that helps move goods from producers to consumers.",
+    "trap": "Intermediaries can provide utility and efficiency.",
+    "example": "Wholesalers, retailers, and agents.",
+    "id": "t132",
+    "module": "M06: Marketing",
+    "misconception": "Marketing Intermediary means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Manufacturer\u2019s Agent",
+    "category": "Marketing",
+    "definition": "An agent who represents several producers in a territory, as long as they do not represent competing products.",
+    "trap": "Agents do not usually take title to goods.",
+    "example": "A sales agent represents several equipment manufacturers.",
+    "id": "t133",
+    "module": "M06: Marketing",
+    "misconception": "Manufacturer\u2019s Agent means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Full-Service Wholesaler",
+    "category": "Marketing",
+    "definition": "A wholesaler that performs all distribution functions.",
+    "trap": "They do more than store products.",
+    "example": "A wholesaler provides storage, delivery, credit, and sales support.",
+    "id": "t134",
+    "module": "M06: Marketing",
+    "misconception": "Full-Service Wholesaler means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Retailer",
+    "category": "Marketing",
+    "definition": "A business that sells goods or services directly to final consumers.",
+    "trap": "Retailers are closest to the end consumer.",
+    "example": "A supermarket or discount store.",
+    "id": "t135",
+    "module": "M06: Marketing",
+    "misconception": "Retailer means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Supermarket",
+    "category": "Marketing",
+    "definition": "A large self-service retail store selling primarily food and household products.",
+    "trap": "A supermarket is not the same as a department store.",
+    "example": "Kroger or Meijer grocery sections.",
+    "id": "t136",
+    "module": "M06: Marketing",
+    "misconception": "Supermarket means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Price Skimming",
+    "category": "Marketing",
+    "definition": "Charging a high initial price for a new product, then lowering it over time.",
+    "trap": "Skimming starts high.",
+    "example": "A new technology product launches at a premium price.",
+    "id": "t137",
+    "module": "M06: Marketing",
+    "misconception": "Price Skimming means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Penetration Pricing",
+    "category": "Marketing",
+    "definition": "Charging a low initial price to attract customers and gain market share.",
+    "trap": "Penetration starts low.",
+    "example": "A streaming service offers a low introductory price.",
+    "id": "t138",
+    "module": "M06: Marketing",
+    "misconception": "Penetration Pricing means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Breakeven Quantity",
+    "category": "Marketing",
+    "definition": "The number of units that must be sold for total revenue to equal total cost.",
+    "trap": "At breakeven, profit is zero.",
+    "example": "A business must sell 500 units before covering all costs.",
+    "id": "t139",
+    "module": "M06: Marketing",
+    "misconception": "Breakeven Quantity means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Fixed Costs",
+    "category": "Marketing",
+    "definition": "Costs that do not change with the number of units produced in the short run.",
+    "trap": "Rent is usually fixed.",
+    "example": "Monthly lease payment.",
+    "id": "t140",
+    "module": "M06: Marketing",
+    "misconception": "Fixed Costs means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Variable Costs",
+    "category": "Marketing",
+    "definition": "Costs that change based on the number of units produced.",
+    "trap": "Variable costs rise as production rises.",
+    "example": "Raw materials for each unit.",
+    "id": "t141",
+    "module": "M06: Marketing",
+    "misconception": "Variable Costs means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Place Utility",
+    "category": "Marketing",
+    "definition": "Value added by making products available where customers want them.",
+    "trap": "Shipping flowers from California to Indiana creates place utility.",
+    "example": "A store stocks snow shovels before winter.",
+    "id": "t142",
+    "module": "M06: Marketing",
+    "misconception": "Place Utility means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Time Utility",
+    "category": "Marketing",
+    "definition": "Value added by making products available when customers want them.",
+    "trap": "Time is about timing, not location.",
+    "example": "A convenience store stays open late.",
+    "id": "t143",
+    "module": "M06: Marketing",
+    "misconception": "Time Utility means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Possession Utility",
+    "category": "Marketing",
+    "definition": "Value added by making it easier for customers to own or use a product.",
+    "trap": "Credit, delivery, and guarantees can create possession utility.",
+    "example": "A store offers financing for appliances.",
+    "id": "t144",
+    "module": "M06: Marketing",
+    "misconception": "Possession Utility means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Information Utility",
+    "category": "Marketing",
+    "definition": "Value added by providing helpful information to customers.",
+    "trap": "Knowledgeable salespeople and ads can provide information utility.",
+    "example": "A salesperson explains warranty options.",
+    "id": "t145",
+    "module": "M06: Marketing",
+    "misconception": "Information Utility means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Product Placement",
+    "category": "Marketing",
+    "definition": "Paying to have a product appear favorably in a television show, movie, or media content.",
+    "trap": "It is promotion disguised as part of entertainment.",
+    "example": "A character drinks a visibly branded soda.",
+    "id": "t146",
+    "module": "M06: Marketing",
+    "misconception": "Product Placement means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Trade Advertising",
+    "category": "Marketing",
+    "definition": "Advertising aimed at wholesalers and retailers to encourage them to carry a manufacturer\u2019s products.",
+    "trap": "Trade advertising targets intermediaries, not final consumers.",
+    "example": "A manufacturer promotes products to grocery buyers.",
+    "id": "t147",
+    "module": "M06: Marketing",
+    "misconception": "Trade Advertising means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Selling Process",
+    "category": "Marketing",
+    "definition": "The steps salespeople follow to build relationships and complete sales.",
+    "trap": "Follow-up is the final step, not closing.",
+    "example": "A salesperson checks in after delivery to ensure satisfaction.",
+    "id": "t148",
+    "module": "M06: Marketing",
+    "misconception": "Selling Process means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Accounting",
+    "category": "Accounting, Finance & Money",
+    "definition": "Recording, classifying, summarizing, and interpreting financial information.",
+    "trap": "Accounting is more than bookkeeping.",
+    "example": "A business uses accounting to evaluate profitability.",
+    "id": "t149",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Accounting means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Bookkeeping",
+    "category": "Accounting, Finance & Money",
+    "definition": "The recording of business transactions.",
+    "trap": "Bookkeepers record; accountants interpret and report.",
+    "example": "Recording daily sales in a journal.",
+    "id": "t150",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Bookkeeping means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Journal",
+    "category": "Accounting, Finance & Money",
+    "definition": "The accounting record where transactions are first entered.",
+    "trap": "The journal comes before posting to ledgers.",
+    "example": "Recording a cash sale in the journal.",
+    "id": "t151",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Journal means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Ledger",
+    "category": "Accounting, Finance & Money",
+    "definition": "A record that summarizes transactions by account.",
+    "trap": "The ledger organizes transactions after journal entries.",
+    "example": "All cash transactions are summarized in the cash ledger.",
+    "id": "t152",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Ledger means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Trial Balance",
+    "category": "Accounting, Finance & Money",
+    "definition": "A summary used to verify that account ledgers are correct and balanced.",
+    "trap": "It is not one of the three major financial statements.",
+    "example": "Accountants prepare it before financial statements.",
+    "id": "t153",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Trial Balance means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Balance Sheet",
+    "category": "Accounting, Finance & Money",
+    "definition": "A financial statement showing assets, liabilities, and owners\u2019 equity at a specific point in time.",
+    "trap": "It is a snapshot, not a period of activity.",
+    "example": "A balance sheet dated December 31.",
+    "id": "t154",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Balance Sheet means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Income Statement",
+    "category": "Accounting, Finance & Money",
+    "definition": "A financial statement showing revenue, expenses, and profit or loss over a period of time.",
+    "trap": "The income statement covers a period, unlike the balance sheet.",
+    "example": "A quarterly income statement shows profit for three months.",
+    "id": "t155",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Income Statement means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Statement of Cash Flows",
+    "category": "Accounting, Finance & Money",
+    "definition": "A financial statement showing cash inflows and outflows from operating, investing, and financing activities.",
+    "trap": "Profit and cash flow are not always the same.",
+    "example": "A profitable firm may still have cash flow problems.",
+    "id": "t156",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Statement of Cash Flows means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Assets",
+    "category": "Accounting, Finance & Money",
+    "definition": "Resources owned by a business that have economic value.",
+    "trap": "Assets include cash, inventory, buildings, equipment, and patents.",
+    "example": "A delivery truck owned by the business.",
+    "id": "t157",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Assets means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Liabilities",
+    "category": "Accounting, Finance & Money",
+    "definition": "Debts or obligations owed by a business.",
+    "trap": "Liabilities reduce owners\u2019 equity.",
+    "example": "A bank loan or unpaid supplier bill.",
+    "id": "t158",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Liabilities means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Current Liabilities",
+    "category": "Accounting, Finance & Money",
+    "definition": "Debts due within one year.",
+    "trap": "Current means short-term in accounting.",
+    "example": "Accounts payable due in 30 days.",
+    "id": "t159",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Current Liabilities means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Owners\u2019 Equity",
+    "category": "Accounting, Finance & Money",
+    "definition": "The owners\u2019 claim on the business after liabilities are subtracted from assets.",
+    "trap": "Assets minus liabilities equals owners\u2019 equity.",
+    "example": "If assets are $124,000 and liabilities are $31,000, equity is $93,000.",
+    "id": "t160",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Owners\u2019 Equity means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Intangible Assets",
+    "category": "Accounting, Finance & Money",
+    "definition": "Nonphysical assets with value.",
+    "trap": "Patents and copyrights are intangible assets.",
+    "example": "A trademark or copyright.",
+    "id": "t161",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Intangible Assets means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Liquidity",
+    "category": "Accounting, Finance & Money",
+    "definition": "How quickly an asset can be converted into cash.",
+    "trap": "Cash is the most liquid asset.",
+    "example": "Inventory is less liquid than cash.",
+    "id": "t162",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Liquidity means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Current Ratio",
+    "category": "Accounting, Finance & Money",
+    "definition": "A ratio measuring a firm\u2019s ability to pay short-term debts.",
+    "trap": "It is a liquidity ratio.",
+    "example": "Current assets divided by current liabilities.",
+    "id": "t163",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Current Ratio means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Finance",
+    "category": "Accounting, Finance & Money",
+    "definition": "The business function responsible for acquiring and managing funds.",
+    "trap": "Finance focuses on funding decisions, not just recording transactions.",
+    "example": "Choosing whether to issue bonds or stock.",
+    "id": "t164",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Finance means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Financial Planning",
+    "category": "Accounting, Finance & Money",
+    "definition": "Forecasting financial needs and planning how to obtain and use funds.",
+    "trap": "Planning looks forward.",
+    "example": "A business estimates cash needs for expansion.",
+    "id": "t165",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Financial Planning means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Financial Control",
+    "category": "Accounting, Finance & Money",
+    "definition": "Comparing actual revenues and expenses to projected amounts to identify variances.",
+    "trap": "Control compares plan to actual results.",
+    "example": "A manager compares actual payroll costs to the budget.",
+    "id": "t166",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Financial Control means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Budget",
+    "category": "Accounting, Finance & Money",
+    "definition": "A financial plan used to allocate resources and control spending.",
+    "trap": "A budget is not mainly for taxes.",
+    "example": "A department receives a monthly operating budget.",
+    "id": "t167",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Budget means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Capital Expenditure",
+    "category": "Accounting, Finance & Money",
+    "definition": "A major investment in long-term assets such as buildings or equipment.",
+    "trap": "Capital expenditures often require large sums and long-term planning.",
+    "example": "Buying a building for office space.",
+    "id": "t168",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Capital Expenditure means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Short-Term Financing",
+    "category": "Accounting, Finance & Money",
+    "definition": "Borrowed funds or credit expected to be repaid within one year.",
+    "trap": "Trade credit and commercial paper are short-term sources.",
+    "example": "A retailer receives 60 days to pay suppliers.",
+    "id": "t169",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Short-Term Financing means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Long-Term Financing",
+    "category": "Accounting, Finance & Money",
+    "definition": "Borrowed funds or equity used for more than one year.",
+    "trap": "Corporate bonds are long-term debt financing.",
+    "example": "Issuing bonds to build a new facility.",
+    "id": "t170",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Long-Term Financing means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Trade Credit",
+    "category": "Accounting, Finance & Money",
+    "definition": "A short-term financing arrangement where suppliers allow buyers to pay later.",
+    "trap": "It is common between manufacturers, wholesalers, and retailers.",
+    "example": "A retailer has 30 to 60 days to pay for merchandise.",
+    "id": "t171",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Trade Credit means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Commercial Paper",
+    "category": "Accounting, Finance & Money",
+    "definition": "Short-term unsecured debt issued by financially strong corporations.",
+    "trap": "It is not long-term financing.",
+    "example": "A corporation borrows short-term funds for operating needs.",
+    "id": "t172",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Commercial Paper means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Factoring",
+    "category": "Accounting, Finance & Money",
+    "definition": "Selling accounts receivable to obtain cash quickly.",
+    "trap": "The firm gives up some value for faster cash.",
+    "example": "A business sells unpaid invoices to a finance company.",
+    "id": "t173",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Factoring means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Secured Loan",
+    "category": "Accounting, Finance & Money",
+    "definition": "A loan backed by collateral.",
+    "trap": "Collateral lowers lender risk.",
+    "example": "A bank loan secured by equipment.",
+    "id": "t174",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Secured Loan means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Bond",
+    "category": "Accounting, Finance & Money",
+    "definition": "A debt security issued by a corporation or government to borrow money.",
+    "trap": "Bondholders are lenders, not owners.",
+    "example": "A city issues bonds to fund infrastructure.",
+    "id": "t175",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Bond means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Corporate Bond",
+    "category": "Accounting, Finance & Money",
+    "definition": "A long-term debt instrument issued by a corporation.",
+    "trap": "Interest paid on bonds is generally tax-deductible for the corporation.",
+    "example": "A corporation sells bonds to finance expansion.",
+    "id": "t176",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Corporate Bond means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Sinking Fund",
+    "category": "Accounting, Finance & Money",
+    "definition": "A fund established to ensure money is available to repay bondholders at maturity.",
+    "trap": "It is a repayment reserve.",
+    "example": "A company sets aside money annually to repay bonds.",
+    "id": "t177",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Sinking Fund means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Equity Financing",
+    "category": "Accounting, Finance & Money",
+    "definition": "Raising funds by selling ownership in the company.",
+    "trap": "Common and preferred stock are forms of equity financing.",
+    "example": "A corporation sells shares to investors.",
+    "id": "t178",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Equity Financing means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Common Stock",
+    "category": "Accounting, Finance & Money",
+    "definition": "The basic form of corporate ownership, usually including voting rights and possible dividends.",
+    "trap": "Dividends are not guaranteed.",
+    "example": "Shareholders vote for the board of directors.",
+    "id": "t179",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Common Stock means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Preferred Stock",
+    "category": "Accounting, Finance & Money",
+    "definition": "Stock that gives owners preference in dividend payments before common stockholders.",
+    "trap": "Preferred stock often has limited or no voting rights.",
+    "example": "Preferred shareholders receive dividends first.",
+    "id": "t180",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Preferred Stock means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Cumulative Preferred Stock",
+    "category": "Accounting, Finance & Money",
+    "definition": "Preferred stock where missed dividends must be paid before common stock dividends.",
+    "trap": "Cumulative means missed dividends accumulate.",
+    "example": "A company must pay skipped preferred dividends before common dividends.",
+    "id": "t181",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Cumulative Preferred Stock means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Dividends",
+    "category": "Accounting, Finance & Money",
+    "definition": "After-tax profits distributed to stockholders.",
+    "trap": "Dividends are not expenses like bond interest.",
+    "example": "A corporation pays shareholders $1 per share.",
+    "id": "t182",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Dividends means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Retained Earnings",
+    "category": "Accounting, Finance & Money",
+    "definition": "After-tax profits kept in the business instead of distributed as dividends.",
+    "trap": "Retained earnings are an internal source of financing.",
+    "example": "A company reinvests profits into new equipment.",
+    "id": "t183",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Retained Earnings means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Initial Public Offering (IPO)",
+    "category": "Accounting, Finance & Money",
+    "definition": "The first sale of a corporation\u2019s common stock to the general public.",
+    "trap": "An IPO makes shares publicly available for the first time.",
+    "example": "A private company becomes publicly traded.",
+    "id": "t184",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Initial Public Offering (IPO) means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Securities and Exchange Commission (SEC)",
+    "category": "Accounting, Finance & Money",
+    "definition": "The federal agency that regulates securities markets and protects investors.",
+    "trap": "The SEC was created by the Securities Exchange Act of 1934.",
+    "example": "The SEC enforces disclosure rules for public companies.",
+    "id": "t185",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Securities and Exchange Commission (SEC) means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Money Supply M-1",
+    "category": "Accounting, Finance & Money",
+    "definition": "Money that is quickly and easily accessed, including currency and checking deposits.",
+    "trap": "M-1 is the narrowest common measure.",
+    "example": "Cash in your wallet and checking account funds.",
+    "id": "t186",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Money Supply M-1 means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Money Supply M-2",
+    "category": "Accounting, Finance & Money",
+    "definition": "M-1 plus additional near-money such as savings accounts, money market accounts, and some certificates of deposit.",
+    "trap": "M-2 includes everything in M-1 plus more.",
+    "example": "Savings account deposits are in M-2 but not M-1.",
+    "id": "t187",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Money Supply M-2 means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "FDIC",
+    "category": "Accounting, Finance & Money",
+    "definition": "An independent U.S. government agency that insures bank deposits to help maintain confidence in banks.",
+    "trap": "It was created to restore confidence in banking institutions.",
+    "example": "Depositors are protected up to legal insurance limits.",
+    "id": "t188",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "FDIC means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Federal Reserve System",
+    "category": "Accounting, Finance & Money",
+    "definition": "The central banking system of the United States responsible for monetary policy.",
+    "trap": "The system includes 12 Federal Reserve Banks.",
+    "example": "The Fed influences the money supply and interest rates.",
+    "id": "t189",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Federal Reserve System means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Monetary Policy",
+    "category": "Accounting, Finance & Money",
+    "definition": "Actions by the Federal Reserve to influence money supply and interest rates.",
+    "trap": "Fiscal policy is government taxing and spending.",
+    "example": "The Fed changes interest rate targets.",
+    "id": "t190",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Monetary Policy means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Savings and Loan Association",
+    "category": "Accounting, Finance & Money",
+    "definition": "A financial institution that accepts savings and checking deposits and provides home mortgage loans.",
+    "trap": "Historically focused on home mortgages.",
+    "example": "A local thrift provides mortgage loans.",
+    "id": "t191",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Savings and Loan Association means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Exchange Rate",
+    "category": "Accounting, Finance & Money",
+    "definition": "The value of one currency in terms of another.",
+    "trap": "When the dollar rises, foreign goods become cheaper for U.S. consumers.",
+    "example": "A stronger dollar lowers the dollar cost of imported goods.",
+    "id": "t192",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "misconception": "Exchange Rate means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Human Resource Management",
+    "category": "Human Resources & Careers",
+    "definition": "Activities involved in acquiring, developing, evaluating, compensating, and retaining employees.",
+    "trap": "HR is now important enough that many managers perform HR functions.",
+    "example": "A manager participates in interviewing, training, and evaluating employees.",
+    "id": "t193",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Human Resource Management means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Human Resource Planning",
+    "category": "Human Resources & Careers",
+    "definition": "Determining the organization\u2019s current and future staffing needs.",
+    "trap": "The first step is preparing a human resource inventory.",
+    "example": "A firm reviews current employee skills before forecasting hiring needs.",
+    "id": "t194",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Human Resource Planning means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Human Resource Inventory",
+    "category": "Human Resources & Careers",
+    "definition": "A list of current employees\u2019 education, skills, training, experience, and career interests.",
+    "trap": "It helps identify internal talent.",
+    "example": "A company discovers which employees can move into supervisory roles.",
+    "id": "t195",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Human Resource Inventory means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Recruitment",
+    "category": "Human Resources & Careers",
+    "definition": "Activities used to attract the right number of qualified candidates.",
+    "trap": "Recruitment is about attracting candidates, selection is choosing among them.",
+    "example": "Posting jobs on Indeed or recruiting at colleges.",
+    "id": "t196",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Recruitment means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Internal Recruiting",
+    "category": "Human Resources & Careers",
+    "definition": "Filling jobs from within the organization.",
+    "trap": "It can reduce cost and improve morale.",
+    "example": "Promoting a current employee.",
+    "id": "t197",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Internal Recruiting means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "External Recruiting",
+    "category": "Human Resources & Careers",
+    "definition": "Seeking job candidates from outside the organization.",
+    "trap": "Current employees are not an external source.",
+    "example": "Using employment agencies, college placement offices, or job websites.",
+    "id": "t198",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "External Recruiting means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Job Description",
+    "category": "Human Resources & Careers",
+    "definition": "A written statement explaining job duties, responsibilities, and working conditions.",
+    "trap": "Duties belong in the job description.",
+    "example": "A receptionist gives an applicant a document explaining daily responsibilities.",
+    "id": "t199",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Job Description means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Job Specification",
+    "category": "Human Resources & Careers",
+    "definition": "A written statement identifying minimum qualifications needed for a job.",
+    "trap": "Qualifications belong in the job specification.",
+    "example": "A job requires an associate degree and two years of experience.",
+    "id": "t200",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Job Specification means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Orientation",
+    "category": "Human Resources & Careers",
+    "definition": "A program introducing new employees to the organization, job expectations, and policies.",
+    "trap": "Orientation is not the same as ongoing training.",
+    "example": "A new hire learns company rules and benefits.",
+    "id": "t201",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Orientation means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Training",
+    "category": "Human Resources & Careers",
+    "definition": "Teaching employees skills needed to perform their current jobs.",
+    "trap": "Training is usually current-job focused.",
+    "example": "A worker learns how to operate a scanner.",
+    "id": "t202",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Training means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Development",
+    "category": "Human Resources & Careers",
+    "definition": "Preparing employees for future responsibilities.",
+    "trap": "Development looks forward.",
+    "example": "A supervisor attends leadership development training.",
+    "id": "t203",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Development means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Performance Appraisal",
+    "category": "Human Resources & Careers",
+    "definition": "Evaluating employee performance against standards.",
+    "trap": "Good appraisals provide feedback and guide improvement.",
+    "example": "An annual review evaluates goals and behavior.",
+    "id": "t204",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Performance Appraisal means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Compensation",
+    "category": "Human Resources & Careers",
+    "definition": "Pay and benefits provided to employees.",
+    "trap": "Compensation includes more than wages.",
+    "example": "Salary, health insurance, retirement contributions, and bonuses.",
+    "id": "t205",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Compensation means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Salary",
+    "category": "Human Resources & Careers",
+    "definition": "A fixed amount of pay for a set period, often weekly, monthly, or annually.",
+    "trap": "Salary does not vary directly by hours worked in the same way hourly pay does.",
+    "example": "A supervisor earns $635 per week.",
+    "id": "t206",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Salary means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Flextime",
+    "category": "Human Resources & Careers",
+    "definition": "A work schedule allowing employees to choose work hours within set limits.",
+    "trap": "Flextime still requires completing required hours.",
+    "example": "Employees work any 40 hours between 7 a.m. and 10 p.m.",
+    "id": "t207",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Flextime means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Job Sharing",
+    "category": "Human Resources & Careers",
+    "definition": "Two part-time employees share one full-time job.",
+    "trap": "Not the same as flextime.",
+    "example": "Two workers split one receptionist role.",
+    "id": "t208",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Job Sharing means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Networking",
+    "category": "Human Resources & Careers",
+    "definition": "Building and maintaining professional relationships that can support career development.",
+    "trap": "Networking is not just asking for jobs.",
+    "example": "A student connects with employers after a job fair.",
+    "id": "t209",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Networking means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Career Development",
+    "category": "Human Resources & Careers",
+    "definition": "The process of growing skills, responsibilities, and opportunities over time.",
+    "trap": "Career growth usually requires effort, not automatic promotion.",
+    "example": "A sales associate takes on more responsibility over several years.",
+    "id": "t210",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Career Development means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Professional Presentation Skills",
+    "category": "Human Resources & Careers",
+    "definition": "Skills used to communicate clearly and credibly to an audience.",
+    "trap": "Slides should not be overloaded with jargon.",
+    "example": "A presenter uses keywords, visuals, eye contact, and rehearsal.",
+    "id": "t211",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Professional Presentation Skills means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Title VII",
+    "category": "Human Resources & Careers",
+    "definition": "Part of the Civil Rights Act of 1964 prohibiting employment discrimination based on race, color, religion, sex, or national origin.",
+    "trap": "It applies to hiring, firing, training, compensation, and other employment matters.",
+    "example": "An employer cannot refuse to hire based on religion.",
+    "id": "t212",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Title VII means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "EEOC",
+    "category": "Human Resources & Careers",
+    "definition": "The Equal Employment Opportunity Commission, which investigates employment discrimination complaints and can sue employers.",
+    "trap": "EEOC is the correct agency, not a fictional employment office.",
+    "example": "A worker files a discrimination complaint with the EEOC.",
+    "id": "t213",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "EEOC means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Cultural Diversity",
+    "category": "Human Resources & Careers",
+    "definition": "Differences among people in the workforce.",
+    "trap": "Diversity is a workforce reality, not a passing business fad.",
+    "example": "Employees differ by background, age, language, experience, and culture.",
+    "id": "t214",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Cultural Diversity means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Intercultural Communication",
+    "category": "Human Resources & Careers",
+    "definition": "Communication across cultures that requires clarity, respect, and avoidance of ambiguous expressions.",
+    "trap": "Humor can create misunderstandings and should be used carefully.",
+    "example": "Using short sentences in a global email.",
+    "id": "t215",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Intercultural Communication means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Ethics",
+    "category": "Ethics & Social Responsibility",
+    "definition": "Standards of right and wrong that guide behavior.",
+    "trap": "Legal behavior is not always ethical behavior.",
+    "example": "A decision may be legal but still unfair to customers.",
+    "id": "t216",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Ethics means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Ethical Behavior",
+    "category": "Ethics & Social Responsibility",
+    "definition": "Behavior that considers the effect of decisions on others and follows moral principles.",
+    "trap": "Ethics includes consequences for stakeholders.",
+    "example": "A manager refuses to mislead customers.",
+    "id": "t217",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Ethical Behavior means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Situational Ethics",
+    "category": "Ethics & Social Responsibility",
+    "definition": "The belief that ethical behavior depends on the situation and what seems best at the time.",
+    "trap": "It can weaken consistent standards.",
+    "example": "A person justifies dishonesty because it benefits them temporarily.",
+    "id": "t218",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Situational Ethics means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Code of Ethics",
+    "category": "Ethics & Social Responsibility",
+    "definition": "A formal guide to acceptable and ethical behavior in an organization.",
+    "trap": "A code only matters if leaders support it.",
+    "example": "A company policy prohibits bribery and conflicts of interest.",
+    "id": "t219",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Code of Ethics means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Compliance-Based Ethics Code",
+    "category": "Ethics & Social Responsibility",
+    "definition": "An ethics code focused on preventing unlawful behavior through controls and penalties.",
+    "trap": "Compliance is rule-focused.",
+    "example": "Employees are disciplined for violating legal procedures.",
+    "id": "t220",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Compliance-Based Ethics Code means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Integrity-Based Ethics Code",
+    "category": "Ethics & Social Responsibility",
+    "definition": "An ethics code focused on shared values, accountability, and ethical culture.",
+    "trap": "Integrity goes beyond minimum legal compliance.",
+    "example": "Leaders encourage employees to speak up about concerns.",
+    "id": "t221",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Integrity-Based Ethics Code means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Corporate Social Responsibility (CSR)",
+    "category": "Ethics & Social Responsibility",
+    "definition": "A business\u2019s concern for the welfare of society and the effects of its decisions.",
+    "trap": "CSR considers profit and social impact.",
+    "example": "A company reduces waste and treats workers fairly.",
+    "id": "t222",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Corporate Social Responsibility (CSR) means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Consumerism",
+    "category": "Ethics & Social Responsibility",
+    "definition": "Activities undertaken to protect consumer rights.",
+    "trap": "Consumerism is not the same as buying more products.",
+    "example": "Consumer protection laws against deceptive advertising.",
+    "id": "t223",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Consumerism means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Corporate Philanthropy",
+    "category": "Ethics & Social Responsibility",
+    "definition": "Business donations to charitable causes.",
+    "trap": "Philanthropy is one part of social responsibility, not all of it.",
+    "example": "A company donates funds to a local food bank.",
+    "id": "t224",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Corporate Philanthropy means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Corporate Social Initiative",
+    "category": "Ethics & Social Responsibility",
+    "definition": "A company commitment of resources and expertise to help address broad social or humanitarian issues.",
+    "trap": "It is more active than simply donating money.",
+    "example": "A logistics firm provides disaster relief support.",
+    "id": "t225",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Corporate Social Initiative means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Sarbanes-Oxley Act",
+    "category": "Ethics & Social Responsibility",
+    "definition": "A federal law requiring corporate executives, especially CEOs and CFOs, to certify the accuracy of financial reports.",
+    "trap": "It was designed to restore trust after major accounting scandals.",
+    "example": "Executives sign off on financial statements.",
+    "id": "t226",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Sarbanes-Oxley Act means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Corporate Transparency",
+    "category": "Ethics & Social Responsibility",
+    "definition": "Clear and honest disclosure of business information, especially financial information.",
+    "trap": "Transparency helps restore trust but does not replace ethical leadership.",
+    "example": "Accurate accounting records are maintained and available for audit.",
+    "id": "t227",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "misconception": "Corporate Transparency means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Data",
+    "category": "Information Systems",
+    "definition": "Raw facts that can be analyzed to support decisions.",
+    "trap": "Data becomes useful when organized and interpreted.",
+    "example": "Sales numbers from receipts.",
+    "id": "t228",
+    "module": "M08: Technology, Data & APA Skills",
+    "misconception": "Data means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Database",
+    "category": "Information Systems",
+    "definition": "An organized collection of data.",
+    "trap": "A database is not the same as data analytics.",
+    "example": "A customer database stores names, purchases, and contact information.",
+    "id": "t229",
+    "module": "M08: Technology, Data & APA Skills",
+    "misconception": "Database means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Data Analytics",
+    "category": "Information Systems",
+    "definition": "The process of collecting and analyzing data to make current and future decisions.",
+    "trap": "Analytics turns data into decision support.",
+    "example": "A retailer analyzes purchase history to forecast demand.",
+    "id": "t230",
+    "module": "M08: Technology, Data & APA Skills",
+    "misconception": "Data Analytics means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Data Mining",
+    "category": "Information Systems",
+    "definition": "Searching accumulated data for hidden patterns and relationships.",
+    "trap": "Data mining looks for patterns not immediately obvious.",
+    "example": "A grocery chain finds that certain items are often bought together.",
+    "id": "t231",
+    "module": "M08: Technology, Data & APA Skills",
+    "misconception": "Data Mining means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Business Intelligence",
+    "category": "Information Systems",
+    "definition": "Software and processes that analyze raw organizational data to produce useful insights.",
+    "trap": "BI supports decisions, it does not replace judgment.",
+    "example": "A dashboard shows sales trends by region.",
+    "id": "t232",
+    "module": "M08: Technology, Data & APA Skills",
+    "misconception": "Business Intelligence means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Customer Relationship Management (CRM)",
+    "category": "Information Systems",
+    "definition": "Learning about customers and building relationships to exceed expectations.",
+    "trap": "CRM is strategy plus technology, not just software.",
+    "example": "A company tracks customer preferences and service history.",
+    "id": "t233",
+    "module": "M08: Technology, Data & APA Skills",
+    "misconception": "Customer Relationship Management (CRM) means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Point-of-Sale Data",
+    "category": "Information Systems",
+    "definition": "Data collected when a customer completes a transaction.",
+    "trap": "A receipt survey also gathers customer data.",
+    "example": "A checkout system records items purchased.",
+    "id": "t234",
+    "module": "M08: Technology, Data & APA Skills",
+    "misconception": "Point-of-Sale Data means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Intranet",
+    "category": "Information Systems",
+    "definition": "A private network contained within an organization.",
+    "trap": "An intranet is closed to public access.",
+    "example": "Students access course information through a private learning platform.",
+    "id": "t235",
+    "module": "M08: Technology, Data & APA Skills",
+    "misconception": "Intranet means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Extranet",
+    "category": "Information Systems",
+    "definition": "A private network that allows selected outsiders access to part of an organization\u2019s information system.",
+    "trap": "Extranets extend intranets to customers, suppliers, or partners.",
+    "example": "A supplier logs into a company portal to view inventory needs.",
+    "id": "t236",
+    "module": "M08: Technology, Data & APA Skills",
+    "misconception": "Extranet means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Web 2.0",
+    "category": "Information Systems",
+    "definition": "Interactive web technologies such as blogs, wikis, and social networking sites.",
+    "trap": "Web 2.0 emphasizes user-generated content.",
+    "example": "A company uses social media for customer engagement.",
+    "id": "t237",
+    "module": "M08: Technology, Data & APA Skills",
+    "misconception": "Web 2.0 means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Web 3.0",
+    "category": "Information Systems",
+    "definition": "An emerging view of the internet emphasizing decentralization, security, and smarter connections.",
+    "trap": "Definitions vary, but decentralization and security are common themes.",
+    "example": "Blockchain-based platforms are often associated with Web 3.0.",
+    "id": "t238",
+    "module": "M08: Technology, Data & APA Skills",
+    "misconception": "Web 3.0 means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Internet2",
+    "category": "Information Systems",
+    "definition": "A high-speed network supporting advanced research and heavy-duty applications.",
+    "trap": "It is not ordinary consumer broadband.",
+    "example": "Scientists use it for collaborative research.",
+    "id": "t239",
+    "module": "M08: Technology, Data & APA Skills",
+    "misconception": "Internet2 means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Information Overload",
+    "category": "Information Systems",
+    "definition": "A condition where too much information makes it harder to focus and decide.",
+    "trap": "The first step is identifying key goals and filtering irrelevant information.",
+    "example": "A manager receives too many reports and focuses on five key metrics.",
+    "id": "t240",
+    "module": "M08: Technology, Data & APA Skills",
+    "misconception": "Information Overload means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Virtual Organization",
+    "category": "Information Systems",
+    "definition": "An organization using information technology to operate independent of location.",
+    "trap": "Technology can reduce the importance of physical location.",
+    "example": "NASDAQ demonstrates market activity without a traditional trading floor.",
+    "id": "t241",
+    "module": "M08: Technology, Data & APA Skills",
+    "misconception": "Virtual Organization means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Maslow\u2019s Hierarchy of Needs",
+    "category": "Motivation & Behavior",
+    "definition": "A theory that people are motivated by levels of needs: physiological, safety, social, esteem, and self-actualization.",
+    "trap": "Basic needs usually come before higher-level needs.",
+    "example": "Workers need safe conditions before focusing on recognition.",
+    "id": "t242",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Maslow\u2019s Hierarchy of Needs means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Physiological Needs",
+    "category": "Motivation & Behavior",
+    "definition": "Basic survival needs such as food, water, and shelter.",
+    "trap": "These are the foundation of Maslow\u2019s hierarchy.",
+    "example": "A paycheck helps workers buy food and housing.",
+    "id": "t243",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Physiological Needs means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Safety Needs",
+    "category": "Motivation & Behavior",
+    "definition": "Needs for security and protection at work and home.",
+    "trap": "Safety includes job security and physical safety.",
+    "example": "Safe working conditions and stable employment.",
+    "id": "t244",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Safety Needs means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Esteem Needs",
+    "category": "Motivation & Behavior",
+    "definition": "Needs for recognition, respect, and a sense of accomplishment.",
+    "trap": "Esteem is higher than social needs.",
+    "example": "An employee receives recognition for excellent work.",
+    "id": "t245",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Esteem Needs means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Self-Actualization",
+    "category": "Motivation & Behavior",
+    "definition": "The need to reach one\u2019s full potential.",
+    "trap": "It is the highest level in Maslow\u2019s hierarchy.",
+    "example": "An employee takes on meaningful creative work.",
+    "id": "t246",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Self-Actualization means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Herzberg\u2019s Motivation-Hygiene Theory",
+    "category": "Motivation & Behavior",
+    "definition": "A theory stating that job satisfaction and dissatisfaction come from different factors.",
+    "trap": "Salary is usually a hygiene factor, not a true motivator.",
+    "example": "Achievement motivates, while poor company policy creates dissatisfaction.",
+    "id": "t247",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Herzberg\u2019s Motivation-Hygiene Theory means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Hygiene Factors",
+    "category": "Motivation & Behavior",
+    "definition": "Job factors that can cause dissatisfaction if missing but do not strongly create satisfaction by themselves.",
+    "trap": "Pay and working conditions are hygiene factors.",
+    "example": "Fair pay prevents dissatisfaction but may not inspire excellence.",
+    "id": "t248",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Hygiene Factors means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Motivators",
+    "category": "Motivation & Behavior",
+    "definition": "Job factors that increase satisfaction, such as achievement, recognition, responsibility, and growth.",
+    "trap": "Motivators are connected to the work itself.",
+    "example": "Giving employees meaningful responsibility.",
+    "id": "t249",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Motivators means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Theory X",
+    "category": "Motivation & Behavior",
+    "definition": "McGregor\u2019s view that employees dislike work and need close control.",
+    "trap": "Theory X leads to tighter supervision.",
+    "example": "A manager assumes workers must be watched constantly.",
+    "id": "t250",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Theory X means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Theory Y",
+    "category": "Motivation & Behavior",
+    "definition": "McGregor\u2019s view that employees can be self-directed and seek responsibility.",
+    "trap": "Theory Y managers are more likely to let employees help set goals.",
+    "example": "A manager trusts employees to manage projects.",
+    "id": "t251",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Theory Y means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Scientific Management",
+    "category": "Motivation & Behavior",
+    "definition": "Frederick Taylor\u2019s approach of finding the best way to do each job and training workers to use it.",
+    "trap": "It viewed workers too much like machines.",
+    "example": "Timing tasks to identify the most efficient method.",
+    "id": "t252",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Scientific Management means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Motion Economy",
+    "category": "Motivation & Behavior",
+    "definition": "Frank and Lillian Gilbreth\u2019s study of work motions to reduce wasted movement.",
+    "trap": "A therblig is a basic motion unit.",
+    "example": "Rearranging tools to reduce reaching and bending.",
+    "id": "t253",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Motion Economy means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Hawthorne Effect",
+    "category": "Motivation & Behavior",
+    "definition": "The tendency for people to change performance when they feel observed or valued.",
+    "trap": "The major insight was the importance of human and social factors.",
+    "example": "Employees work harder because they feel part of a special study.",
+    "id": "t254",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Hawthorne Effect means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "Elton Mayo",
+    "category": "Motivation & Behavior",
+    "definition": "Researcher associated with the Hawthorne studies and the human relations movement.",
+    "trap": "The Hawthorne studies shifted attention away from pure scientific management.",
+    "example": "Mayo\u2019s work highlighted social needs at work.",
+    "id": "t255",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Elton Mayo means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Intrinsic Reward",
+    "category": "Motivation & Behavior",
+    "definition": "Satisfaction that comes from the work itself or a job well done.",
+    "trap": "Intrinsic rewards are internal.",
+    "example": "Feeling proud after solving a difficult problem.",
+    "id": "t256",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Intrinsic Reward means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "Extrinsic Reward",
+    "category": "Motivation & Behavior",
+    "definition": "A reward given by someone else, such as pay, bonus, praise, or promotion.",
+    "trap": "Extrinsic rewards are external.",
+    "example": "Receiving a bonus for meeting sales goals.",
+    "id": "t257",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "misconception": "Extrinsic Reward means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "APA Style",
+    "category": "Academic Skills",
+    "definition": "A set of standards from the American Psychological Association for clear, precise, inclusive scholarly writing and citation.",
+    "trap": "APA is not a social media writing style.",
+    "example": "A business student cites sources in APA format.",
+    "id": "t258",
+    "module": "M08: Technology, Data & APA Skills",
+    "misconception": "APA Style means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "APA Title Page",
+    "category": "Academic Skills",
+    "definition": "The first page of an APA student paper containing paper title, author, institution, course, instructor, due date, and page number.",
+    "trap": "Student title page elements are centered and double spaced.",
+    "example": "A paper begins with the title and student information.",
+    "id": "t259",
+    "module": "M08: Technology, Data & APA Skills",
+    "misconception": "APA Title Page means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
+  },
+  {
+    "term": "APA Margins",
+    "category": "Academic Skills",
+    "definition": "APA papers generally use one-inch margins on all sides.",
+    "trap": "Do not use half-inch or two-inch margins.",
+    "example": "A Word document is set to 1 inch top, bottom, left, and right.",
+    "id": "t260",
+    "module": "M08: Technology, Data & APA Skills",
+    "misconception": "APA Margins means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 2
+  },
+  {
+    "term": "APA Double Spacing",
+    "category": "Academic Skills",
+    "definition": "APA papers are generally double spaced throughout, including references.",
+    "trap": "Do not add extra blank lines before or after headings unless instructed.",
+    "example": "The entire student paper uses double spacing.",
+    "id": "t261",
+    "module": "M08: Technology, Data & APA Skills",
+    "misconception": "APA Double Spacing means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 3
+  },
+  {
+    "term": "Academic Integrity",
+    "category": "Academic Skills",
+    "definition": "Honest use of sources and original work, including proper citation to avoid plagiarism.",
+    "trap": "Citation is not optional when using outside information.",
+    "example": "A student cites a business article used in a paper.",
+    "id": "t262",
+    "module": "M08: Technology, Data & APA Skills",
+    "misconception": "Academic Integrity means the same thing as any other concept in its category and does not require careful distinction.",
+    "difficulty": 1
   }
 ];
-
 const SCENARIOS = [
   {
-    "module": "Module 3",
-    "category": "Business Organizations",
-    "prompt": "A shareholder pays personal bills from the corporate account and keeps no separation between personal and business funds. What is the risk?",
-    "choices": [
-      "Piercing the Corporate Veil",
-      "Normal Trade Relations",
-      "Certified Check",
-      "Tenancy in Common"
-    ],
-    "answer": "Piercing the Corporate Veil",
-    "feedback": "Commingling funds can destroy the separate identity of the corporation."
+    "id": "s_t001",
+    "termId": "t001",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Operations & Production",
+    "prompt": "A business situation describes this: A motorcycle plant receives seats and handlebars the same day they are installed. Which concept best matches the situation?",
+    "answer": "Just-in-Time Inventory",
+    "feedback": "This points to Just-in-Time Inventory: An inventory system in which suppliers deliver parts and materials exactly when production needs them, reducing storage costs and waste. Watch for this trap: It does not mean keeping large backup inventories."
   },
   {
-    "module": "Module 4",
-    "category": "Agency and Employment",
-    "prompt": "A buyer hired to acquire land secretly buys it first and resells it to the principal at a profit. Which duty is most directly breached?",
-    "choices": [
-      "Duty of Loyalty",
-      "Truth in Lending Disclosure",
-      "Perfection",
-      "Environmental Review"
-    ],
-    "answer": "Duty of Loyalty",
-    "feedback": "An agent cannot secretly profit from the agency relationship."
+    "id": "s_t002",
+    "termId": "t002",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Operations & Production",
+    "prompt": "A business situation describes this: A factory redesigns workstations to reduce wasted movement and defects. Which concept best matches the situation?",
+    "answer": "Lean Manufacturing",
+    "feedback": "This points to Lean Manufacturing: A production approach focused on eliminating waste, improving flow, and continuously improving processes. Watch for this trap: Lean does not simply mean cutting jobs."
   },
   {
-    "module": "Module 5",
-    "category": "Commercial Paper and Banking",
-    "prompt": "A bank agrees in advance to accept a check and confirms funds for payment. What is this?",
-    "choices": [
-      "Certified Check",
-      "Mechanic's Lien",
-      "Security Interest",
-      "Franchise"
-    ],
-    "answer": "Certified Check",
-    "feedback": "A certified check is accepted by the bank before payment."
+    "id": "s_t003",
+    "termId": "t003",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Operations & Production",
+    "prompt": "A business situation describes this: A factory produces thousands of identical pens. Which concept best matches the situation?",
+    "answer": "Mass Production",
+    "feedback": "This points to Mass Production: Producing large quantities of standardized goods at low cost. Watch for this trap: It is not focused on individual customization."
   },
   {
-    "module": "Module 5",
-    "category": "Secured Transactions and Bankruptcy",
-    "prompt": "A company wants to keep operating while restructuring its debts. Which bankruptcy chapter best fits?",
-    "choices": [
-      "Chapter 11 Bankruptcy",
-      "Chapter 7 Bankruptcy",
-      "COBRA",
-      "Fair Credit Reporting Act"
-    ],
-    "answer": "Chapter 11 Bankruptcy",
-    "feedback": "Chapter 11 is reorganization, often used by businesses."
+    "id": "s_t004",
+    "termId": "t004",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Operations & Production",
+    "prompt": "A business situation describes this: A shoe company lets customers choose colors while using automated production. Which concept best matches the situation?",
+    "answer": "Mass Customization",
+    "feedback": "This points to Mass Customization: Producing goods tailored to individual customers while maintaining many efficiencies of mass production. Watch for this trap: It is not one-at-a-time handmade production."
   },
   {
-    "module": "Module 7",
-    "category": "Securities and Antitrust",
-    "prompt": "A dominant company sells below cost to force competitors out, then plans to raise prices. What is the issue?",
-    "choices": [
-      "Predatory Pricing",
-      "Price Puffery",
-      "Certified Check",
-      "Sole Proprietorship"
-    ],
-    "answer": "Predatory Pricing",
-    "feedback": "Predatory pricing focuses on below-cost pricing plus competitive harm."
+    "id": "s_t005",
+    "termId": "t005",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Operations & Production",
+    "prompt": "A business situation describes this: Turning wheat into bread creates form utility. Which concept best matches the situation?",
+    "answer": "Form Utility",
+    "feedback": "This points to Form Utility: Value added by changing raw materials or components into finished goods. Watch for this trap: Do not confuse it with place or possession utility."
   },
   {
-    "module": "Module 6",
-    "category": "Consumer Protection",
-    "prompt": "A debt collector keeps calling a consumer at work after learning the employer objects. Which law is most relevant?",
-    "choices": [
-      "Fair Debt Collection Practices Act",
-      "Securities Act of 1933",
-      "Safe Drinking Water Act",
-      "Equal Pay Act"
-    ],
-    "answer": "Fair Debt Collection Practices Act",
-    "feedback": "The FDCPA limits abusive and unfair collection practices."
+    "id": "s_t006",
+    "termId": "t006",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Operations & Production",
+    "prompt": "A business situation describes this: Ships and airplanes are often built using a fixed-position layout. Which concept best matches the situation?",
+    "answer": "Fixed-Position Layout",
+    "feedback": "This points to Fixed-Position Layout: A facility layout where the product stays in one place while workers, tools, and materials come to it. Watch for this trap: This is not the same as an assembly line."
   },
   {
-    "module": "Module 8",
-    "category": "Property and Environment",
-    "prompt": "Two owners hold a cottage so one owner's share passes to heirs when that owner dies. What is this?",
-    "choices": [
-      "Tenancy in Common",
-      "Joint Venture",
-      "Certified Ownership",
-      "Chapter 11 Possession"
-    ],
-    "answer": "Tenancy in Common",
-    "feedback": "A tenancy in common allows an ownership share to pass to heirs."
+    "id": "s_t007",
+    "termId": "t007",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Operations & Production",
+    "prompt": "A business situation describes this: A hospital groups radiology, surgery, and lab services by process. Which concept best matches the situation?",
+    "answer": "Process Layout",
+    "feedback": "This points to Process Layout: A layout where similar activities or equipment are grouped together by function. Watch for this trap: It is not arranged around a single product flow."
   },
   {
-    "module": "Module 1",
-    "category": "Legal Foundations",
-    "prompt": "A court follows a prior decision from a higher court in the same jurisdiction. What concept is being applied?",
-    "choices": [
-      "Precedent",
-      "Consideration",
-      "Perfection",
-      "Limited Liability"
-    ],
-    "answer": "Precedent",
-    "feedback": "Precedent promotes consistency in similar legal disputes."
+    "id": "s_t008",
+    "termId": "t008",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Operations & Production",
+    "prompt": "A business situation describes this: An automobile assembly line uses product layout. Which concept best matches the situation?",
+    "answer": "Product Layout",
+    "feedback": "This points to Product Layout: A layout arranged around the sequence of steps needed to produce a specific product. Watch for this trap: It is less flexible than a process layout."
   },
   {
-    "module": "Module 2",
-    "category": "Contracts and Torts",
-    "prompt": "A plaintiff in a tort case seeks compensation for pain and suffering. What kind of damages are these?",
-    "choices": [
-      "General Damages",
-      "Punitive Tariffs",
-      "Security Interests",
-      "Special Jurisdiction"
-    ],
-    "answer": "General Damages",
-    "feedback": "Pain and suffering is a classic form of general damages."
+    "id": "s_t009",
+    "termId": "t009",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Operations & Production",
+    "prompt": "A business situation describes this: An engineer uses software to design a machine part. Which concept best matches the situation?",
+    "answer": "Computer-Aided Design (CAD)",
+    "feedback": "This points to Computer-Aided Design (CAD): Using computer systems to create, modify, analyze, or optimize product designs. Watch for this trap: CAD designs products. CAM helps manufacture them."
   },
   {
-    "module": "Module 7",
-    "category": "Securities and Antitrust",
-    "prompt": "A CEO intentionally understates company debt in documents used to sell stock to investors. What area of law is implicated?",
-    "choices": [
-      "Securities Law",
-      "Workers' Compensation",
-      "Real Property",
-      "COBRA"
-    ],
-    "answer": "Securities Law",
-    "feedback": "Material misstatements in securities offerings can create liability."
+    "id": "s_t010",
+    "termId": "t010",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Operations & Production",
+    "prompt": "A business situation describes this: A computer-controlled machine cuts metal parts. Which concept best matches the situation?",
+    "answer": "Computer-Aided Manufacturing (CAM)",
+    "feedback": "This points to Computer-Aided Manufacturing (CAM): Using computers directly in the production process. Watch for this trap: CAM is production-focused, not design-focused."
   },
   {
-    "module": "Module 6",
-    "category": "Consumer Protection",
-    "prompt": "A credit reporting company refuses to remove unverifiable false information after a consumer dispute. Which law applies?",
-    "choices": [
-      "Fair Credit Reporting Act",
-      "Truth in Lending Act",
-      "Antitrust Law",
-      "Franchise Law"
-    ],
-    "answer": "Fair Credit Reporting Act",
-    "feedback": "The FCRA gives consumers correction and dispute rights."
+    "id": "s_t011",
+    "termId": "t011",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Operations & Production",
+    "prompt": "A business situation describes this: A car plant uses software to coordinate ordering, machines, and assembly. Which concept best matches the situation?",
+    "answer": "Computer-Integrated Manufacturing (CIM)",
+    "feedback": "This points to Computer-Integrated Manufacturing (CIM): A production system where computers control and integrate the entire manufacturing process. Watch for this trap: It is broader than CAD or CAM alone."
   },
   {
-    "module": "Module 8",
-    "category": "Property and Environment",
-    "prompt": "A contractor is unpaid for work improving real estate and files a claim against the property. What is likely involved?",
-    "choices": [
-      "Mechanic's Lien",
-      "Artisan's Lien",
-      "Certified Check",
-      "Insider Trading"
-    ],
-    "answer": "Mechanic's Lien",
-    "feedback": "A mechanic's lien secures payment for labor or materials on real property."
+    "id": "s_t012",
+    "termId": "t012",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Operations & Production",
+    "prompt": "A business situation describes this: A company prints a prototype part before investing in tooling. Which concept best matches the situation?",
+    "answer": "3D Printing",
+    "feedback": "This points to 3D Printing: A manufacturing process that builds items layer by layer, often used for prototypes and molds. Watch for this trap: It is not yet the main method for most mass-produced items."
+  },
+  {
+    "id": "s_t013",
+    "termId": "t013",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Operations & Production",
+    "prompt": "A business situation describes this: A bakery can produce 2,000 loaves per day. Which concept best matches the situation?",
+    "answer": "Capacity",
+    "feedback": "This points to Capacity: The maximum amount a firm can produce under normal conditions. Watch for this trap: When demand exceeds capacity, firms may use overtime, extra shifts, or subcontracting."
+  },
+  {
+    "id": "s_t014",
+    "termId": "t014",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Operations & Production",
+    "prompt": "A business situation describes this: A manufacturer hires another plant to make parts during peak demand. Which concept best matches the situation?",
+    "answer": "Subcontracting",
+    "feedback": "This points to Subcontracting: Hiring another company to complete part of the work. Watch for this trap: It is not the same as hiring full-time internal employees."
+  },
+  {
+    "id": "s_t015",
+    "termId": "t015",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Operations & Production",
+    "prompt": "A business situation describes this: A restaurant produces meals and service experiences. Which concept best matches the situation?",
+    "answer": "Production",
+    "feedback": "This points to Production: Creating goods and services using land, labor, capital, entrepreneurship, and knowledge. Watch for this trap: Production includes services, not just physical goods."
+  },
+  {
+    "id": "s_t016",
+    "termId": "t016",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Operations & Production",
+    "prompt": "A business situation describes this: Robots weld car frames on an assembly line. Which concept best matches the situation?",
+    "answer": "Robotics",
+    "feedback": "This points to Robotics: Use of programmable machines to perform tasks in production or service operations. Watch for this trap: Robots can raise productivity while reducing some labor needs."
+  },
+  {
+    "id": "s_t017",
+    "termId": "t017",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Global Business",
+    "prompt": "A business situation describes this: A U.S. retailer buys clothing made in Vietnam. Which concept best matches the situation?",
+    "answer": "Importing",
+    "feedback": "This points to Importing: Buying products or materials from another country and bringing them into one\u2019s own country. Watch for this trap: Imports come into the country."
+  },
+  {
+    "id": "s_t018",
+    "termId": "t018",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Global Business",
+    "prompt": "A business situation describes this: A St. Louis company sells products to Germany. Which concept best matches the situation?",
+    "answer": "Exporting",
+    "feedback": "This points to Exporting: Selling products made in one country to buyers in another country. Watch for this trap: Exports leave the country."
+  },
+  {
+    "id": "s_t019",
+    "termId": "t019",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Global Business",
+    "prompt": "A business situation describes this: If exports are $1 trillion and imports are $1.2 trillion, the country has a trade deficit. Which concept best matches the situation?",
+    "answer": "Balance of Trade",
+    "feedback": "This points to Balance of Trade: The total value of a nation\u2019s exports compared to its imports over a specific period. Watch for this trap: Do not confuse it with balance of payments, which is broader."
+  },
+  {
+    "id": "s_t020",
+    "termId": "t020",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Global Business",
+    "prompt": "A business situation describes this: The United States has often imported more goods than it exports. Which concept best matches the situation?",
+    "answer": "Trade Deficit",
+    "feedback": "This points to Trade Deficit: An unfavorable balance of trade in which imports exceed exports. Watch for this trap: A deficit means buying more from abroad than selling abroad."
+  },
+  {
+    "id": "s_t021",
+    "termId": "t021",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Global Business",
+    "prompt": "A business situation describes this: A nation sells more goods abroad than it buys. Which concept best matches the situation?",
+    "answer": "Trade Surplus",
+    "feedback": "This points to Trade Surplus: A favorable balance of trade in which exports exceed imports. Watch for this trap: A surplus does not automatically mean every worker benefits."
+  },
+  {
+    "id": "s_t022",
+    "termId": "t022",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Global Business",
+    "prompt": "A business situation describes this: A country focuses on products it makes most efficiently and trades for others. Which concept best matches the situation?",
+    "answer": "Comparative Advantage",
+    "feedback": "This points to Comparative Advantage: The ability of a country to produce a good or service more efficiently relative to other goods it could produce. Watch for this trap: Every country has some comparative advantage."
+  },
+  {
+    "id": "s_t023",
+    "termId": "t023",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Global Business",
+    "prompt": "A business situation describes this: One country can produce more wheat per acre than another. Which concept best matches the situation?",
+    "answer": "Absolute Advantage",
+    "feedback": "This points to Absolute Advantage: The ability to produce more of a good using the same or fewer resources than another producer. Watch for this trap: Comparative advantage matters more for trade decisions."
+  },
+  {
+    "id": "s_t024",
+    "termId": "t024",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Global Business",
+    "prompt": "A business situation describes this: A U.S. firm contracts customer service work to another country. Which concept best matches the situation?",
+    "answer": "Offshore Outsourcing",
+    "feedback": "This points to Offshore Outsourcing: Hiring workers in another country to perform work that could be done domestically. Watch for this trap: Offshore outsourcing is not the same as importing a finished product from a supplier."
+  },
+  {
+    "id": "s_t025",
+    "termId": "t025",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Global Business",
+    "prompt": "A business situation describes this: A foreign automaker builds cars in Indiana or Ohio. Which concept best matches the situation?",
+    "answer": "Insourcing",
+    "feedback": "This points to Insourcing: Foreign companies creating jobs domestically by locating operations in another country. Watch for this trap: Insourcing can offset some jobs lost through outsourcing."
+  },
+  {
+    "id": "s_t026",
+    "termId": "t026",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Global Business",
+    "prompt": "A business situation describes this: A country allows only 100 million tons of sugar imports. Which concept best matches the situation?",
+    "answer": "Import Quota",
+    "feedback": "This points to Import Quota: A government limit on the quantity of a product that may be imported. Watch for this trap: A quota limits quantity, while a tariff adds tax."
+  },
+  {
+    "id": "s_t027",
+    "termId": "t027",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Global Business",
+    "prompt": "A business situation describes this: A tariff adds cost to imported steel. Which concept best matches the situation?",
+    "answer": "Tariff",
+    "feedback": "This points to Tariff: A tax placed on imported goods. Watch for this trap: Tariffs usually raise prices for consumers."
+  },
+  {
+    "id": "s_t028",
+    "termId": "t028",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Global Business",
+    "prompt": "A business situation describes this: A country bans trade with a hostile nation. Which concept best matches the situation?",
+    "answer": "Embargo",
+    "feedback": "This points to Embargo: A complete ban on trade with a particular country or product. Watch for this trap: An embargo is stronger than a quota or tariff."
+  },
+  {
+    "id": "s_t029",
+    "termId": "t029",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Global Business",
+    "prompt": "A business situation describes this: A U.S. company permits a foreign firm to make its branded product. Which concept best matches the situation?",
+    "answer": "Licensing",
+    "feedback": "This points to Licensing: A contractual agreement allowing one firm to produce and market another firm\u2019s product or brand in exchange for a fee. Watch for this trap: Licensing is often lower cost for the licensor, but control may be limited."
+  },
+  {
+    "id": "s_t030",
+    "termId": "t030",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Global Business",
+    "prompt": "A business situation describes this: Two firms share marketing and management expertise in a foreign market. Which concept best matches the situation?",
+    "answer": "Joint Venture",
+    "feedback": "This points to Joint Venture: A partnership between companies, often from different countries, to share resources, risks, and expertise. Watch for this trap: It is not guaranteed profit."
+  },
+  {
+    "id": "s_t031",
+    "termId": "t031",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Global Business",
+    "prompt": "A business situation describes this: A company manufactures and markets products in several countries. Which concept best matches the situation?",
+    "answer": "Multinational Corporation",
+    "feedback": "This points to Multinational Corporation: A company with significant investments and physical operations in multiple countries. Watch for this trap: Simply exporting does not make a company multinational."
+  },
+  {
+    "id": "s_t032",
+    "termId": "t032",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Global Business",
+    "prompt": "A business situation describes this: A nation invests oil revenue in global companies. Which concept best matches the situation?",
+    "answer": "Sovereign Wealth Fund",
+    "feedback": "This points to Sovereign Wealth Fund: A government-controlled investment fund that invests in foreign companies and assets. Watch for this trap: It is not a private mutual fund."
+  },
+  {
+    "id": "s_t033",
+    "termId": "t033",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Global Business",
+    "prompt": "A business situation describes this: Trade rules for North American goods are shaped by USMCA. Which concept best matches the situation?",
+    "answer": "USMCA",
+    "feedback": "This points to USMCA: A trade agreement among the United States, Mexico, and Canada that replaced NAFTA. Watch for this trap: The member countries are not Panama or Nicaragua."
+  },
+  {
+    "id": "s_t034",
+    "termId": "t034",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Global Business",
+    "prompt": "A business situation describes this: Countries specialize and exchange goods more efficiently. Which concept best matches the situation?",
+    "answer": "Free Trade",
+    "feedback": "This points to Free Trade: Trade among nations with reduced barriers such as tariffs and quotas. Watch for this trap: Free trade can benefit consumers but may disrupt some workers and industries."
+  },
+  {
+    "id": "s_t035",
+    "termId": "t035",
+    "module": "M01: Business Foundations & Economics",
+    "category": "Economics",
+    "prompt": "A business situation describes this: A country decides how to allocate labor, land, and capital. Which concept best matches the situation?",
+    "answer": "Economics",
+    "feedback": "This points to Economics: The study of how society uses limited resources to produce and distribute goods and services. Watch for this trap: Economics is about scarcity and choices."
+  },
+  {
+    "id": "s_t036",
+    "termId": "t036",
+    "module": "M01: Business Foundations & Economics",
+    "category": "Economics",
+    "prompt": "A business situation describes this: Studying national economic growth is macroeconomics. Which concept best matches the situation?",
+    "answer": "Macroeconomics",
+    "feedback": "This points to Macroeconomics: The study of an economy as a whole, including growth, inflation, unemployment, and GDP. Watch for this trap: Macro is the big picture."
+  },
+  {
+    "id": "s_t037",
+    "termId": "t037",
+    "module": "M01: Business Foundations & Economics",
+    "category": "Economics",
+    "prompt": "A business situation describes this: Studying how one company sets prices is microeconomics. Which concept best matches the situation?",
+    "answer": "Microeconomics",
+    "feedback": "This points to Microeconomics: The study of individual markets, firms, consumers, and pricing decisions. Watch for this trap: Micro focuses on smaller units of the economy."
+  },
+  {
+    "id": "s_t038",
+    "termId": "t038",
+    "module": "M01: Business Foundations & Economics",
+    "category": "Economics",
+    "prompt": "A business situation describes this: Cars produced in Indiana count toward U.S. GDP. Which concept best matches the situation?",
+    "answer": "Gross Domestic Product (GDP)",
+    "feedback": "This points to Gross Domestic Product (GDP): The total dollar value of all final goods and services produced within a country\u2019s borders during a specific period. Watch for this trap: GDP measures production within borders, not just by citizens."
+  },
+  {
+    "id": "s_t039",
+    "termId": "t039",
+    "module": "M01: Business Foundations & Economics",
+    "category": "Economics",
+    "prompt": "A business situation describes this: Six months of shrinking economic output may indicate recession. Which concept best matches the situation?",
+    "answer": "Recession",
+    "feedback": "This points to Recession: A period commonly described as two consecutive quarters of decline in real GDP. Watch for this trap: Recession is not the same as depression."
+  },
+  {
+    "id": "s_t040",
+    "termId": "t040",
+    "module": "M01: Business Foundations & Economics",
+    "category": "Economics",
+    "prompt": "A business situation describes this: Entrepreneurs start firms to meet customer needs and earn profit. Which concept best matches the situation?",
+    "answer": "Capitalism",
+    "feedback": "This points to Capitalism: An economic system in which individuals own and operate most businesses. Watch for this trap: Capitalism relies on private ownership, competition, and profit motive."
+  },
+  {
+    "id": "s_t041",
+    "termId": "t041",
+    "module": "M01: Business Foundations & Economics",
+    "category": "Economics",
+    "prompt": "A business situation describes this: A baker earns profit by selling bread customers want. Which concept best matches the situation?",
+    "answer": "Invisible Hand",
+    "feedback": "This points to Invisible Hand: Adam Smith\u2019s idea that people pursuing self-interest can unintentionally benefit society through jobs, goods, and wealth creation. Watch for this trap: It does not mean greed is always good."
+  },
+  {
+    "id": "s_t042",
+    "termId": "t042",
+    "module": "M01: Business Foundations & Economics",
+    "category": "Economics",
+    "prompt": "A business situation describes this: A factory uses land, workers, equipment, ideas, and risk-taking. Which concept best matches the situation?",
+    "answer": "Factors of Production",
+    "feedback": "This points to Factors of Production: Resources used to create wealth: land, labor, capital, entrepreneurship, and knowledge. Watch for this trap: Capital in this context means tools, machinery, buildings, and technology, not just money."
+  },
+  {
+    "id": "s_t043",
+    "termId": "t043",
+    "module": "M01: Business Foundations & Economics",
+    "category": "Economics",
+    "prompt": "A business situation describes this: More sellers may supply coffee when prices rise. Which concept best matches the situation?",
+    "answer": "Supply",
+    "feedback": "This points to Supply: The quantity of a good or service producers are willing to sell at various prices. Watch for this trap: Supply comes from producers."
+  },
+  {
+    "id": "s_t044",
+    "termId": "t044",
+    "module": "M01: Business Foundations & Economics",
+    "category": "Economics",
+    "prompt": "A business situation describes this: Students demand laptops when they need them and can afford them. Which concept best matches the situation?",
+    "answer": "Demand",
+    "feedback": "This points to Demand: The quantity of a good or service consumers are willing and able to buy at various prices. Watch for this trap: Wanting something is not demand unless buyers can pay."
+  },
+  {
+    "id": "s_t045",
+    "termId": "t045",
+    "module": "M01: Business Foundations & Economics",
+    "category": "Economics",
+    "prompt": "A business situation describes this: A product sells at the price where buyers and sellers agree. Which concept best matches the situation?",
+    "answer": "Market Price",
+    "feedback": "This points to Market Price: The price at which quantity demanded equals quantity supplied. Watch for this trap: Also called equilibrium price."
+  },
+  {
+    "id": "s_t046",
+    "termId": "t046",
+    "module": "M01: Business Foundations & Economics",
+    "category": "Economics",
+    "prompt": "A business situation describes this: Expansion, peak, contraction, trough, recovery. Which concept best matches the situation?",
+    "answer": "Business Cycle",
+    "feedback": "This points to Business Cycle: Recurring periods of economic growth and contraction. Watch for this trap: Economies rarely grow at a perfectly steady pace."
+  },
+  {
+    "id": "s_t047",
+    "termId": "t047",
+    "module": "M01: Business Foundations & Economics",
+    "category": "Economics",
+    "prompt": "A business situation describes this: A local utility may operate as a regulated monopoly. Which concept best matches the situation?",
+    "answer": "Monopoly",
+    "feedback": "This points to Monopoly: A market dominated by one seller. Watch for this trap: A true monopoly has little or no direct competition."
+  },
+  {
+    "id": "s_t048",
+    "termId": "t048",
+    "module": "M01: Business Foundations & Economics",
+    "category": "Economics",
+    "prompt": "A business situation describes this: Commercial aircraft manufacturing is close to an oligopoly. Which concept best matches the situation?",
+    "answer": "Oligopoly",
+    "feedback": "This points to Oligopoly: A market dominated by a few large sellers. Watch for this trap: A few dominant firms does not equal one monopoly."
+  },
+  {
+    "id": "s_t049",
+    "termId": "t049",
+    "module": "M01: Business Foundations & Economics",
+    "category": "Economics",
+    "prompt": "A business situation describes this: A city with many bakeries selling different specialties. Which concept best matches the situation?",
+    "answer": "Monopolistic Competition",
+    "feedback": "This points to Monopolistic Competition: A market with many sellers offering similar but differentiated products. Watch for this trap: Products are similar, not identical."
+  },
+  {
+    "id": "s_t050",
+    "termId": "t050",
+    "module": "M01: Business Foundations & Economics",
+    "category": "Economics",
+    "prompt": "A business situation describes this: Some agricultural commodity markets come close. Which concept best matches the situation?",
+    "answer": "Perfect Competition",
+    "feedback": "This points to Perfect Competition: A market with many buyers and sellers offering nearly identical products. Watch for this trap: Few real markets are perfectly competitive."
+  },
+  {
+    "id": "s_t051",
+    "termId": "t051",
+    "module": "M01: Business Foundations & Economics",
+    "category": "Economics",
+    "prompt": "A business situation describes this: A business earns $100,000 revenue and has $80,000 expenses, leaving $20,000 profit. Which concept best matches the situation?",
+    "answer": "Profit",
+    "feedback": "This points to Profit: Money left after a business subtracts expenses from revenue. Watch for this trap: Revenue is not profit."
+  },
+  {
+    "id": "s_t052",
+    "termId": "t052",
+    "module": "M01: Business Foundations & Economics",
+    "category": "Economics",
+    "prompt": "A business situation describes this: A startup spends $50,000 but earns $30,000. Which concept best matches the situation?",
+    "answer": "Loss",
+    "feedback": "This points to Loss: When costs and expenses exceed revenues. Watch for this trap: A loss means the business spent more than it earned."
+  },
+  {
+    "id": "s_t053",
+    "termId": "t053",
+    "module": "M01: Business Foundations & Economics",
+    "category": "Economics",
+    "prompt": "A business situation describes this: A new restaurant may fail if sales are too low. Which concept best matches the situation?",
+    "answer": "Risk",
+    "feedback": "This points to Risk: The chance of losing time, money, or resources invested in a business. Watch for this trap: Entrepreneurs usually take calculated risks, not reckless risks."
+  },
+  {
+    "id": "s_t054",
+    "termId": "t054",
+    "module": "M01: Business Foundations & Economics",
+    "category": "Economics",
+    "prompt": "A business situation describes this: Training workers improves human capital. Which concept best matches the situation?",
+    "answer": "Resource Development",
+    "feedback": "This points to Resource Development: Efforts to increase available resources and improve how resources are used. Watch for this trap: It is not just finding natural resources."
+  },
+  {
+    "id": "s_t055",
+    "termId": "t055",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: A student launches a tutoring business and manages expenses, customers, and risk. Which concept best matches the situation?",
+    "answer": "Entrepreneurship",
+    "feedback": "This points to Entrepreneurship: Accepting the risk of starting and running a business. Watch for this trap: Entrepreneurship is not just having an idea."
+  },
+  {
+    "id": "s_t056",
+    "termId": "t056",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: Someone opens a repair shop after identifying local demand. Which concept best matches the situation?",
+    "answer": "Entrepreneur",
+    "feedback": "This points to Entrepreneur: A person who organizes, manages, and assumes the risk of a business. Watch for this trap: Entrepreneurs are usually action-oriented and tolerate uncertainty."
+  },
+  {
+    "id": "s_t057",
+    "termId": "t057",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: An employee develops a new service line for an employer. Which concept best matches the situation?",
+    "answer": "Intrapreneur",
+    "feedback": "This points to Intrapreneur: An employee who uses company resources to develop new products, processes, or ventures. Watch for this trap: Intrapreneurs innovate inside an existing organization."
+  },
+  {
+    "id": "s_t058",
+    "termId": "t058",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: A local HVAC company serving one region. Which concept best matches the situation?",
+    "answer": "Small Business",
+    "feedback": "This points to Small Business: An independently owned and operated for-profit business that is not dominant in its field. Watch for this trap: Small businesses can still have major local impact."
+  },
+  {
+    "id": "s_t059",
+    "termId": "t059",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: A freelance landscaper operates as a sole proprietor. Which concept best matches the situation?",
+    "answer": "Sole Proprietorship",
+    "feedback": "This points to Sole Proprietorship: A business owned and usually managed by one person. Watch for this trap: It is simple but carries unlimited liability."
+  },
+  {
+    "id": "s_t060",
+    "termId": "t060",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: Two accountants start a firm together. Which concept best matches the situation?",
+    "answer": "Partnership",
+    "feedback": "This points to Partnership: A business owned by two or more people. Watch for this trap: General partners may face unlimited liability."
+  },
+  {
+    "id": "s_t061",
+    "termId": "t061",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: An investor contributes money but does not run daily operations. Which concept best matches the situation?",
+    "answer": "Limited Partnership",
+    "feedback": "This points to Limited Partnership: A partnership with at least one general partner and one or more limited partners. Watch for this trap: Limited partners usually do not manage the business."
+  },
+  {
+    "id": "s_t062",
+    "termId": "t062",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: A person invests $20,000 in a partnership and risks only that amount. Which concept best matches the situation?",
+    "answer": "Limited Partner",
+    "feedback": "This points to Limited Partner: A partner whose liability is limited to the amount invested and who does not manage the business. Watch for this trap: Management activity can risk limited liability protection."
+  },
+  {
+    "id": "s_t063",
+    "termId": "t063",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: Professional firms often use LLP structures. Which concept best matches the situation?",
+    "answer": "Limited Liability Partnership (LLP)",
+    "feedback": "This points to Limited Liability Partnership (LLP): A partnership form that limits each partner\u2019s personal liability for the acts of other partners. Watch for this trap: Partners may still be liable for their own mistakes."
+  },
+  {
+    "id": "s_t064",
+    "termId": "t064",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: Some energy infrastructure companies use this form. Which concept best matches the situation?",
+    "answer": "Master Limited Partnership",
+    "feedback": "This points to Master Limited Partnership: A business that acts like a corporation and is traded publicly but is taxed like a partnership. Watch for this trap: It combines public trading with pass-through taxation."
+  },
+  {
+    "id": "s_t065",
+    "termId": "t065",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: A company sells shares to raise money for expansion. Which concept best matches the situation?",
+    "answer": "Corporation",
+    "feedback": "This points to Corporation: A legal entity separate from its owners that can own property, enter contracts, and raise capital through stock. Watch for this trap: Corporations usually involve more regulation and recordkeeping."
+  },
+  {
+    "id": "s_t066",
+    "termId": "t066",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: A family owns all shares of a corporation. Which concept best matches the situation?",
+    "answer": "Closed Corporation",
+    "feedback": "This points to Closed Corporation: A corporation whose stock is owned by a small group and not sold to the public. Watch for this trap: Closed does not mean out of business."
+  },
+  {
+    "id": "s_t067",
+    "termId": "t067",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: An Indiana-incorporated firm is domestic in Indiana. Which concept best matches the situation?",
+    "answer": "Domestic Corporation",
+    "feedback": "This points to Domestic Corporation: A corporation in the state where it is incorporated. Watch for this trap: The same corporation is foreign in other states where it operates."
+  },
+  {
+    "id": "s_t068",
+    "termId": "t068",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: A Delaware corporation operating in Indiana is foreign in Indiana. Which concept best matches the situation?",
+    "answer": "Foreign Corporation",
+    "feedback": "This points to Foreign Corporation: A corporation doing business in a state other than the one where it is incorporated. Watch for this trap: Foreign can mean another state, not necessarily another country."
+  },
+  {
+    "id": "s_t069",
+    "termId": "t069",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: The board hires or evaluates the CEO. Which concept best matches the situation?",
+    "answer": "Board of Directors",
+    "feedback": "This points to Board of Directors: The top governing body of a corporation elected by shareholders. Watch for this trap: The board oversees major decisions; officers manage daily operations."
+  },
+  {
+    "id": "s_t070",
+    "termId": "t070",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: A sole proprietor may have to use personal savings to pay business debts. Which concept best matches the situation?",
+    "answer": "Unlimited Liability",
+    "feedback": "This points to Unlimited Liability: The owner is personally responsible for all business debts and damages. Watch for this trap: Personal assets may be at risk."
+  },
+  {
+    "id": "s_t071",
+    "termId": "t071",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: A shareholder usually risks only the money invested in stock. Which concept best matches the situation?",
+    "answer": "Limited Liability",
+    "feedback": "This points to Limited Liability: Owners\u2019 losses are generally limited to the amount they invested. Watch for this trap: Fraud or poor separation of business and personal finances can threaten protection."
+  },
+  {
+    "id": "s_t072",
+    "termId": "t072",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: A local owner operates a fast-food restaurant under a national brand. Which concept best matches the situation?",
+    "answer": "Franchise",
+    "feedback": "This points to Franchise: A business arrangement where one party buys the right to use another company\u2019s name, products, and business model. Watch for this trap: Franchises reduce some risk but do not eliminate it."
+  },
+  {
+    "id": "s_t073",
+    "termId": "t073",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: The national pet store company grants rights to local owners. Which concept best matches the situation?",
+    "answer": "Franchisor",
+    "feedback": "This points to Franchisor: The company that grants the franchise rights. Watch for this trap: The franchisor is the parent brand."
+  },
+  {
+    "id": "s_t074",
+    "termId": "t074",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: A local owner operates a branded restaurant. Which concept best matches the situation?",
+    "answer": "Franchisee",
+    "feedback": "This points to Franchisee: The person or business that buys the right to operate under the franchisor\u2019s brand. Watch for this trap: The franchisee follows brand rules and pays fees."
+  },
+  {
+    "id": "s_t075",
+    "termId": "t075",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: A new owner benefits from customers already knowing the brand. Which concept best matches the situation?",
+    "answer": "Franchise Advantage",
+    "feedback": "This points to Franchise Advantage: A benefit of franchising, such as brand recognition, training, and a proven business model. Watch for this trap: Brand recognition is a franchisee advantage; faster expansion and cash flow are franchisor advantages."
+  },
+  {
+    "id": "s_t076",
+    "termId": "t076",
+    "module": "M03: Entrepreneurship & Business Ownership",
+    "category": "Business Ownership & Entrepreneurship",
+    "prompt": "A business situation describes this: Food safety problems at one location can damage the whole brand. Which concept best matches the situation?",
+    "answer": "Franchise Disadvantage",
+    "feedback": "This points to Franchise Disadvantage: A drawback of franchising, such as high cost, strict rules, or risk of brand damage from poor locations. Watch for this trap: A bad franchise location can hurt the franchisor\u2019s reputation."
+  },
+  {
+    "id": "s_t077",
+    "termId": "t077",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A manager coordinates people, budgets, and schedules. Which concept best matches the situation?",
+    "answer": "Management",
+    "feedback": "This points to Management: The process of using organizational resources to accomplish goals. Watch for this trap: Management is not just giving orders."
+  },
+  {
+    "id": "s_t078",
+    "termId": "t078",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A company decides to enter a new market. Which concept best matches the situation?",
+    "answer": "Planning",
+    "feedback": "This points to Planning: Setting organizational goals and deciding how to achieve them. Watch for this trap: Planning happens before organizing, leading, and controlling."
+  },
+  {
+    "id": "s_t079",
+    "termId": "t079",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A company creates teams to serve specific customer segments. Which concept best matches the situation?",
+    "answer": "Organizing",
+    "feedback": "This points to Organizing: Designing the structure of the organization and arranging resources to meet goals. Watch for this trap: Modern organizing often designs around customer needs."
+  },
+  {
+    "id": "s_t080",
+    "termId": "t080",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A supervisor coaches employees through a service problem. Which concept best matches the situation?",
+    "answer": "Leading",
+    "feedback": "This points to Leading: Guiding, training, coaching, and motivating employees. Watch for this trap: Leading is people-focused."
+  },
+  {
+    "id": "s_t081",
+    "termId": "t081",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A manager reviews weekly sales and adjusts staffing. Which concept best matches the situation?",
+    "answer": "Controlling",
+    "feedback": "This points to Controlling: Measuring progress, comparing results to standards, rewarding performance, and correcting problems. Watch for this trap: Control is not only punishment."
+  },
+  {
+    "id": "s_t082",
+    "termId": "t082",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A firm decides whether to expand into new markets. Which concept best matches the situation?",
+    "answer": "Strategic Plan",
+    "feedback": "This points to Strategic Plan: A long-term plan that sets broad organizational direction. Watch for this trap: Strategic plans address major long-term commitments."
+  },
+  {
+    "id": "s_t083",
+    "termId": "t083",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A department plans a campaign to support expansion. Which concept best matches the situation?",
+    "answer": "Tactical Plan",
+    "feedback": "This points to Tactical Plan: A shorter-term plan developed by middle managers to implement strategic goals. Watch for this trap: Tactical plans translate strategy into action."
+  },
+  {
+    "id": "s_t084",
+    "termId": "t084",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A department manager creates weekly work assignments. Which concept best matches the situation?",
+    "answer": "Operational Plan",
+    "feedback": "This points to Operational Plan: A detailed short-term plan for daily or weekly activities. Watch for this trap: Operational plans are used closest to front-line work."
+  },
+  {
+    "id": "s_t085",
+    "termId": "t085",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: An ice cream business plans for bad weather during outdoor events. Which concept best matches the situation?",
+    "answer": "Contingency Planning",
+    "feedback": "This points to Contingency Planning: Preparing alternative plans in case conditions change. Watch for this trap: It is the Plan B mindset."
+  },
+  {
+    "id": "s_t086",
+    "termId": "t086",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A college states its commitment to student success. Which concept best matches the situation?",
+    "answer": "Mission Statement",
+    "feedback": "This points to Mission Statement: A statement explaining an organization\u2019s purpose, values, philosophy, and self-concept. Watch for this trap: A mission statement is broader than a slogan."
+  },
+  {
+    "id": "s_t087",
+    "termId": "t087",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A team lists possible ways to improve customer service. Which concept best matches the situation?",
+    "answer": "Brainstorming",
+    "feedback": "This points to Brainstorming: A problem-solving method that encourages many ideas quickly without immediate criticism. Watch for this trap: The first stage is idea generation, not judging."
+  },
+  {
+    "id": "s_t088",
+    "termId": "t088",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: CEO, president, and executive vice presidents. Which concept best matches the situation?",
+    "answer": "Top Management",
+    "feedback": "This points to Top Management: Senior executives responsible for overall direction and strategic decisions. Watch for this trap: Top managers focus on vision and strategy."
+  },
+  {
+    "id": "s_t089",
+    "termId": "t089",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: Plant managers, deans, and division managers. Which concept best matches the situation?",
+    "answer": "Middle Management",
+    "feedback": "This points to Middle Management: Managers who develop tactical plans and coordinate departments. Watch for this trap: Middle managers connect top strategy to front-line work."
+  },
+  {
+    "id": "s_t090",
+    "termId": "t090",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A shift supervisor assigns workstations. Which concept best matches the situation?",
+    "answer": "Supervisory Management",
+    "feedback": "This points to Supervisory Management: First-line managers responsible for assigning specific jobs and evaluating daily worker performance. Watch for this trap: Supervisors are closest to front-line employees."
+  },
+  {
+    "id": "s_t091",
+    "termId": "t091",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A manager sees how marketing, operations, finance, and HR affect each other. Which concept best matches the situation?",
+    "answer": "Conceptual Skills",
+    "feedback": "This points to Conceptual Skills: The ability to see the organization as a whole and understand how parts fit together. Watch for this trap: Conceptual skills are especially important for top managers."
+  },
+  {
+    "id": "s_t092",
+    "termId": "t092",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A warehouse manager understands inventory software. Which concept best matches the situation?",
+    "answer": "Technical Skills",
+    "feedback": "This points to Technical Skills: The ability to perform specific tasks or use specialized knowledge. Watch for this trap: Technical skill is not the same as people skill."
+  },
+  {
+    "id": "s_t093",
+    "termId": "t093",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A supervisor resolves team conflict respectfully. Which concept best matches the situation?",
+    "answer": "Interpersonal Skills",
+    "feedback": "This points to Interpersonal Skills: The ability to work well with people. Watch for this trap: Managers need interpersonal skills at every level."
+  },
+  {
+    "id": "s_t094",
+    "termId": "t094",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A crisis response leader gives direct orders. Which concept best matches the situation?",
+    "answer": "Autocratic Leadership",
+    "feedback": "This points to Autocratic Leadership: A leadership style where the leader makes decisions and tells employees what to do. Watch for this trap: Autocratic leadership can be fast but may limit employee input."
+  },
+  {
+    "id": "s_t095",
+    "termId": "t095",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A manager asks the team to help choose a process improvement. Which concept best matches the situation?",
+    "answer": "Democratic Leadership",
+    "feedback": "This points to Democratic Leadership: A leadership style where leaders involve employees in decision-making. Watch for this trap: It may take longer but can build commitment."
+  },
+  {
+    "id": "s_t096",
+    "termId": "t096",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: An experienced design team manages its own process. Which concept best matches the situation?",
+    "answer": "Laissez-Faire Leadership",
+    "feedback": "This points to Laissez-Faire Leadership: A leadership style giving employees significant freedom in how they work. Watch for this trap: It works best with skilled and self-directed employees."
+  },
+  {
+    "id": "s_t097",
+    "termId": "t097",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A hotel employee can resolve a guest problem without manager approval. Which concept best matches the situation?",
+    "answer": "Empowerment",
+    "feedback": "This points to Empowerment: Giving employees authority and responsibility to respond quickly to customer needs. Watch for this trap: Empowerment requires trust and training."
+  },
+  {
+    "id": "s_t098",
+    "termId": "t098",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A supervisor with 15 direct reports has a wider span than one with 4. Which concept best matches the situation?",
+    "answer": "Span of Control",
+    "feedback": "This points to Span of Control: The number of employees a manager supervises. Watch for this trap: Wide spans are associated with flatter organizations."
+  },
+  {
+    "id": "s_t099",
+    "termId": "t099",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: Employee to supervisor to manager to director. Which concept best matches the situation?",
+    "answer": "Chain of Command",
+    "feedback": "This points to Chain of Command: The line of authority moving from the top of the organization to the lowest level. Watch for this trap: It clarifies who reports to whom."
+  },
+  {
+    "id": "s_t100",
+    "termId": "t100",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A startup with few management levels. Which concept best matches the situation?",
+    "answer": "Flat Organization",
+    "feedback": "This points to Flat Organization: An organization with fewer layers of management and wider spans of control. Watch for this trap: Flat structures can respond faster to customers."
+  },
+  {
+    "id": "s_t101",
+    "termId": "t101",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A large bureaucracy with many approval levels. Which concept best matches the situation?",
+    "answer": "Tall Organization",
+    "feedback": "This points to Tall Organization: An organization with many management layers and narrower spans of control. Watch for this trap: Tall structures may slow decision-making."
+  },
+  {
+    "id": "s_t102",
+    "termId": "t102",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A furniture company has separate marketing and production departments. Which concept best matches the situation?",
+    "answer": "Departmentalization",
+    "feedback": "This points to Departmentalization: Dividing an organization into specialized units such as marketing, HR, accounting, and production. Watch for this trap: Functional departmentalization groups by business function."
+  },
+  {
+    "id": "s_t103",
+    "termId": "t103",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: Owner to manager to worker. Which concept best matches the situation?",
+    "answer": "Line Organization",
+    "feedback": "This points to Line Organization: The oldest and simplest structure, with authority moving directly from person to person. Watch for this trap: Line structure is straightforward but can be rigid."
+  },
+  {
+    "id": "s_t104",
+    "termId": "t104",
+    "module": "M04: Management, Organizations & Operations",
+    "category": "Management & Organization",
+    "prompt": "A business situation describes this: A government agency with formal procedures. Which concept best matches the situation?",
+    "answer": "Bureaucratic Organization",
+    "feedback": "This points to Bureaucratic Organization: An organization with many layers, clear rules, procedures, and formal authority. Watch for this trap: Weber favored rules and qualifications, but bureaucracy can become slow."
+  },
+  {
+    "id": "s_t105",
+    "termId": "t105",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A company researches customers, designs a product, prices it, distributes it, and promotes it. Which concept best matches the situation?",
+    "answer": "Marketing",
+    "feedback": "This points to Marketing: Creating, communicating, delivering, and exchanging offerings that have value for customers, partners, and society. Watch for this trap: Marketing is broader than advertising or selling."
+  },
+  {
+    "id": "s_t106",
+    "termId": "t106",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A business adapts services based on customer needs. Which concept best matches the situation?",
+    "answer": "Marketing Concept",
+    "feedback": "This points to Marketing Concept: A philosophy based on customer orientation, service orientation, and profit orientation. Watch for this trap: It focuses on learning about customers and exceeding expectations."
+  },
+  {
+    "id": "s_t107",
+    "termId": "t107",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A company chooses product features, price, stores, and ads. Which concept best matches the situation?",
+    "answer": "Marketing Mix",
+    "feedback": "This points to Marketing Mix: The combination of product, price, place/distribution, and promotion. Watch for this trap: The four Ps are not the whole marketing process, but they are the core tools."
+  },
+  {
+    "id": "s_t108",
+    "termId": "t108",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A smartphone includes hardware, software, brand, warranty, and support. Which concept best matches the situation?",
+    "answer": "Product",
+    "feedback": "This points to Product: A good, service, or idea offered to satisfy customer needs. Watch for this trap: A product includes benefits, image, service, and experience."
+  },
+  {
+    "id": "s_t109",
+    "termId": "t109",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A company chooses a premium or budget price. Which concept best matches the situation?",
+    "answer": "Price",
+    "feedback": "This points to Price: The amount customers pay for a product. Watch for this trap: Price affects customer perception and demand."
+  },
+  {
+    "id": "s_t110",
+    "termId": "t110",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A product sold online and in retail stores. Which concept best matches the situation?",
+    "answer": "Place",
+    "feedback": "This points to Place: The distribution decisions that make products available to customers. Watch for this trap: Place is not just physical location."
+  },
+  {
+    "id": "s_t111",
+    "termId": "t111",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: Salespeople, ads, social media, public relations, and coupons. Which concept best matches the situation?",
+    "answer": "Promotion",
+    "feedback": "This points to Promotion: Techniques sellers use to inform, remind, and persuade customers. Watch for this trap: Promotion includes more than advertising."
+  },
+  {
+    "id": "s_t112",
+    "termId": "t112",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A tutoring service targets first-year college students. Which concept best matches the situation?",
+    "answer": "Target Market",
+    "feedback": "This points to Target Market: A specific group of customers toward which a firm directs its marketing efforts. Watch for this trap: A target market is not everyone."
+  },
+  {
+    "id": "s_t113",
+    "termId": "t113",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: Households buying groceries. Which concept best matches the situation?",
+    "answer": "Consumer Market",
+    "feedback": "This points to Consumer Market: Individuals who want goods and services for personal use and have the resources to buy them. Watch for this trap: Consumer markets are different from business-to-business markets."
+  },
+  {
+    "id": "s_t114",
+    "termId": "t114",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A fitness company targets beginners, athletes, and older adults differently. Which concept best matches the situation?",
+    "answer": "Market Segmentation",
+    "feedback": "This points to Market Segmentation: Dividing the total market into groups with similar characteristics. Watch for this trap: Segmentation helps firms target effectively."
+  },
+  {
+    "id": "s_t115",
+    "termId": "t115",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A company surveys customers before launching a product. Which concept best matches the situation?",
+    "answer": "Marketing Research",
+    "feedback": "This points to Marketing Research: Gathering and analyzing information about customers, competitors, and markets to make marketing decisions. Watch for this trap: Research should inform product, price, place, and promotion."
+  },
+  {
+    "id": "s_t116",
+    "termId": "t116",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A company interviews customers about product preferences. Which concept best matches the situation?",
+    "answer": "Primary Data",
+    "feedback": "This points to Primary Data: Data gathered directly by the firm for a specific research purpose. Watch for this trap: Surveys and interviews are primary data."
+  },
+  {
+    "id": "s_t117",
+    "termId": "t117",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: Using Census data to study demographics. Which concept best matches the situation?",
+    "answer": "Secondary Data",
+    "feedback": "This points to Secondary Data: Existing data originally collected for another purpose. Watch for this trap: Government reports and trade journals are secondary data."
+  },
+  {
+    "id": "s_t118",
+    "termId": "t118",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: Ten customers discuss a new package design. Which concept best matches the situation?",
+    "answer": "Focus Group",
+    "feedback": "This points to Focus Group: A small group discussion led by a moderator to gather opinions about products or issues. Watch for this trap: Focus groups provide qualitative insight, not a large statistical sample."
+  },
+  {
+    "id": "s_t119",
+    "termId": "t119",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A restaurant tests a new menu item in one city. Which concept best matches the situation?",
+    "answer": "Test Marketing",
+    "feedback": "This points to Test Marketing: Testing a product with potential users in a limited market before full launch. Watch for this trap: It reduces risk but does not guarantee success."
+  },
+  {
+    "id": "s_t120",
+    "termId": "t120",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A marketer tracks aging population trends. Which concept best matches the situation?",
+    "answer": "Environmental Scanning",
+    "feedback": "This points to Environmental Scanning: Identifying external factors that can affect marketing success. Watch for this trap: It includes social, competitive, economic, technological, and legal trends."
+  },
+  {
+    "id": "s_t121",
+    "termId": "t121",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: Coca-Cola is a brand name. Which concept best matches the situation?",
+    "answer": "Brand Name",
+    "feedback": "This points to Brand Name: A word, letter, or group of words or letters that distinguishes one seller\u2019s goods or services. Watch for this trap: The Nike swoosh is a trademark, not the brand name itself."
+  },
+  {
+    "id": "s_t122",
+    "termId": "t122",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: Nike\u2019s swoosh is a trademark. Which concept best matches the situation?",
+    "answer": "Trademark",
+    "feedback": "This points to Trademark: A legally protected brand symbol, design, or phrase. Watch for this trap: A trademark protects identification in the marketplace."
+  },
+  {
+    "id": "s_t123",
+    "termId": "t123",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A bakery claims unique recipes and local ingredients. Which concept best matches the situation?",
+    "answer": "Product Differentiation",
+    "feedback": "This points to Product Differentiation: Creating real or perceived differences between products. Watch for this trap: Differentiation helps avoid competing only on price."
+  },
+  {
+    "id": "s_t124",
+    "termId": "t124",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A company sells snacks, dairy, adhesives, and films. Which concept best matches the situation?",
+    "answer": "Product Mix",
+    "feedback": "This points to Product Mix: The total collection of products a company offers. Watch for this trap: A product mix contains product lines."
+  },
+  {
+    "id": "s_t125",
+    "termId": "t125",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A cereal company\u2019s breakfast cereals are one product line. Which concept best matches the situation?",
+    "answer": "Product Line",
+    "feedback": "This points to Product Line: A group of related products within a company\u2019s product mix. Watch for this trap: Do not confuse product line with product mix."
+  },
+  {
+    "id": "s_t126",
+    "termId": "t126",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A new gadget launches, grows, levels off, and eventually declines. Which concept best matches the situation?",
+    "answer": "Product Life Cycle",
+    "feedback": "This points to Product Life Cycle: The stages a product goes through: introduction, growth, maturity, and decline. Watch for this trap: The correct order matters."
+  },
+  {
+    "id": "s_t127",
+    "termId": "t127",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: Milk, snacks, and toothpaste. Which concept best matches the situation?",
+    "answer": "Convenience Product",
+    "feedback": "This points to Convenience Product: A consumer product bought frequently with minimal effort. Watch for this trap: Bread and gum are classic examples."
+  },
+  {
+    "id": "s_t128",
+    "termId": "t128",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: Furniture or electronics. Which concept best matches the situation?",
+    "answer": "Shopping Product",
+    "feedback": "This points to Shopping Product: A product customers compare on price, quality, and features before buying. Watch for this trap: It requires more effort than a convenience product."
+  },
+  {
+    "id": "s_t129",
+    "termId": "t129",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A specific luxury watch brand. Which concept best matches the situation?",
+    "answer": "Specialty Product",
+    "feedback": "This points to Specialty Product: A product customers strongly prefer and will make a special effort to buy. Watch for this trap: Brand insistence can turn a product into a specialty good."
+  },
+  {
+    "id": "s_t130",
+    "termId": "t130",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A department store\u2019s own jeans brand. Which concept best matches the situation?",
+    "answer": "Private Label Brand",
+    "feedback": "This points to Private Label Brand: A brand owned by a retailer or wholesaler. Watch for this trap: Also called a store brand."
+  },
+  {
+    "id": "s_t131",
+    "termId": "t131",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: Manufacturer to wholesaler to retailer to customer. Which concept best matches the situation?",
+    "answer": "Distribution Channel",
+    "feedback": "This points to Distribution Channel: A sequence of organizations that moves a product from producer to ultimate user. Watch for this trap: Distribution channels may include wholesalers, retailers, and agents."
+  },
+  {
+    "id": "s_t132",
+    "termId": "t132",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: Wholesalers, retailers, and agents. Which concept best matches the situation?",
+    "answer": "Marketing Intermediary",
+    "feedback": "This points to Marketing Intermediary: An organization that helps move goods from producers to consumers. Watch for this trap: Intermediaries can provide utility and efficiency."
+  },
+  {
+    "id": "s_t133",
+    "termId": "t133",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A sales agent represents several equipment manufacturers. Which concept best matches the situation?",
+    "answer": "Manufacturer\u2019s Agent",
+    "feedback": "This points to Manufacturer\u2019s Agent: An agent who represents several producers in a territory, as long as they do not represent competing products. Watch for this trap: Agents do not usually take title to goods."
+  },
+  {
+    "id": "s_t134",
+    "termId": "t134",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A wholesaler provides storage, delivery, credit, and sales support. Which concept best matches the situation?",
+    "answer": "Full-Service Wholesaler",
+    "feedback": "This points to Full-Service Wholesaler: A wholesaler that performs all distribution functions. Watch for this trap: They do more than store products."
+  },
+  {
+    "id": "s_t135",
+    "termId": "t135",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A supermarket or discount store. Which concept best matches the situation?",
+    "answer": "Retailer",
+    "feedback": "This points to Retailer: A business that sells goods or services directly to final consumers. Watch for this trap: Retailers are closest to the end consumer."
+  },
+  {
+    "id": "s_t136",
+    "termId": "t136",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: Kroger or Meijer grocery sections. Which concept best matches the situation?",
+    "answer": "Supermarket",
+    "feedback": "This points to Supermarket: A large self-service retail store selling primarily food and household products. Watch for this trap: A supermarket is not the same as a department store."
+  },
+  {
+    "id": "s_t137",
+    "termId": "t137",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A new technology product launches at a premium price. Which concept best matches the situation?",
+    "answer": "Price Skimming",
+    "feedback": "This points to Price Skimming: Charging a high initial price for a new product, then lowering it over time. Watch for this trap: Skimming starts high."
+  },
+  {
+    "id": "s_t138",
+    "termId": "t138",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A streaming service offers a low introductory price. Which concept best matches the situation?",
+    "answer": "Penetration Pricing",
+    "feedback": "This points to Penetration Pricing: Charging a low initial price to attract customers and gain market share. Watch for this trap: Penetration starts low."
+  },
+  {
+    "id": "s_t139",
+    "termId": "t139",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A business must sell 500 units before covering all costs. Which concept best matches the situation?",
+    "answer": "Breakeven Quantity",
+    "feedback": "This points to Breakeven Quantity: The number of units that must be sold for total revenue to equal total cost. Watch for this trap: At breakeven, profit is zero."
+  },
+  {
+    "id": "s_t140",
+    "termId": "t140",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: Monthly lease payment. Which concept best matches the situation?",
+    "answer": "Fixed Costs",
+    "feedback": "This points to Fixed Costs: Costs that do not change with the number of units produced in the short run. Watch for this trap: Rent is usually fixed."
+  },
+  {
+    "id": "s_t141",
+    "termId": "t141",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: Raw materials for each unit. Which concept best matches the situation?",
+    "answer": "Variable Costs",
+    "feedback": "This points to Variable Costs: Costs that change based on the number of units produced. Watch for this trap: Variable costs rise as production rises."
+  },
+  {
+    "id": "s_t142",
+    "termId": "t142",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A store stocks snow shovels before winter. Which concept best matches the situation?",
+    "answer": "Place Utility",
+    "feedback": "This points to Place Utility: Value added by making products available where customers want them. Watch for this trap: Shipping flowers from California to Indiana creates place utility."
+  },
+  {
+    "id": "s_t143",
+    "termId": "t143",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A convenience store stays open late. Which concept best matches the situation?",
+    "answer": "Time Utility",
+    "feedback": "This points to Time Utility: Value added by making products available when customers want them. Watch for this trap: Time is about timing, not location."
+  },
+  {
+    "id": "s_t144",
+    "termId": "t144",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A store offers financing for appliances. Which concept best matches the situation?",
+    "answer": "Possession Utility",
+    "feedback": "This points to Possession Utility: Value added by making it easier for customers to own or use a product. Watch for this trap: Credit, delivery, and guarantees can create possession utility."
+  },
+  {
+    "id": "s_t145",
+    "termId": "t145",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A salesperson explains warranty options. Which concept best matches the situation?",
+    "answer": "Information Utility",
+    "feedback": "This points to Information Utility: Value added by providing helpful information to customers. Watch for this trap: Knowledgeable salespeople and ads can provide information utility."
+  },
+  {
+    "id": "s_t146",
+    "termId": "t146",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A character drinks a visibly branded soda. Which concept best matches the situation?",
+    "answer": "Product Placement",
+    "feedback": "This points to Product Placement: Paying to have a product appear favorably in a television show, movie, or media content. Watch for this trap: It is promotion disguised as part of entertainment."
+  },
+  {
+    "id": "s_t147",
+    "termId": "t147",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A manufacturer promotes products to grocery buyers. Which concept best matches the situation?",
+    "answer": "Trade Advertising",
+    "feedback": "This points to Trade Advertising: Advertising aimed at wholesalers and retailers to encourage them to carry a manufacturer\u2019s products. Watch for this trap: Trade advertising targets intermediaries, not final consumers."
+  },
+  {
+    "id": "s_t148",
+    "termId": "t148",
+    "module": "M06: Marketing",
+    "category": "Marketing",
+    "prompt": "A business situation describes this: A salesperson checks in after delivery to ensure satisfaction. Which concept best matches the situation?",
+    "answer": "Selling Process",
+    "feedback": "This points to Selling Process: The steps salespeople follow to build relationships and complete sales. Watch for this trap: Follow-up is the final step, not closing."
+  },
+  {
+    "id": "s_t149",
+    "termId": "t149",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A business uses accounting to evaluate profitability. Which concept best matches the situation?",
+    "answer": "Accounting",
+    "feedback": "This points to Accounting: Recording, classifying, summarizing, and interpreting financial information. Watch for this trap: Accounting is more than bookkeeping."
+  },
+  {
+    "id": "s_t150",
+    "termId": "t150",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: Recording daily sales in a journal. Which concept best matches the situation?",
+    "answer": "Bookkeeping",
+    "feedback": "This points to Bookkeeping: The recording of business transactions. Watch for this trap: Bookkeepers record; accountants interpret and report."
+  },
+  {
+    "id": "s_t151",
+    "termId": "t151",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: Recording a cash sale in the journal. Which concept best matches the situation?",
+    "answer": "Journal",
+    "feedback": "This points to Journal: The accounting record where transactions are first entered. Watch for this trap: The journal comes before posting to ledgers."
+  },
+  {
+    "id": "s_t152",
+    "termId": "t152",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: All cash transactions are summarized in the cash ledger. Which concept best matches the situation?",
+    "answer": "Ledger",
+    "feedback": "This points to Ledger: A record that summarizes transactions by account. Watch for this trap: The ledger organizes transactions after journal entries."
+  },
+  {
+    "id": "s_t153",
+    "termId": "t153",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: Accountants prepare it before financial statements. Which concept best matches the situation?",
+    "answer": "Trial Balance",
+    "feedback": "This points to Trial Balance: A summary used to verify that account ledgers are correct and balanced. Watch for this trap: It is not one of the three major financial statements."
+  },
+  {
+    "id": "s_t154",
+    "termId": "t154",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A balance sheet dated December 31. Which concept best matches the situation?",
+    "answer": "Balance Sheet",
+    "feedback": "This points to Balance Sheet: A financial statement showing assets, liabilities, and owners\u2019 equity at a specific point in time. Watch for this trap: It is a snapshot, not a period of activity."
+  },
+  {
+    "id": "s_t155",
+    "termId": "t155",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A quarterly income statement shows profit for three months. Which concept best matches the situation?",
+    "answer": "Income Statement",
+    "feedback": "This points to Income Statement: A financial statement showing revenue, expenses, and profit or loss over a period of time. Watch for this trap: The income statement covers a period, unlike the balance sheet."
+  },
+  {
+    "id": "s_t156",
+    "termId": "t156",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A profitable firm may still have cash flow problems. Which concept best matches the situation?",
+    "answer": "Statement of Cash Flows",
+    "feedback": "This points to Statement of Cash Flows: A financial statement showing cash inflows and outflows from operating, investing, and financing activities. Watch for this trap: Profit and cash flow are not always the same."
+  },
+  {
+    "id": "s_t157",
+    "termId": "t157",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A delivery truck owned by the business. Which concept best matches the situation?",
+    "answer": "Assets",
+    "feedback": "This points to Assets: Resources owned by a business that have economic value. Watch for this trap: Assets include cash, inventory, buildings, equipment, and patents."
+  },
+  {
+    "id": "s_t158",
+    "termId": "t158",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A bank loan or unpaid supplier bill. Which concept best matches the situation?",
+    "answer": "Liabilities",
+    "feedback": "This points to Liabilities: Debts or obligations owed by a business. Watch for this trap: Liabilities reduce owners\u2019 equity."
+  },
+  {
+    "id": "s_t159",
+    "termId": "t159",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: Accounts payable due in 30 days. Which concept best matches the situation?",
+    "answer": "Current Liabilities",
+    "feedback": "This points to Current Liabilities: Debts due within one year. Watch for this trap: Current means short-term in accounting."
+  },
+  {
+    "id": "s_t160",
+    "termId": "t160",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: If assets are $124,000 and liabilities are $31,000, equity is $93,000. Which concept best matches the situation?",
+    "answer": "Owners\u2019 Equity",
+    "feedback": "This points to Owners\u2019 Equity: The owners\u2019 claim on the business after liabilities are subtracted from assets. Watch for this trap: Assets minus liabilities equals owners\u2019 equity."
+  },
+  {
+    "id": "s_t161",
+    "termId": "t161",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A trademark or copyright. Which concept best matches the situation?",
+    "answer": "Intangible Assets",
+    "feedback": "This points to Intangible Assets: Nonphysical assets with value. Watch for this trap: Patents and copyrights are intangible assets."
+  },
+  {
+    "id": "s_t162",
+    "termId": "t162",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: Inventory is less liquid than cash. Which concept best matches the situation?",
+    "answer": "Liquidity",
+    "feedback": "This points to Liquidity: How quickly an asset can be converted into cash. Watch for this trap: Cash is the most liquid asset."
+  },
+  {
+    "id": "s_t163",
+    "termId": "t163",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: Current assets divided by current liabilities. Which concept best matches the situation?",
+    "answer": "Current Ratio",
+    "feedback": "This points to Current Ratio: A ratio measuring a firm\u2019s ability to pay short-term debts. Watch for this trap: It is a liquidity ratio."
+  },
+  {
+    "id": "s_t164",
+    "termId": "t164",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: Choosing whether to issue bonds or stock. Which concept best matches the situation?",
+    "answer": "Finance",
+    "feedback": "This points to Finance: The business function responsible for acquiring and managing funds. Watch for this trap: Finance focuses on funding decisions, not just recording transactions."
+  },
+  {
+    "id": "s_t165",
+    "termId": "t165",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A business estimates cash needs for expansion. Which concept best matches the situation?",
+    "answer": "Financial Planning",
+    "feedback": "This points to Financial Planning: Forecasting financial needs and planning how to obtain and use funds. Watch for this trap: Planning looks forward."
+  },
+  {
+    "id": "s_t166",
+    "termId": "t166",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A manager compares actual payroll costs to the budget. Which concept best matches the situation?",
+    "answer": "Financial Control",
+    "feedback": "This points to Financial Control: Comparing actual revenues and expenses to projected amounts to identify variances. Watch for this trap: Control compares plan to actual results."
+  },
+  {
+    "id": "s_t167",
+    "termId": "t167",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A department receives a monthly operating budget. Which concept best matches the situation?",
+    "answer": "Budget",
+    "feedback": "This points to Budget: A financial plan used to allocate resources and control spending. Watch for this trap: A budget is not mainly for taxes."
+  },
+  {
+    "id": "s_t168",
+    "termId": "t168",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: Buying a building for office space. Which concept best matches the situation?",
+    "answer": "Capital Expenditure",
+    "feedback": "This points to Capital Expenditure: A major investment in long-term assets such as buildings or equipment. Watch for this trap: Capital expenditures often require large sums and long-term planning."
+  },
+  {
+    "id": "s_t169",
+    "termId": "t169",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A retailer receives 60 days to pay suppliers. Which concept best matches the situation?",
+    "answer": "Short-Term Financing",
+    "feedback": "This points to Short-Term Financing: Borrowed funds or credit expected to be repaid within one year. Watch for this trap: Trade credit and commercial paper are short-term sources."
+  },
+  {
+    "id": "s_t170",
+    "termId": "t170",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: Issuing bonds to build a new facility. Which concept best matches the situation?",
+    "answer": "Long-Term Financing",
+    "feedback": "This points to Long-Term Financing: Borrowed funds or equity used for more than one year. Watch for this trap: Corporate bonds are long-term debt financing."
+  },
+  {
+    "id": "s_t171",
+    "termId": "t171",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A retailer has 30 to 60 days to pay for merchandise. Which concept best matches the situation?",
+    "answer": "Trade Credit",
+    "feedback": "This points to Trade Credit: A short-term financing arrangement where suppliers allow buyers to pay later. Watch for this trap: It is common between manufacturers, wholesalers, and retailers."
+  },
+  {
+    "id": "s_t172",
+    "termId": "t172",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A corporation borrows short-term funds for operating needs. Which concept best matches the situation?",
+    "answer": "Commercial Paper",
+    "feedback": "This points to Commercial Paper: Short-term unsecured debt issued by financially strong corporations. Watch for this trap: It is not long-term financing."
+  },
+  {
+    "id": "s_t173",
+    "termId": "t173",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A business sells unpaid invoices to a finance company. Which concept best matches the situation?",
+    "answer": "Factoring",
+    "feedback": "This points to Factoring: Selling accounts receivable to obtain cash quickly. Watch for this trap: The firm gives up some value for faster cash."
+  },
+  {
+    "id": "s_t174",
+    "termId": "t174",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A bank loan secured by equipment. Which concept best matches the situation?",
+    "answer": "Secured Loan",
+    "feedback": "This points to Secured Loan: A loan backed by collateral. Watch for this trap: Collateral lowers lender risk."
+  },
+  {
+    "id": "s_t175",
+    "termId": "t175",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A city issues bonds to fund infrastructure. Which concept best matches the situation?",
+    "answer": "Bond",
+    "feedback": "This points to Bond: A debt security issued by a corporation or government to borrow money. Watch for this trap: Bondholders are lenders, not owners."
+  },
+  {
+    "id": "s_t176",
+    "termId": "t176",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A corporation sells bonds to finance expansion. Which concept best matches the situation?",
+    "answer": "Corporate Bond",
+    "feedback": "This points to Corporate Bond: A long-term debt instrument issued by a corporation. Watch for this trap: Interest paid on bonds is generally tax-deductible for the corporation."
+  },
+  {
+    "id": "s_t177",
+    "termId": "t177",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A company sets aside money annually to repay bonds. Which concept best matches the situation?",
+    "answer": "Sinking Fund",
+    "feedback": "This points to Sinking Fund: A fund established to ensure money is available to repay bondholders at maturity. Watch for this trap: It is a repayment reserve."
+  },
+  {
+    "id": "s_t178",
+    "termId": "t178",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A corporation sells shares to investors. Which concept best matches the situation?",
+    "answer": "Equity Financing",
+    "feedback": "This points to Equity Financing: Raising funds by selling ownership in the company. Watch for this trap: Common and preferred stock are forms of equity financing."
+  },
+  {
+    "id": "s_t179",
+    "termId": "t179",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: Shareholders vote for the board of directors. Which concept best matches the situation?",
+    "answer": "Common Stock",
+    "feedback": "This points to Common Stock: The basic form of corporate ownership, usually including voting rights and possible dividends. Watch for this trap: Dividends are not guaranteed."
+  },
+  {
+    "id": "s_t180",
+    "termId": "t180",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: Preferred shareholders receive dividends first. Which concept best matches the situation?",
+    "answer": "Preferred Stock",
+    "feedback": "This points to Preferred Stock: Stock that gives owners preference in dividend payments before common stockholders. Watch for this trap: Preferred stock often has limited or no voting rights."
+  },
+  {
+    "id": "s_t181",
+    "termId": "t181",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A company must pay skipped preferred dividends before common dividends. Which concept best matches the situation?",
+    "answer": "Cumulative Preferred Stock",
+    "feedback": "This points to Cumulative Preferred Stock: Preferred stock where missed dividends must be paid before common stock dividends. Watch for this trap: Cumulative means missed dividends accumulate."
+  },
+  {
+    "id": "s_t182",
+    "termId": "t182",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A corporation pays shareholders $1 per share. Which concept best matches the situation?",
+    "answer": "Dividends",
+    "feedback": "This points to Dividends: After-tax profits distributed to stockholders. Watch for this trap: Dividends are not expenses like bond interest."
+  },
+  {
+    "id": "s_t183",
+    "termId": "t183",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A company reinvests profits into new equipment. Which concept best matches the situation?",
+    "answer": "Retained Earnings",
+    "feedback": "This points to Retained Earnings: After-tax profits kept in the business instead of distributed as dividends. Watch for this trap: Retained earnings are an internal source of financing."
+  },
+  {
+    "id": "s_t184",
+    "termId": "t184",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A private company becomes publicly traded. Which concept best matches the situation?",
+    "answer": "Initial Public Offering (IPO)",
+    "feedback": "This points to Initial Public Offering (IPO): The first sale of a corporation\u2019s common stock to the general public. Watch for this trap: An IPO makes shares publicly available for the first time."
+  },
+  {
+    "id": "s_t185",
+    "termId": "t185",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: The SEC enforces disclosure rules for public companies. Which concept best matches the situation?",
+    "answer": "Securities and Exchange Commission (SEC)",
+    "feedback": "This points to Securities and Exchange Commission (SEC): The federal agency that regulates securities markets and protects investors. Watch for this trap: The SEC was created by the Securities Exchange Act of 1934."
+  },
+  {
+    "id": "s_t186",
+    "termId": "t186",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: Cash in your wallet and checking account funds. Which concept best matches the situation?",
+    "answer": "Money Supply M-1",
+    "feedback": "This points to Money Supply M-1: Money that is quickly and easily accessed, including currency and checking deposits. Watch for this trap: M-1 is the narrowest common measure."
+  },
+  {
+    "id": "s_t187",
+    "termId": "t187",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: Savings account deposits are in M-2 but not M-1. Which concept best matches the situation?",
+    "answer": "Money Supply M-2",
+    "feedback": "This points to Money Supply M-2: M-1 plus additional near-money such as savings accounts, money market accounts, and some certificates of deposit. Watch for this trap: M-2 includes everything in M-1 plus more."
+  },
+  {
+    "id": "s_t188",
+    "termId": "t188",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: Depositors are protected up to legal insurance limits. Which concept best matches the situation?",
+    "answer": "FDIC",
+    "feedback": "This points to FDIC: An independent U.S. government agency that insures bank deposits to help maintain confidence in banks. Watch for this trap: It was created to restore confidence in banking institutions."
+  },
+  {
+    "id": "s_t189",
+    "termId": "t189",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: The Fed influences the money supply and interest rates. Which concept best matches the situation?",
+    "answer": "Federal Reserve System",
+    "feedback": "This points to Federal Reserve System: The central banking system of the United States responsible for monetary policy. Watch for this trap: The system includes 12 Federal Reserve Banks."
+  },
+  {
+    "id": "s_t190",
+    "termId": "t190",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: The Fed changes interest rate targets. Which concept best matches the situation?",
+    "answer": "Monetary Policy",
+    "feedback": "This points to Monetary Policy: Actions by the Federal Reserve to influence money supply and interest rates. Watch for this trap: Fiscal policy is government taxing and spending."
+  },
+  {
+    "id": "s_t191",
+    "termId": "t191",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A local thrift provides mortgage loans. Which concept best matches the situation?",
+    "answer": "Savings and Loan Association",
+    "feedback": "This points to Savings and Loan Association: A financial institution that accepts savings and checking deposits and provides home mortgage loans. Watch for this trap: Historically focused on home mortgages."
+  },
+  {
+    "id": "s_t192",
+    "termId": "t192",
+    "module": "M07: Accounting, Finance, Securities & Money",
+    "category": "Accounting, Finance & Money",
+    "prompt": "A business situation describes this: A stronger dollar lowers the dollar cost of imported goods. Which concept best matches the situation?",
+    "answer": "Exchange Rate",
+    "feedback": "This points to Exchange Rate: The value of one currency in terms of another. Watch for this trap: When the dollar rises, foreign goods become cheaper for U.S. consumers."
+  },
+  {
+    "id": "s_t193",
+    "termId": "t193",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: A manager participates in interviewing, training, and evaluating employees. Which concept best matches the situation?",
+    "answer": "Human Resource Management",
+    "feedback": "This points to Human Resource Management: Activities involved in acquiring, developing, evaluating, compensating, and retaining employees. Watch for this trap: HR is now important enough that many managers perform HR functions."
+  },
+  {
+    "id": "s_t194",
+    "termId": "t194",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: A firm reviews current employee skills before forecasting hiring needs. Which concept best matches the situation?",
+    "answer": "Human Resource Planning",
+    "feedback": "This points to Human Resource Planning: Determining the organization\u2019s current and future staffing needs. Watch for this trap: The first step is preparing a human resource inventory."
+  },
+  {
+    "id": "s_t195",
+    "termId": "t195",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: A company discovers which employees can move into supervisory roles. Which concept best matches the situation?",
+    "answer": "Human Resource Inventory",
+    "feedback": "This points to Human Resource Inventory: A list of current employees\u2019 education, skills, training, experience, and career interests. Watch for this trap: It helps identify internal talent."
+  },
+  {
+    "id": "s_t196",
+    "termId": "t196",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: Posting jobs on Indeed or recruiting at colleges. Which concept best matches the situation?",
+    "answer": "Recruitment",
+    "feedback": "This points to Recruitment: Activities used to attract the right number of qualified candidates. Watch for this trap: Recruitment is about attracting candidates, selection is choosing among them."
+  },
+  {
+    "id": "s_t197",
+    "termId": "t197",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: Promoting a current employee. Which concept best matches the situation?",
+    "answer": "Internal Recruiting",
+    "feedback": "This points to Internal Recruiting: Filling jobs from within the organization. Watch for this trap: It can reduce cost and improve morale."
+  },
+  {
+    "id": "s_t198",
+    "termId": "t198",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: Using employment agencies, college placement offices, or job websites. Which concept best matches the situation?",
+    "answer": "External Recruiting",
+    "feedback": "This points to External Recruiting: Seeking job candidates from outside the organization. Watch for this trap: Current employees are not an external source."
+  },
+  {
+    "id": "s_t199",
+    "termId": "t199",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: A receptionist gives an applicant a document explaining daily responsibilities. Which concept best matches the situation?",
+    "answer": "Job Description",
+    "feedback": "This points to Job Description: A written statement explaining job duties, responsibilities, and working conditions. Watch for this trap: Duties belong in the job description."
+  },
+  {
+    "id": "s_t200",
+    "termId": "t200",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: A job requires an associate degree and two years of experience. Which concept best matches the situation?",
+    "answer": "Job Specification",
+    "feedback": "This points to Job Specification: A written statement identifying minimum qualifications needed for a job. Watch for this trap: Qualifications belong in the job specification."
+  },
+  {
+    "id": "s_t201",
+    "termId": "t201",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: A new hire learns company rules and benefits. Which concept best matches the situation?",
+    "answer": "Orientation",
+    "feedback": "This points to Orientation: A program introducing new employees to the organization, job expectations, and policies. Watch for this trap: Orientation is not the same as ongoing training."
+  },
+  {
+    "id": "s_t202",
+    "termId": "t202",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: A worker learns how to operate a scanner. Which concept best matches the situation?",
+    "answer": "Training",
+    "feedback": "This points to Training: Teaching employees skills needed to perform their current jobs. Watch for this trap: Training is usually current-job focused."
+  },
+  {
+    "id": "s_t203",
+    "termId": "t203",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: A supervisor attends leadership development training. Which concept best matches the situation?",
+    "answer": "Development",
+    "feedback": "This points to Development: Preparing employees for future responsibilities. Watch for this trap: Development looks forward."
+  },
+  {
+    "id": "s_t204",
+    "termId": "t204",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: An annual review evaluates goals and behavior. Which concept best matches the situation?",
+    "answer": "Performance Appraisal",
+    "feedback": "This points to Performance Appraisal: Evaluating employee performance against standards. Watch for this trap: Good appraisals provide feedback and guide improvement."
+  },
+  {
+    "id": "s_t205",
+    "termId": "t205",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: Salary, health insurance, retirement contributions, and bonuses. Which concept best matches the situation?",
+    "answer": "Compensation",
+    "feedback": "This points to Compensation: Pay and benefits provided to employees. Watch for this trap: Compensation includes more than wages."
+  },
+  {
+    "id": "s_t206",
+    "termId": "t206",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: A supervisor earns $635 per week. Which concept best matches the situation?",
+    "answer": "Salary",
+    "feedback": "This points to Salary: A fixed amount of pay for a set period, often weekly, monthly, or annually. Watch for this trap: Salary does not vary directly by hours worked in the same way hourly pay does."
+  },
+  {
+    "id": "s_t207",
+    "termId": "t207",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: Employees work any 40 hours between 7 a.m. and 10 p.m. Which concept best matches the situation?",
+    "answer": "Flextime",
+    "feedback": "This points to Flextime: A work schedule allowing employees to choose work hours within set limits. Watch for this trap: Flextime still requires completing required hours."
+  },
+  {
+    "id": "s_t208",
+    "termId": "t208",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: Two workers split one receptionist role. Which concept best matches the situation?",
+    "answer": "Job Sharing",
+    "feedback": "This points to Job Sharing: Two part-time employees share one full-time job. Watch for this trap: Not the same as flextime."
+  },
+  {
+    "id": "s_t209",
+    "termId": "t209",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: A student connects with employers after a job fair. Which concept best matches the situation?",
+    "answer": "Networking",
+    "feedback": "This points to Networking: Building and maintaining professional relationships that can support career development. Watch for this trap: Networking is not just asking for jobs."
+  },
+  {
+    "id": "s_t210",
+    "termId": "t210",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: A sales associate takes on more responsibility over several years. Which concept best matches the situation?",
+    "answer": "Career Development",
+    "feedback": "This points to Career Development: The process of growing skills, responsibilities, and opportunities over time. Watch for this trap: Career growth usually requires effort, not automatic promotion."
+  },
+  {
+    "id": "s_t211",
+    "termId": "t211",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: A presenter uses keywords, visuals, eye contact, and rehearsal. Which concept best matches the situation?",
+    "answer": "Professional Presentation Skills",
+    "feedback": "This points to Professional Presentation Skills: Skills used to communicate clearly and credibly to an audience. Watch for this trap: Slides should not be overloaded with jargon."
+  },
+  {
+    "id": "s_t212",
+    "termId": "t212",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: An employer cannot refuse to hire based on religion. Which concept best matches the situation?",
+    "answer": "Title VII",
+    "feedback": "This points to Title VII: Part of the Civil Rights Act of 1964 prohibiting employment discrimination based on race, color, religion, sex, or national origin. Watch for this trap: It applies to hiring, firing, training, compensation, and other employment matters."
+  },
+  {
+    "id": "s_t213",
+    "termId": "t213",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: A worker files a discrimination complaint with the EEOC. Which concept best matches the situation?",
+    "answer": "EEOC",
+    "feedback": "This points to EEOC: The Equal Employment Opportunity Commission, which investigates employment discrimination complaints and can sue employers. Watch for this trap: EEOC is the correct agency, not a fictional employment office."
+  },
+  {
+    "id": "s_t214",
+    "termId": "t214",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: Employees differ by background, age, language, experience, and culture. Which concept best matches the situation?",
+    "answer": "Cultural Diversity",
+    "feedback": "This points to Cultural Diversity: Differences among people in the workforce. Watch for this trap: Diversity is a workforce reality, not a passing business fad."
+  },
+  {
+    "id": "s_t215",
+    "termId": "t215",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Human Resources & Careers",
+    "prompt": "A business situation describes this: Using short sentences in a global email. Which concept best matches the situation?",
+    "answer": "Intercultural Communication",
+    "feedback": "This points to Intercultural Communication: Communication across cultures that requires clarity, respect, and avoidance of ambiguous expressions. Watch for this trap: Humor can create misunderstandings and should be used carefully."
+  },
+  {
+    "id": "s_t216",
+    "termId": "t216",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Ethics & Social Responsibility",
+    "prompt": "A business situation describes this: A decision may be legal but still unfair to customers. Which concept best matches the situation?",
+    "answer": "Ethics",
+    "feedback": "This points to Ethics: Standards of right and wrong that guide behavior. Watch for this trap: Legal behavior is not always ethical behavior."
+  },
+  {
+    "id": "s_t217",
+    "termId": "t217",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Ethics & Social Responsibility",
+    "prompt": "A business situation describes this: A manager refuses to mislead customers. Which concept best matches the situation?",
+    "answer": "Ethical Behavior",
+    "feedback": "This points to Ethical Behavior: Behavior that considers the effect of decisions on others and follows moral principles. Watch for this trap: Ethics includes consequences for stakeholders."
+  },
+  {
+    "id": "s_t218",
+    "termId": "t218",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Ethics & Social Responsibility",
+    "prompt": "A business situation describes this: A person justifies dishonesty because it benefits them temporarily. Which concept best matches the situation?",
+    "answer": "Situational Ethics",
+    "feedback": "This points to Situational Ethics: The belief that ethical behavior depends on the situation and what seems best at the time. Watch for this trap: It can weaken consistent standards."
+  },
+  {
+    "id": "s_t219",
+    "termId": "t219",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Ethics & Social Responsibility",
+    "prompt": "A business situation describes this: A company policy prohibits bribery and conflicts of interest. Which concept best matches the situation?",
+    "answer": "Code of Ethics",
+    "feedback": "This points to Code of Ethics: A formal guide to acceptable and ethical behavior in an organization. Watch for this trap: A code only matters if leaders support it."
+  },
+  {
+    "id": "s_t220",
+    "termId": "t220",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Ethics & Social Responsibility",
+    "prompt": "A business situation describes this: Employees are disciplined for violating legal procedures. Which concept best matches the situation?",
+    "answer": "Compliance-Based Ethics Code",
+    "feedback": "This points to Compliance-Based Ethics Code: An ethics code focused on preventing unlawful behavior through controls and penalties. Watch for this trap: Compliance is rule-focused."
+  },
+  {
+    "id": "s_t221",
+    "termId": "t221",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Ethics & Social Responsibility",
+    "prompt": "A business situation describes this: Leaders encourage employees to speak up about concerns. Which concept best matches the situation?",
+    "answer": "Integrity-Based Ethics Code",
+    "feedback": "This points to Integrity-Based Ethics Code: An ethics code focused on shared values, accountability, and ethical culture. Watch for this trap: Integrity goes beyond minimum legal compliance."
+  },
+  {
+    "id": "s_t222",
+    "termId": "t222",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Ethics & Social Responsibility",
+    "prompt": "A business situation describes this: A company reduces waste and treats workers fairly. Which concept best matches the situation?",
+    "answer": "Corporate Social Responsibility (CSR)",
+    "feedback": "This points to Corporate Social Responsibility (CSR): A business\u2019s concern for the welfare of society and the effects of its decisions. Watch for this trap: CSR considers profit and social impact."
+  },
+  {
+    "id": "s_t223",
+    "termId": "t223",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Ethics & Social Responsibility",
+    "prompt": "A business situation describes this: Consumer protection laws against deceptive advertising. Which concept best matches the situation?",
+    "answer": "Consumerism",
+    "feedback": "This points to Consumerism: Activities undertaken to protect consumer rights. Watch for this trap: Consumerism is not the same as buying more products."
+  },
+  {
+    "id": "s_t224",
+    "termId": "t224",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Ethics & Social Responsibility",
+    "prompt": "A business situation describes this: A company donates funds to a local food bank. Which concept best matches the situation?",
+    "answer": "Corporate Philanthropy",
+    "feedback": "This points to Corporate Philanthropy: Business donations to charitable causes. Watch for this trap: Philanthropy is one part of social responsibility, not all of it."
+  },
+  {
+    "id": "s_t225",
+    "termId": "t225",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Ethics & Social Responsibility",
+    "prompt": "A business situation describes this: A logistics firm provides disaster relief support. Which concept best matches the situation?",
+    "answer": "Corporate Social Initiative",
+    "feedback": "This points to Corporate Social Initiative: A company commitment of resources and expertise to help address broad social or humanitarian issues. Watch for this trap: It is more active than simply donating money."
+  },
+  {
+    "id": "s_t226",
+    "termId": "t226",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Ethics & Social Responsibility",
+    "prompt": "A business situation describes this: Executives sign off on financial statements. Which concept best matches the situation?",
+    "answer": "Sarbanes-Oxley Act",
+    "feedback": "This points to Sarbanes-Oxley Act: A federal law requiring corporate executives, especially CEOs and CFOs, to certify the accuracy of financial reports. Watch for this trap: It was designed to restore trust after major accounting scandals."
+  },
+  {
+    "id": "s_t227",
+    "termId": "t227",
+    "module": "M02: Ethics, Social Responsibility & Global Business",
+    "category": "Ethics & Social Responsibility",
+    "prompt": "A business situation describes this: Accurate accounting records are maintained and available for audit. Which concept best matches the situation?",
+    "answer": "Corporate Transparency",
+    "feedback": "This points to Corporate Transparency: Clear and honest disclosure of business information, especially financial information. Watch for this trap: Transparency helps restore trust but does not replace ethical leadership."
+  },
+  {
+    "id": "s_t228",
+    "termId": "t228",
+    "module": "M08: Technology, Data & APA Skills",
+    "category": "Information Systems",
+    "prompt": "A business situation describes this: Sales numbers from receipts. Which concept best matches the situation?",
+    "answer": "Data",
+    "feedback": "This points to Data: Raw facts that can be analyzed to support decisions. Watch for this trap: Data becomes useful when organized and interpreted."
+  },
+  {
+    "id": "s_t229",
+    "termId": "t229",
+    "module": "M08: Technology, Data & APA Skills",
+    "category": "Information Systems",
+    "prompt": "A business situation describes this: A customer database stores names, purchases, and contact information. Which concept best matches the situation?",
+    "answer": "Database",
+    "feedback": "This points to Database: An organized collection of data. Watch for this trap: A database is not the same as data analytics."
+  },
+  {
+    "id": "s_t230",
+    "termId": "t230",
+    "module": "M08: Technology, Data & APA Skills",
+    "category": "Information Systems",
+    "prompt": "A business situation describes this: A retailer analyzes purchase history to forecast demand. Which concept best matches the situation?",
+    "answer": "Data Analytics",
+    "feedback": "This points to Data Analytics: The process of collecting and analyzing data to make current and future decisions. Watch for this trap: Analytics turns data into decision support."
+  },
+  {
+    "id": "s_t231",
+    "termId": "t231",
+    "module": "M08: Technology, Data & APA Skills",
+    "category": "Information Systems",
+    "prompt": "A business situation describes this: A grocery chain finds that certain items are often bought together. Which concept best matches the situation?",
+    "answer": "Data Mining",
+    "feedback": "This points to Data Mining: Searching accumulated data for hidden patterns and relationships. Watch for this trap: Data mining looks for patterns not immediately obvious."
+  },
+  {
+    "id": "s_t232",
+    "termId": "t232",
+    "module": "M08: Technology, Data & APA Skills",
+    "category": "Information Systems",
+    "prompt": "A business situation describes this: A dashboard shows sales trends by region. Which concept best matches the situation?",
+    "answer": "Business Intelligence",
+    "feedback": "This points to Business Intelligence: Software and processes that analyze raw organizational data to produce useful insights. Watch for this trap: BI supports decisions, it does not replace judgment."
+  },
+  {
+    "id": "s_t233",
+    "termId": "t233",
+    "module": "M08: Technology, Data & APA Skills",
+    "category": "Information Systems",
+    "prompt": "A business situation describes this: A company tracks customer preferences and service history. Which concept best matches the situation?",
+    "answer": "Customer Relationship Management (CRM)",
+    "feedback": "This points to Customer Relationship Management (CRM): Learning about customers and building relationships to exceed expectations. Watch for this trap: CRM is strategy plus technology, not just software."
+  },
+  {
+    "id": "s_t234",
+    "termId": "t234",
+    "module": "M08: Technology, Data & APA Skills",
+    "category": "Information Systems",
+    "prompt": "A business situation describes this: A checkout system records items purchased. Which concept best matches the situation?",
+    "answer": "Point-of-Sale Data",
+    "feedback": "This points to Point-of-Sale Data: Data collected when a customer completes a transaction. Watch for this trap: A receipt survey also gathers customer data."
+  },
+  {
+    "id": "s_t235",
+    "termId": "t235",
+    "module": "M08: Technology, Data & APA Skills",
+    "category": "Information Systems",
+    "prompt": "A business situation describes this: Students access course information through a private learning platform. Which concept best matches the situation?",
+    "answer": "Intranet",
+    "feedback": "This points to Intranet: A private network contained within an organization. Watch for this trap: An intranet is closed to public access."
+  },
+  {
+    "id": "s_t236",
+    "termId": "t236",
+    "module": "M08: Technology, Data & APA Skills",
+    "category": "Information Systems",
+    "prompt": "A business situation describes this: A supplier logs into a company portal to view inventory needs. Which concept best matches the situation?",
+    "answer": "Extranet",
+    "feedback": "This points to Extranet: A private network that allows selected outsiders access to part of an organization\u2019s information system. Watch for this trap: Extranets extend intranets to customers, suppliers, or partners."
+  },
+  {
+    "id": "s_t237",
+    "termId": "t237",
+    "module": "M08: Technology, Data & APA Skills",
+    "category": "Information Systems",
+    "prompt": "A business situation describes this: A company uses social media for customer engagement. Which concept best matches the situation?",
+    "answer": "Web 2.0",
+    "feedback": "This points to Web 2.0: Interactive web technologies such as blogs, wikis, and social networking sites. Watch for this trap: Web 2.0 emphasizes user-generated content."
+  },
+  {
+    "id": "s_t238",
+    "termId": "t238",
+    "module": "M08: Technology, Data & APA Skills",
+    "category": "Information Systems",
+    "prompt": "A business situation describes this: Blockchain-based platforms are often associated with Web 3.0. Which concept best matches the situation?",
+    "answer": "Web 3.0",
+    "feedback": "This points to Web 3.0: An emerging view of the internet emphasizing decentralization, security, and smarter connections. Watch for this trap: Definitions vary, but decentralization and security are common themes."
+  },
+  {
+    "id": "s_t239",
+    "termId": "t239",
+    "module": "M08: Technology, Data & APA Skills",
+    "category": "Information Systems",
+    "prompt": "A business situation describes this: Scientists use it for collaborative research. Which concept best matches the situation?",
+    "answer": "Internet2",
+    "feedback": "This points to Internet2: A high-speed network supporting advanced research and heavy-duty applications. Watch for this trap: It is not ordinary consumer broadband."
+  },
+  {
+    "id": "s_t240",
+    "termId": "t240",
+    "module": "M08: Technology, Data & APA Skills",
+    "category": "Information Systems",
+    "prompt": "A business situation describes this: A manager receives too many reports and focuses on five key metrics. Which concept best matches the situation?",
+    "answer": "Information Overload",
+    "feedback": "This points to Information Overload: A condition where too much information makes it harder to focus and decide. Watch for this trap: The first step is identifying key goals and filtering irrelevant information."
+  },
+  {
+    "id": "s_t241",
+    "termId": "t241",
+    "module": "M08: Technology, Data & APA Skills",
+    "category": "Information Systems",
+    "prompt": "A business situation describes this: NASDAQ demonstrates market activity without a traditional trading floor. Which concept best matches the situation?",
+    "answer": "Virtual Organization",
+    "feedback": "This points to Virtual Organization: An organization using information technology to operate independent of location. Watch for this trap: Technology can reduce the importance of physical location."
+  },
+  {
+    "id": "s_t242",
+    "termId": "t242",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Motivation & Behavior",
+    "prompt": "A business situation describes this: Workers need safe conditions before focusing on recognition. Which concept best matches the situation?",
+    "answer": "Maslow\u2019s Hierarchy of Needs",
+    "feedback": "This points to Maslow\u2019s Hierarchy of Needs: A theory that people are motivated by levels of needs: physiological, safety, social, esteem, and self-actualization. Watch for this trap: Basic needs usually come before higher-level needs."
+  },
+  {
+    "id": "s_t243",
+    "termId": "t243",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Motivation & Behavior",
+    "prompt": "A business situation describes this: A paycheck helps workers buy food and housing. Which concept best matches the situation?",
+    "answer": "Physiological Needs",
+    "feedback": "This points to Physiological Needs: Basic survival needs such as food, water, and shelter. Watch for this trap: These are the foundation of Maslow\u2019s hierarchy."
+  },
+  {
+    "id": "s_t244",
+    "termId": "t244",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Motivation & Behavior",
+    "prompt": "A business situation describes this: Safe working conditions and stable employment. Which concept best matches the situation?",
+    "answer": "Safety Needs",
+    "feedback": "This points to Safety Needs: Needs for security and protection at work and home. Watch for this trap: Safety includes job security and physical safety."
+  },
+  {
+    "id": "s_t245",
+    "termId": "t245",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Motivation & Behavior",
+    "prompt": "A business situation describes this: An employee receives recognition for excellent work. Which concept best matches the situation?",
+    "answer": "Esteem Needs",
+    "feedback": "This points to Esteem Needs: Needs for recognition, respect, and a sense of accomplishment. Watch for this trap: Esteem is higher than social needs."
+  },
+  {
+    "id": "s_t246",
+    "termId": "t246",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Motivation & Behavior",
+    "prompt": "A business situation describes this: An employee takes on meaningful creative work. Which concept best matches the situation?",
+    "answer": "Self-Actualization",
+    "feedback": "This points to Self-Actualization: The need to reach one\u2019s full potential. Watch for this trap: It is the highest level in Maslow\u2019s hierarchy."
+  },
+  {
+    "id": "s_t247",
+    "termId": "t247",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Motivation & Behavior",
+    "prompt": "A business situation describes this: Achievement motivates, while poor company policy creates dissatisfaction. Which concept best matches the situation?",
+    "answer": "Herzberg\u2019s Motivation-Hygiene Theory",
+    "feedback": "This points to Herzberg\u2019s Motivation-Hygiene Theory: A theory stating that job satisfaction and dissatisfaction come from different factors. Watch for this trap: Salary is usually a hygiene factor, not a true motivator."
+  },
+  {
+    "id": "s_t248",
+    "termId": "t248",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Motivation & Behavior",
+    "prompt": "A business situation describes this: Fair pay prevents dissatisfaction but may not inspire excellence. Which concept best matches the situation?",
+    "answer": "Hygiene Factors",
+    "feedback": "This points to Hygiene Factors: Job factors that can cause dissatisfaction if missing but do not strongly create satisfaction by themselves. Watch for this trap: Pay and working conditions are hygiene factors."
+  },
+  {
+    "id": "s_t249",
+    "termId": "t249",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Motivation & Behavior",
+    "prompt": "A business situation describes this: Giving employees meaningful responsibility. Which concept best matches the situation?",
+    "answer": "Motivators",
+    "feedback": "This points to Motivators: Job factors that increase satisfaction, such as achievement, recognition, responsibility, and growth. Watch for this trap: Motivators are connected to the work itself."
+  },
+  {
+    "id": "s_t250",
+    "termId": "t250",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Motivation & Behavior",
+    "prompt": "A business situation describes this: A manager assumes workers must be watched constantly. Which concept best matches the situation?",
+    "answer": "Theory X",
+    "feedback": "This points to Theory X: McGregor\u2019s view that employees dislike work and need close control. Watch for this trap: Theory X leads to tighter supervision."
+  },
+  {
+    "id": "s_t251",
+    "termId": "t251",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Motivation & Behavior",
+    "prompt": "A business situation describes this: A manager trusts employees to manage projects. Which concept best matches the situation?",
+    "answer": "Theory Y",
+    "feedback": "This points to Theory Y: McGregor\u2019s view that employees can be self-directed and seek responsibility. Watch for this trap: Theory Y managers are more likely to let employees help set goals."
+  },
+  {
+    "id": "s_t252",
+    "termId": "t252",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Motivation & Behavior",
+    "prompt": "A business situation describes this: Timing tasks to identify the most efficient method. Which concept best matches the situation?",
+    "answer": "Scientific Management",
+    "feedback": "This points to Scientific Management: Frederick Taylor\u2019s approach of finding the best way to do each job and training workers to use it. Watch for this trap: It viewed workers too much like machines."
+  },
+  {
+    "id": "s_t253",
+    "termId": "t253",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Motivation & Behavior",
+    "prompt": "A business situation describes this: Rearranging tools to reduce reaching and bending. Which concept best matches the situation?",
+    "answer": "Motion Economy",
+    "feedback": "This points to Motion Economy: Frank and Lillian Gilbreth\u2019s study of work motions to reduce wasted movement. Watch for this trap: A therblig is a basic motion unit."
+  },
+  {
+    "id": "s_t254",
+    "termId": "t254",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Motivation & Behavior",
+    "prompt": "A business situation describes this: Employees work harder because they feel part of a special study. Which concept best matches the situation?",
+    "answer": "Hawthorne Effect",
+    "feedback": "This points to Hawthorne Effect: The tendency for people to change performance when they feel observed or valued. Watch for this trap: The major insight was the importance of human and social factors."
+  },
+  {
+    "id": "s_t255",
+    "termId": "t255",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Motivation & Behavior",
+    "prompt": "A business situation describes this: Mayo\u2019s work highlighted social needs at work. Which concept best matches the situation?",
+    "answer": "Elton Mayo",
+    "feedback": "This points to Elton Mayo: Researcher associated with the Hawthorne studies and the human relations movement. Watch for this trap: The Hawthorne studies shifted attention away from pure scientific management."
+  },
+  {
+    "id": "s_t256",
+    "termId": "t256",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Motivation & Behavior",
+    "prompt": "A business situation describes this: Feeling proud after solving a difficult problem. Which concept best matches the situation?",
+    "answer": "Intrinsic Reward",
+    "feedback": "This points to Intrinsic Reward: Satisfaction that comes from the work itself or a job well done. Watch for this trap: Intrinsic rewards are internal."
+  },
+  {
+    "id": "s_t257",
+    "termId": "t257",
+    "module": "M05: Motivation, Human Resources & Careers",
+    "category": "Motivation & Behavior",
+    "prompt": "A business situation describes this: Receiving a bonus for meeting sales goals. Which concept best matches the situation?",
+    "answer": "Extrinsic Reward",
+    "feedback": "This points to Extrinsic Reward: A reward given by someone else, such as pay, bonus, praise, or promotion. Watch for this trap: Extrinsic rewards are external."
+  },
+  {
+    "id": "s_t258",
+    "termId": "t258",
+    "module": "M08: Technology, Data & APA Skills",
+    "category": "Academic Skills",
+    "prompt": "A business situation describes this: A business student cites sources in APA format. Which concept best matches the situation?",
+    "answer": "APA Style",
+    "feedback": "This points to APA Style: A set of standards from the American Psychological Association for clear, precise, inclusive scholarly writing and citation. Watch for this trap: APA is not a social media writing style."
+  },
+  {
+    "id": "s_t259",
+    "termId": "t259",
+    "module": "M08: Technology, Data & APA Skills",
+    "category": "Academic Skills",
+    "prompt": "A business situation describes this: A paper begins with the title and student information. Which concept best matches the situation?",
+    "answer": "APA Title Page",
+    "feedback": "This points to APA Title Page: The first page of an APA student paper containing paper title, author, institution, course, instructor, due date, and page number. Watch for this trap: Student title page elements are centered and double spaced."
+  },
+  {
+    "id": "s_t260",
+    "termId": "t260",
+    "module": "M08: Technology, Data & APA Skills",
+    "category": "Academic Skills",
+    "prompt": "A business situation describes this: A Word document is set to 1 inch top, bottom, left, and right. Which concept best matches the situation?",
+    "answer": "APA Margins",
+    "feedback": "This points to APA Margins: APA papers generally use one-inch margins on all sides. Watch for this trap: Do not use half-inch or two-inch margins."
+  },
+  {
+    "id": "s_t261",
+    "termId": "t261",
+    "module": "M08: Technology, Data & APA Skills",
+    "category": "Academic Skills",
+    "prompt": "A business situation describes this: The entire student paper uses double spacing. Which concept best matches the situation?",
+    "answer": "APA Double Spacing",
+    "feedback": "This points to APA Double Spacing: APA papers are generally double spaced throughout, including references. Watch for this trap: Do not add extra blank lines before or after headings unless instructed."
+  },
+  {
+    "id": "s_t262",
+    "termId": "t262",
+    "module": "M08: Technology, Data & APA Skills",
+    "category": "Academic Skills",
+    "prompt": "A business situation describes this: A student cites a business article used in a paper. Which concept best matches the situation?",
+    "answer": "Academic Integrity",
+    "feedback": "This points to Academic Integrity: Honest use of sources and original work, including proper citation to avoid plagiarism. Watch for this trap: Citation is not optional when using outside information."
   }
 ];
