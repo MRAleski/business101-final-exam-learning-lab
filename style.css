@@ -1,45 +1,343 @@
+const state = {
+  studentName: "",
+  attempts: Number(localStorage.getItem("blAttempts") || 0),
+  bestScore: Number(localStorage.getItem("blBestScore") || 0),
+  mastered: JSON.parse(localStorage.getItem("blMastered") || "[]"),
+  categoryStats: JSON.parse(localStorage.getItem("blCategoryStats") || "{}"),
+  sessionProgress: 0,
+  currentItems: [],
+  currentIndex: 0,
+  currentScore: 0,
+  currentMode: "",
+  finalResults: {}
+};
 
-:root{--green:#0b6b3a;--green2:#0f8a4b;--blue:#12395b;--ink:#17202a;--muted:#5e6b78;--bg:#f5f8fb;--card:#fff;--gold:#f4b942;--danger:#b42318;--shadow:0 12px 30px rgba(18,57,91,.12)}
-*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5}.hero{background:linear-gradient(135deg,var(--blue),var(--green));color:#fff;padding:32px 18px}.hero-inner{max-width:1100px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-weight:700;font-size:.8rem;color:#d7f5e4}h1{font-size:clamp(2rem,6vw,4rem);line-height:1.05;margin:.2rem 0}.subtitle{font-size:1.1rem;max-width:800px;color:#eef7ff}.hero-actions,.card-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}button{border:0;border-radius:18px;padding:14px 18px;font-weight:700;cursor:pointer;font-size:1rem}.primary{background:var(--gold);color:#111}.secondary{background:#fff;color:var(--blue)}.ghost{background:#eaf1f8;color:var(--blue);margin:12px 0}.small{padding:10px 12px;font-size:.9rem}main{max-width:1100px;margin:auto;padding:18px}.screen{display:none}.screen.active{display:block}.panel,.activity-card,.certificate{background:var(--card);border-radius:24px;box-shadow:var(--shadow);padding:22px;margin:18px 0}.start-panel{max-width:760px;margin:24px auto}.muted{color:var(--muted)}.dash-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.progress-message{background:#fff7df;border-left:6px solid var(--gold);padding:14px;border-radius:16px;font-weight:700;color:#3b2b00}.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.stats-grid div{background:#f0f6f2;border-radius:18px;padding:16px;text-align:center}.stats-grid strong{display:block;font-size:1.8rem;color:var(--green)}.stats-grid span{font-size:.85rem;color:var(--muted)}.mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:14px}.mode-card{background:#fff;text-align:left;box-shadow:var(--shadow);min-height:172px;transition:.15s transform}.mode-card:hover{transform:translateY(-3px)}.mode-card span{font-size:2rem}.mode-card h3{margin:8px 0 4px}.mode-card p{color:var(--muted);font-weight:400}.mode-card.highlight{outline:3px solid var(--gold)}select,input{width:100%;padding:14px;border:1px solid #cbd5e1;border-radius:14px;font-size:1rem;margin:8px 0}.activity-top{display:flex;align-items:center;gap:14px;margin-top:10px}.progress-wrap{height:13px;background:#dbe6ee;border-radius:999px;flex:1;overflow:hidden}#progressBar{height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--gold));transition:.2s}.progress-text{font-weight:700;color:var(--blue);min-width:48px}.term-badge{display:inline-block;background:#e7f4ed;color:var(--green);padding:6px 10px;border-radius:999px;font-weight:700;font-size:.85rem}.module-badge{display:inline-block;background:#eef7ff;color:var(--blue);padding:6px 10px;border-radius:999px;font-weight:700;font-size:.85rem;margin-left:6px}.big-term{font-size:clamp(1.7rem,6vw,3rem);margin:16px 0}.answer-grid{display:grid;gap:10px;margin-top:18px}.answer-btn{background:#f0f4f8;text-align:left;border:2px solid transparent}.answer-btn:hover{border-color:var(--blue)}.answer-btn.correct{background:#e6f6eb;border-color:var(--green)}.answer-btn.wrong{background:#fde8e7;border-color:var(--danger)}.feedback{margin-top:16px;padding:16px;border-radius:18px;background:#f8fafc;border-left:6px solid var(--blue)}.goal-box{background:#eef7ff;border:1px solid #c7ddf2;border-radius:18px;padding:14px;margin:12px 0}.study-list,.category-results{display:grid;gap:12px}.study-item,.category-result{background:#fff;border-radius:18px;box-shadow:var(--shadow);padding:18px}.study-item h3{margin:.2rem 0;color:var(--blue)}.study-item small{color:var(--green);font-weight:700}.meter{height:10px;background:#dbe6ee;border-radius:999px;overflow:hidden;margin-top:8px}.meter span{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--gold))}.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px}.match-item,.drop-zone{background:#f4f7fb;padding:14px;border-radius:16px;min-height:72px;border:2px dashed transparent}.match-item{cursor:pointer;border:2px solid #dbe6ee}.drop-zone{border-color:#cbd5e1}.drop-zone.filled{background:#e7f4ed;border-color:var(--green)}.certificate{max-width:840px;margin:24px auto;text-align:center;border:10px solid var(--blue)}.certificate h2{font-size:2.3rem;color:var(--green)}.cert-small{text-transform:uppercase;letter-spacing:.16em;font-weight:700}.name-input{max-width:540px;text-align:center;font-size:1.6rem;border:0;border-bottom:2px solid var(--ink);border-radius:0}.cert-row{display:flex;justify-content:space-around;gap:18px;flex-wrap:wrap;margin:22px}.cert-note{font-size:.95rem;color:var(--muted)}.report-table{width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}.report-table th,.report-table td{padding:10px;border-bottom:1px solid #e5edf5;text-align:left}.report-table th{background:#eef7ff;color:var(--blue)}footer{text-align:center;color:var(--muted);padding:22px}@media(max-width:700px){.stats-grid{grid-template-columns:1fr}.match-wrap{grid-template-columns:1fr}.activity-top{display:block}.dash-head{display:block}button{width:100%}.hero-actions button{width:100%}}@media print{body{background:#fff}.hero,footer,.no-print,.ghost{display:none!important}main{max-width:none;padding:0}.screen{display:none}#certificate{display:block}.certificate{box-shadow:none;border:8px solid #111;margin:0}.name-input{border-bottom:2px solid #111}}
+const $ = (id) => document.getElementById(id);
 
-
-/* Version 3 certificate enhancements */
-.cert-row span{
-  margin: 6px 10px;
+function saveState() {
+  localStorage.setItem("blAttempts", state.attempts);
+  localStorage.setItem("blBestScore", state.bestScore);
+  localStorage.setItem("blMastered", JSON.stringify(state.mastered));
+  localStorage.setItem("blCategoryStats", JSON.stringify(state.categoryStats));
 }
-@media print{
-  .cert-row{
-    page-break-inside: avoid;
+
+function shuffle(array) {
+  return [...array].sort(() => Math.random() - 0.5);
+}
+
+function showOnly(id) {
+  ["startScreen", "dashboard", "activityScreen", "resultsScreen", "certificate"].forEach(screen => {
+    $(screen).classList.toggle("hidden", screen !== id);
+  });
+  $("homeBtn").classList.toggle("hidden", id === "startScreen" || id === "dashboard");
+  $("progressPanel").classList.toggle("hidden", id === "startScreen");
+}
+
+function updateDashboard() {
+  $("attemptsStat").textContent = state.attempts;
+  $("bestScoreStat").textContent = `${state.bestScore}%`;
+  $("masteredStat").textContent = state.mastered.length;
+  $("readinessStat").textContent = state.bestScore >= 80 ? "Ready" : "Practice More";
+  $("readinessStat").style.color = state.bestScore >= 80 ? "#2e7d32" : "#b7791f";
+  renderCategoryBreakdown("categoryBreakdown", state.categoryStats);
+  updateProgress(state.sessionProgress);
+}
+
+function updateProgress(value) {
+  state.sessionProgress = Math.max(0, Math.min(100, value));
+  $("progressFill").style.width = `${state.sessionProgress}%`;
+  document.querySelector(".progress-track").setAttribute("aria-valuenow", state.sessionProgress);
+  $("progressLabel").textContent = `${Math.round(state.sessionProgress)}% complete`;
+  const distance = Math.max(0, 80 - state.bestScore);
+  $("readinessLabel").textContent = distance === 0 ? "Readiness goal met: 80% or higher" : `Distance to readiness: ${distance} points`;
+  $("nearComplete").classList.toggle("hidden", state.sessionProgress < 85);
+}
+
+function addCategoryResult(category, correct) {
+  if (!state.categoryStats[category]) state.categoryStats[category] = { correct: 0, total: 0 };
+  state.categoryStats[category].total += 1;
+  if (correct) state.categoryStats[category].correct += 1;
+  saveState();
+}
+
+function categoryPercent(stats) {
+  if (!stats || !stats.total) return 0;
+  return Math.round((stats.correct / stats.total) * 100);
+}
+
+function renderCategoryBreakdown(targetId, stats) {
+  const categories = [...new Set(TERMS.map(t => t.category))];
+  $(targetId).innerHTML = categories.map(cat => {
+    const pct = categoryPercent(stats[cat]);
+    const label = pct >= 80 ? "Strong" : pct >= 50 ? "Developing" : "Needs practice";
+    return `
+      <div class="category-card">
+        <strong>${cat}</strong>
+        <span>${label} · ${pct}%</span>
+        <div class="meter"><span style="width:${pct}%"></span></div>
+      </div>
+    `;
+  }).join("");
+}
+
+function startApp() {
+  const name = $("studentName").value.trim();
+  state.studentName = name || "Student";
+  showOnly("dashboard");
+  updateDashboard();
+}
+
+function openDashboard() {
+  showOnly("dashboard");
+  updateDashboard();
+}
+
+function setActivity(title, kicker, counter = "") {
+  $("activityTitle").textContent = title;
+  $("activityKicker").textContent = kicker;
+  $("activityCounter").textContent = counter;
+  $("activityContent").innerHTML = "";
+  showOnly("activityScreen");
+}
+
+function startFlashcards() {
+  state.currentMode = "flashcards";
+  state.currentItems = shuffle(TERMS).slice(0, 12);
+  state.currentIndex = 0;
+  renderFlashcard();
+}
+
+function renderFlashcard(showBack = false) {
+  const item = state.currentItems[state.currentIndex];
+  setActivity("Flashcards", "Term → definition → example → common mistake", `${state.currentIndex + 1} of ${state.currentItems.length}`);
+  updateProgress(Math.round((state.currentIndex / state.currentItems.length) * 100));
+  $("activityContent").innerHTML = `
+    <div class="flashcard">
+      <h3 class="flash-term">${item.term}</h3>
+      ${showBack ? `
+        <div class="stack">
+          <div class="callout"><strong>Definition:</strong> ${item.definition}</div>
+          <div class="callout"><strong>Example:</strong> ${item.example}</div>
+          <div class="callout"><strong>Common mistake:</strong> ${item.mistake}</div>
+        </div>
+        <div class="result-actions">
+          <button class="primary-btn" id="knowBtn" type="button">I knew this</button>
+          <button class="ghost-btn" id="reviewBtn" type="button">Review again</button>
+        </div>
+      ` : `
+        <p>Try to explain this term out loud before revealing the answer.</p>
+        <button class="primary-btn" id="revealBtn" type="button">Reveal</button>
+      `}
+    </div>
+  `;
+  if (!showBack) $("revealBtn").onclick = () => renderFlashcard(true);
+  else {
+    $("knowBtn").onclick = () => markFlashcard(item, true);
+    $("reviewBtn").onclick = () => markFlashcard(item, false);
   }
 }
 
+function markFlashcard(item, knewIt) {
+  if (knewIt && !state.mastered.includes(item.term)) state.mastered.push(item.term);
+  addCategoryResult(item.category, knewIt);
+  saveState();
+  state.currentIndex++;
+  if (state.currentIndex >= state.currentItems.length) {
+    updateProgress(100);
+    openDashboard();
+  } else {
+    renderFlashcard(false);
+  }
+}
 
-/* Version 4 learning enhancements */
-.streak-pill{
-  display:inline-block;
-  background:#fff7df;
-  color:#3b2b00;
-  border:1px solid #f4d27a;
-  border-radius:999px;
-  padding:8px 12px;
-  font-weight:700;
-  margin:8px 0;
+function startMatching() {
+  state.currentMode = "matching";
+  const items = shuffle(TERMS).slice(0, 6);
+  let selectedTerm = null;
+  let selectedDef = null;
+  let matched = new Set();
+  setActivity("Matching", "Match each term to the correct definition", `0 of ${items.length}`);
+  updateProgress(0);
+
+  function render() {
+    const termsHtml = items.map((item, idx) => `
+      <button class="match-btn ${matched.has(item.term) ? "matched" : ""}" data-kind="term" data-index="${idx}" ${matched.has(item.term) ? "disabled" : ""}>${item.term}</button>
+    `).join("");
+    const defs = shuffle(items);
+    const defsHtml = defs.map((item, idx) => `
+      <button class="match-btn ${matched.has(item.term) ? "matched" : ""}" data-kind="def" data-term="${item.term}" ${matched.has(item.term) ? "disabled" : ""}>${item.definition}</button>
+    `).join("");
+    $("activityContent").innerHTML = `
+      <div class="match-layout">
+        <div><h3>Terms</h3><div class="match-list">${termsHtml}</div></div>
+        <div><h3>Definitions</h3><div class="match-list">${defsHtml}</div></div>
+      </div>
+      <div id="matchFeedback" class="feedback hidden"></div>
+    `;
+    document.querySelectorAll(".match-btn").forEach(btn => btn.onclick = () => {
+      if (btn.dataset.kind === "term") selectedTerm = items[Number(btn.dataset.index)];
+      if (btn.dataset.kind === "def") selectedDef = btn.dataset.term;
+      document.querySelectorAll(".match-btn").forEach(b => b.classList.remove("selected"));
+      btn.classList.add("selected");
+      if (selectedTerm && selectedDef) checkMatch();
+    });
+  }
+
+  function checkMatch() {
+    const correct = selectedTerm.term === selectedDef;
+    addCategoryResult(selectedTerm.category, correct);
+    const fb = $("matchFeedback");
+    fb.className = `feedback ${correct ? "correct" : "incorrect"}`;
+    fb.classList.remove("hidden");
+    fb.innerHTML = correct
+      ? `<strong>Correct.</strong> ${selectedTerm.term}: ${selectedTerm.definition}`
+      : `<strong>Not yet.</strong> Recheck the definition for ${selectedTerm.term}. Common mistake: ${selectedTerm.mistake}`;
+    if (correct) matched.add(selectedTerm.term);
+    selectedTerm = null;
+    selectedDef = null;
+    $("activityCounter").textContent = `${matched.size} of ${items.length}`;
+    updateProgress(Math.round((matched.size / items.length) * 100));
+    if (matched.size === items.length) {
+      setTimeout(openDashboard, 900);
+    } else {
+      setTimeout(render, 700);
+    }
+  }
+
+  render();
 }
-.recommendation-box{
-  background:#e7f4ed;
-  border-left:6px solid var(--green);
-  border-radius:16px;
-  padding:16px;
-  margin:16px 0;
+
+function startTF() {
+  state.currentMode = "tf";
+  state.currentItems = shuffle(TERMS).slice(0, 10);
+  state.currentIndex = 0;
+  state.currentScore = 0;
+  renderQuestion("tf");
 }
-.missed-list{
-  background:#fff7f6;
-  border-left:6px solid var(--danger);
-  border-radius:16px;
-  padding:16px;
-  margin:16px 0;
+
+function startScenario() {
+  state.currentMode = "scenario";
+  state.currentItems = shuffle(SCENARIOS).slice(0, 8);
+  state.currentIndex = 0;
+  state.currentScore = 0;
+  renderQuestion("scenario");
 }
-.small-muted{
-  color:var(--muted);
-  font-size:.9rem;
+
+function startFinal() {
+  state.currentMode = "final";
+  state.currentItems = shuffle([
+    ...TERMS.slice().map(t => ({
+      type: "tf",
+      category: t.category,
+      prompt: t.misconception,
+      choices: ["True", "False"],
+      answer: t.tfAnswer ? "True" : "False",
+      feedback: `${t.term}: ${t.definition} Common mistake: ${t.mistake}`
+    })),
+    ...SCENARIOS.map(s => ({...s, type: "scenario"}))
+  ]).slice(0, 20);
+  state.currentIndex = 0;
+  state.currentScore = 0;
+  state.finalResults = {};
+  state.attempts += 1;
+  saveState();
+  renderQuestion("final");
 }
+
+function renderQuestion(mode) {
+  const item = state.currentItems[state.currentIndex];
+  const title = mode === "tf" ? "Misconception Check" : mode === "scenario" ? "Scenario Practice" : "Readiness Challenge";
+  const kicker = mode === "tf" ? "True or false" : mode === "scenario" ? "Apply the rule" : "Score counts toward certificate";
+  setActivity(title, kicker, `${state.currentIndex + 1} of ${state.currentItems.length}`);
+  updateProgress(Math.round((state.currentIndex / state.currentItems.length) * 100));
+  const choices = mode === "tf" ? ["True", "False"] : shuffle(item.choices);
+  $("activityContent").innerHTML = `
+    <h3>${item.prompt}</h3>
+    <div class="choice-grid">
+      ${choices.map(choice => `<button class="choice-btn" data-choice="${choice}" type="button">${choice}</button>`).join("")}
+    </div>
+    <div id="questionFeedback" class="feedback hidden"></div>
+  `;
+  document.querySelectorAll(".choice-btn").forEach(btn => {
+    btn.onclick = () => answerQuestion(btn.dataset.choice, item, mode);
+  });
+}
+
+function answerQuestion(choice, item, mode) {
+  const correct = choice === item.answer;
+  if (correct) state.currentScore += 1;
+  addCategoryResult(item.category, correct);
+  if (mode === "final") {
+    if (!state.finalResults[item.category]) state.finalResults[item.category] = { correct: 0, total: 0 };
+    state.finalResults[item.category].total += 1;
+    if (correct) state.finalResults[item.category].correct += 1;
+  }
+  document.querySelectorAll(".choice-btn").forEach(btn => {
+    btn.disabled = true;
+    if (btn.dataset.choice === item.answer) btn.classList.add("correct-choice");
+    if (btn.dataset.choice === choice && !correct) btn.classList.add("wrong-choice");
+  });
+  const fb = $("questionFeedback");
+  fb.className = `feedback ${correct ? "correct" : "incorrect"}`;
+  fb.classList.remove("hidden");
+  fb.innerHTML = correct
+    ? `<strong>Correct.</strong> ${item.feedback}`
+    : `<strong>Correction:</strong> The better answer is <strong>${item.answer}</strong>. ${item.feedback}`;
+  const nextText = state.currentIndex + 1 >= state.currentItems.length ? "Finish" : "Next";
+  fb.innerHTML += `<div class="result-actions"><button id="nextQuestionBtn" class="primary-btn" type="button">${nextText}</button></div>`;
+  $("nextQuestionBtn").onclick = () => {
+    state.currentIndex += 1;
+    if (state.currentIndex >= state.currentItems.length) finishMode(mode);
+    else renderQuestion(mode);
+  };
+}
+
+function finishMode(mode) {
+  updateProgress(100);
+  if (mode === "final") {
+    const score = Math.round((state.currentScore / state.currentItems.length) * 100);
+    if (score > state.bestScore) state.bestScore = score;
+    saveState();
+    showResults(score);
+  } else {
+    openDashboard();
+  }
+}
+
+function showResults(score) {
+  showOnly("resultsScreen");
+  $("resultSummary").innerHTML = score >= 80
+    ? `<strong>${score}%.</strong> You met the 80% readiness target. Keep reviewing weak categories before the actual exam.`
+    : `<strong>${score}%.</strong> You are not at the 80% readiness target yet. Use the weak-area breakdown below to choose the next practice mode.`;
+  renderCategoryBreakdown("resultBreakdown", state.finalResults);
+  updateDashboard();
+  $("certName").textContent = state.studentName || "Student";
+  $("certScore").textContent = `${state.bestScore}%`;
+  $("certAttempts").textContent = state.attempts;
+  $("certDate").textContent = new Date().toLocaleDateString();
+}
+
+function printCertificate() {
+  $("certificate").classList.remove("hidden");
+  window.print();
+}
+
+function bindEvents() {
+  $("startBtn").onclick = startApp;
+  $("homeBtn").onclick = openDashboard;
+  $("returnBtn").onclick = openDashboard;
+  $("printCertBtn").onclick = printCertificate;
+  document.querySelectorAll(".mode-card").forEach(btn => {
+    btn.onclick = () => {
+      const mode = btn.dataset.mode;
+      if (mode === "flashcards") startFlashcards();
+      if (mode === "matching") startMatching();
+      if (mode === "tf") startTF();
+      if (mode === "scenario") startScenario();
+      if (mode === "final") startFinal();
+    };
+  });
+}
+
+bindEvents();
+updateDashboard();
